@@ -11,24 +11,53 @@ automation:
           - input_boolean.done_kitchen_windows
           - input_boolean.done_kitchen_oven
           - input_boolean.done_kitchen_cupboard_fronts
-          - input_boolean.done_bath_toilet
-          - input_boolean.done_bath_shower
-          - input_boolean.done_bath_basin
-          - input_boolean.done_bath_floor
-          - input_boolean.done_bath_mirror
-          - input_boolean.done_bath_windows
-          - input_boolean.done_bath_tiles
+          - input_boolean.done_pantry_shelves_wipe
+          - input_boolean.done_pantry_floor
+          - input_boolean.done_pantry_tidy_expiry
+          - input_boolean.done_mbath_toilet
+          - input_boolean.done_mbath_shower
+          - input_boolean.done_mbath_basin
+          - input_boolean.done_mbath_floor
+          - input_boolean.done_mbath_mirror
+          - input_boolean.done_mbath_windows
+          - input_boolean.done_mbath_tiles
+          - input_boolean.done_gbath_toilet
+          - input_boolean.done_gbath_shower
+          - input_boolean.done_gbath_basin
+          - input_boolean.done_gbath_floor
+          - input_boolean.done_gbath_mirror
+          - input_boolean.done_gbath_windows
+          - input_boolean.done_gbath_tiles
           - input_boolean.done_living_dust
           - input_boolean.done_living_vacuum
           - input_boolean.done_living_floor
           - input_boolean.done_living_windows
           - input_boolean.done_living_curtains
           - input_boolean.done_living_skirting
-          - input_boolean.done_bed1_dust
-          - input_boolean.done_bed1_vacuum
-          - input_boolean.done_bed1_linen
-          - input_boolean.done_bed1_windows
-          - input_boolean.done_bed1_wardrobe
+          - input_boolean.done_braai_sweep
+          - input_boolean.done_braai_surfaces
+          - input_boolean.done_braai_grill_area
+          - input_boolean.done_braai_windows
+          - input_boolean.done_braai_cobwebs
+          - input_boolean.done_office_dust
+          - input_boolean.done_office_vacuum
+          - input_boolean.done_office_bin
+          - input_boolean.done_office_windows
+          - input_boolean.done_mbed_dust
+          - input_boolean.done_mbed_vacuum
+          - input_boolean.done_mbed_linen
+          - input_boolean.done_mbed_windows
+          - input_boolean.done_mbed_wardrobe
+          - input_boolean.done_sbed_dust
+          - input_boolean.done_sbed_vacuum
+          - input_boolean.done_sbed_linen
+          - input_boolean.done_sbed_windows
+          - input_boolean.done_sbed_wardrobe
+          - input_boolean.done_dbed_dust
+          - input_boolean.done_dbed_vacuum
+          - input_boolean.done_dbed_linen
+          - input_boolean.done_dbed_windows
+          - input_boolean.done_dbed_wardrobe
         to: "on"
     action:
       - service: pyscript.cleaning_mark_done
@@ -48,24 +77,53 @@ automation:
           - input_boolean.done_kitchen_windows
           - input_boolean.done_kitchen_oven
           - input_boolean.done_kitchen_cupboard_fronts
-          - input_boolean.done_bath_toilet
-          - input_boolean.done_bath_shower
-          - input_boolean.done_bath_basin
-          - input_boolean.done_bath_floor
-          - input_boolean.done_bath_mirror
-          - input_boolean.done_bath_windows
-          - input_boolean.done_bath_tiles
+          - input_boolean.done_pantry_shelves_wipe
+          - input_boolean.done_pantry_floor
+          - input_boolean.done_pantry_tidy_expiry
+          - input_boolean.done_mbath_toilet
+          - input_boolean.done_mbath_shower
+          - input_boolean.done_mbath_basin
+          - input_boolean.done_mbath_floor
+          - input_boolean.done_mbath_mirror
+          - input_boolean.done_mbath_windows
+          - input_boolean.done_mbath_tiles
+          - input_boolean.done_gbath_toilet
+          - input_boolean.done_gbath_shower
+          - input_boolean.done_gbath_basin
+          - input_boolean.done_gbath_floor
+          - input_boolean.done_gbath_mirror
+          - input_boolean.done_gbath_windows
+          - input_boolean.done_gbath_tiles
           - input_boolean.done_living_dust
           - input_boolean.done_living_vacuum
           - input_boolean.done_living_floor
           - input_boolean.done_living_windows
           - input_boolean.done_living_curtains
           - input_boolean.done_living_skirting
-          - input_boolean.done_bed1_dust
-          - input_boolean.done_bed1_vacuum
-          - input_boolean.done_bed1_linen
-          - input_boolean.done_bed1_windows
-          - input_boolean.done_bed1_wardrobe
+          - input_boolean.done_braai_sweep
+          - input_boolean.done_braai_surfaces
+          - input_boolean.done_braai_grill_area
+          - input_boolean.done_braai_windows
+          - input_boolean.done_braai_cobwebs
+          - input_boolean.done_office_dust
+          - input_boolean.done_office_vacuum
+          - input_boolean.done_office_bin
+          - input_boolean.done_office_windows
+          - input_boolean.done_mbed_dust
+          - input_boolean.done_mbed_vacuum
+          - input_boolean.done_mbed_linen
+          - input_boolean.done_mbed_windows
+          - input_boolean.done_mbed_wardrobe
+          - input_boolean.done_sbed_dust
+          - input_boolean.done_sbed_vacuum
+          - input_boolean.done_sbed_linen
+          - input_boolean.done_sbed_windows
+          - input_boolean.done_sbed_wardrobe
+          - input_boolean.done_dbed_dust
+          - input_boolean.done_dbed_vacuum
+          - input_boolean.done_dbed_linen
+          - input_boolean.done_dbed_windows
+          - input_boolean.done_dbed_wardrobe
         to: "off"
     action:
       - service: pyscript.cleaning_mark_undone

@@ -15,21 +15,43 @@
       ]
     },
     {
-      "id": "bathroom_main",
-      "name": "Main Bathroom",
+      "id": "pantry",
+      "name": "Pantry",
       "tasks": [
-        {"id": "bath_toilet", "name": "Clean & disinfect toilet", "unit": "week", "count": 2},
-        {"id": "bath_shower", "name": "Clean shower/bath", "unit": "week", "count": 2},
-        {"id": "bath_basin", "name": "Clean basin & taps", "unit": "week", "count": 2},
-        {"id": "bath_floor", "name": "Mop floor", "unit": "week", "count": 2},
-        {"id": "bath_mirror", "name": "Clean mirror", "unit": "week", "count": 1},
-        {"id": "bath_windows", "name": "Clean windows", "unit": "month", "count": 1},
-        {"id": "bath_tiles", "name": "Deep clean tile grout", "unit": "month", "count": 1}
+        {"id": "pantry_shelves_wipe", "name": "Wipe shelves", "unit": "week", "count": 1},
+        {"id": "pantry_floor", "name": "Sweep floor", "unit": "week", "count": 1},
+        {"id": "pantry_tidy_expiry", "name": "Tidy & check for expired items", "unit": "month", "count": 1}
       ]
     },
     {
-      "id": "living_room",
-      "name": "Living Room",
+      "id": "main_bathroom",
+      "name": "Main Bathroom",
+      "tasks": [
+        {"id": "mbath_toilet", "name": "Clean & disinfect toilet", "unit": "week", "count": 2},
+        {"id": "mbath_shower", "name": "Clean shower/bath", "unit": "week", "count": 2},
+        {"id": "mbath_basin", "name": "Clean basin & taps", "unit": "week", "count": 2},
+        {"id": "mbath_floor", "name": "Mop floor", "unit": "week", "count": 2},
+        {"id": "mbath_mirror", "name": "Clean mirror", "unit": "week", "count": 1},
+        {"id": "mbath_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "mbath_tiles", "name": "Deep clean tile grout", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "guest_bathroom",
+      "name": "Guest Bathroom",
+      "tasks": [
+        {"id": "gbath_toilet", "name": "Clean & disinfect toilet", "unit": "week", "count": 1},
+        {"id": "gbath_shower", "name": "Clean shower/bath", "unit": "week", "count": 1},
+        {"id": "gbath_basin", "name": "Clean basin & taps", "unit": "week", "count": 1},
+        {"id": "gbath_floor", "name": "Mop floor", "unit": "week", "count": 1},
+        {"id": "gbath_mirror", "name": "Clean mirror", "unit": "week", "count": 1},
+        {"id": "gbath_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "gbath_tiles", "name": "Deep clean tile grout", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "living_dining",
+      "name": "Living / Dining Area",
       "tasks": [
         {"id": "living_dust", "name": "Dust surfaces & shelves", "unit": "week", "count": 2},
         {"id": "living_vacuum", "name": "Vacuum carpets/rugs", "unit": "week", "count": 2},
@@ -40,14 +62,57 @@
       ]
     },
     {
-      "id": "bedroom_main",
+      "id": "braai_room",
+      "name": "Braai Room",
+      "tasks": [
+        {"id": "braai_sweep", "name": "Sweep floor", "unit": "week", "count": 1},
+        {"id": "braai_surfaces", "name": "Wipe down surfaces/counters", "unit": "week", "count": 1},
+        {"id": "braai_grill_area", "name": "Clean around braai/grill area", "unit": "week", "count": 1},
+        {"id": "braai_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "braai_cobwebs", "name": "Clear cobwebs / deep clean", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "office_desk",
+      "name": "Office (Desk)",
+      "tasks": [
+        {"id": "office_dust", "name": "Dust desk & surfaces", "unit": "week", "count": 1},
+        {"id": "office_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
+        {"id": "office_bin", "name": "Empty bin", "unit": "week", "count": 1},
+        {"id": "office_windows", "name": "Clean windows", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "main_bedroom",
       "name": "Main Bedroom",
       "tasks": [
-        {"id": "bed1_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
-        {"id": "bed1_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
-        {"id": "bed1_linen", "name": "Change bed linen", "unit": "week", "count": 1},
-        {"id": "bed1_windows", "name": "Clean windows", "unit": "month", "count": 1},
-        {"id": "bed1_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
+        {"id": "mbed_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
+        {"id": "mbed_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
+        {"id": "mbed_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "mbed_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "mbed_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "bedroom_single_beds",
+      "name": "Bedroom - Single Beds",
+      "tasks": [
+        {"id": "sbed_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
+        {"id": "sbed_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
+        {"id": "sbed_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "sbed_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "sbed_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "bedroom_double_bed",
+      "name": "Bedroom - Double Bed",
+      "tasks": [
+        {"id": "dbed_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
+        {"id": "dbed_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
+        {"id": "dbed_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "dbed_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "dbed_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
       ]
     }
   ]
