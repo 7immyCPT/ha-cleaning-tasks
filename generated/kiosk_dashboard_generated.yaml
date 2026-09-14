@@ -23,29 +23,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_counters
                   name: "Wipe counters & stovetop"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_counters
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_counters
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_counters
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe counters & stovetop"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_floor
@@ -55,29 +40,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_floor
                   name: "Sweep & mop floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_floor
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Sweep & mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_sink
@@ -87,29 +57,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_sink
                   name: "Clean sink & taps"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_sink
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_sink
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_sink
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean sink & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_fridge
@@ -119,29 +74,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_fridge
                   name: "Wipe down fridge exterior"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_fridge
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_fridge
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_fridge
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe down fridge exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_microwave
@@ -151,29 +91,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_microwave
                   name: "Clean inside of microwave"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_microwave
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_microwave
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_microwave
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean inside of microwave"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_windows
@@ -183,29 +108,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_oven
@@ -215,29 +125,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_oven
                   name: "Deep clean oven"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_oven
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_oven
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_oven
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Deep clean oven"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_cupboard_fronts
@@ -247,29 +142,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_cupboard_fronts
                   name: "Wipe cupboard fronts"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_kitchen_cupboard_fronts
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_cupboard_fronts
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_cupboard_fronts
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe cupboard fronts"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_counters
@@ -279,30 +159,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_counters
-                  name: "W̶i̶p̶e̶ ̶c̶o̶u̶n̶t̶e̶r̶s̶ ̶&̶ ̶s̶t̶o̶v̶e̶t̶o̶p̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_counters
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_counters
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_counters
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe counters & stovetop"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe counters & stovetop"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_floor
@@ -312,30 +176,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_floor
-                  name: "S̶w̶e̶e̶p̶ ̶&̶ ̶m̶o̶p̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_floor
-                      media_player: media_player.kiosk_tablet
+                  name: "Sweep & mop floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Sweep & mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_sink
@@ -345,30 +193,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_sink
-                  name: "C̶l̶e̶a̶n̶ ̶s̶i̶n̶k̶ ̶&̶ ̶t̶a̶p̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_sink
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_sink
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_sink
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean sink & taps"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean sink & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_fridge
@@ -378,30 +210,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_fridge
-                  name: "W̶i̶p̶e̶ ̶d̶o̶w̶n̶ ̶f̶r̶i̶d̶g̶e̶ ̶e̶x̶t̶e̶r̶i̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_fridge
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_fridge
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_fridge
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe down fridge exterior"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe down fridge exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_microwave
@@ -411,30 +227,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_microwave
-                  name: "C̶l̶e̶a̶n̶ ̶i̶n̶s̶i̶d̶e̶ ̶o̶f̶ ̶m̶i̶c̶r̶o̶w̶a̶v̶e̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_microwave
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_microwave
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_microwave
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean inside of microwave"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean inside of microwave"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_windows
@@ -444,30 +244,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_oven
@@ -477,30 +261,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_oven
-                  name: "D̶e̶e̶p̶ ̶c̶l̶e̶a̶n̶ ̶o̶v̶e̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_oven
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_oven
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_oven
-                      media_player: media_player.kiosk_tablet
+                  name: "Deep clean oven"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Deep clean oven"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_cupboard_fronts
@@ -510,30 +278,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_kitchen_cupboard_fronts
-                  name: "W̶i̶p̶e̶ ̶c̶u̶p̶b̶o̶a̶r̶d̶ ̶f̶r̶o̶n̶t̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_kitchen_cupboard_fronts
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_cupboard_fronts
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: kitchen_cupboard_fronts
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe cupboard fronts"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe cupboard fronts"
       - type: vertical-stack
         cards:
           - type: heading
@@ -548,29 +300,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_shelves_wipe
                   name: "Wipe shelves"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_pantry_shelves_wipe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_shelves_wipe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_shelves_wipe
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_floor
@@ -580,29 +317,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_floor
                   name: "Sweep floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_pantry_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_floor
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_tidy_expiry
@@ -612,29 +334,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_tidy_expiry
                   name: "Tidy & check for expired items"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_pantry_tidy_expiry
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_tidy_expiry
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_tidy_expiry
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Tidy & check for expired items"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_shelves_wipe
@@ -644,30 +351,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_shelves_wipe
-                  name: "W̶i̶p̶e̶ ̶s̶h̶e̶l̶v̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_pantry_shelves_wipe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_shelves_wipe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_shelves_wipe
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe shelves"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_floor
@@ -677,30 +368,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_floor
-                  name: "S̶w̶e̶e̶p̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_pantry_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_floor
-                      media_player: media_player.kiosk_tablet
+                  name: "Sweep floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_tidy_expiry
@@ -710,30 +385,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_pantry_tidy_expiry
-                  name: "T̶i̶d̶y̶ ̶&̶ ̶c̶h̶e̶c̶k̶ ̶f̶o̶r̶ ̶e̶x̶p̶i̶r̶e̶d̶ ̶i̶t̶e̶m̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_pantry_tidy_expiry
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_tidy_expiry
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: pantry_tidy_expiry
-                      media_player: media_player.kiosk_tablet
+                  name: "Tidy & check for expired items"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Tidy & check for expired items"
       - type: vertical-stack
         cards:
           - type: heading
@@ -748,29 +407,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_toilet
                   name: "Clean & disinfect toilet"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_toilet
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_toilet
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_toilet
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_shower
@@ -780,29 +424,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_shower
                   name: "Clean shower/bath"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_shower
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_shower
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_shower
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_basin
@@ -812,29 +441,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_basin
                   name: "Clean basin & taps"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_basin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_basin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_basin
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_floor
@@ -844,29 +458,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_floor
                   name: "Mop floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_floor
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_mirror
@@ -876,29 +475,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_mirror
                   name: "Clean mirror"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_mirror
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_mirror
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_mirror
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_windows
@@ -908,29 +492,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_tiles
@@ -940,29 +509,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_tiles
                   name: "Deep clean tile grout"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbath_tiles
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_tiles
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_tiles
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Deep clean tile grout"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_toilet
@@ -972,30 +526,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_toilet
-                  name: "C̶l̶e̶a̶n̶ ̶&̶ ̶d̶i̶s̶i̶n̶f̶e̶c̶t̶ ̶t̶o̶i̶l̶e̶t̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_toilet
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_toilet
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_toilet
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean & disinfect toilet"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_shower
@@ -1005,30 +543,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_shower
-                  name: "C̶l̶e̶a̶n̶ ̶s̶h̶o̶w̶e̶r̶/̶b̶a̶t̶h̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_shower
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_shower
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_shower
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean shower/bath"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_basin
@@ -1038,30 +560,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_basin
-                  name: "C̶l̶e̶a̶n̶ ̶b̶a̶s̶i̶n̶ ̶&̶ ̶t̶a̶p̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_basin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_basin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_basin
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean basin & taps"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_floor
@@ -1071,30 +577,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_floor
-                  name: "M̶o̶p̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_floor
-                      media_player: media_player.kiosk_tablet
+                  name: "Mop floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_mirror
@@ -1104,30 +594,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_mirror
-                  name: "C̶l̶e̶a̶n̶ ̶m̶i̶r̶r̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_mirror
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_mirror
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_mirror
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean mirror"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_windows
@@ -1137,30 +611,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_tiles
@@ -1170,30 +628,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbath_tiles
-                  name: "D̶e̶e̶p̶ ̶c̶l̶e̶a̶n̶ ̶t̶i̶l̶e̶ ̶g̶r̶o̶u̶t̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbath_tiles
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_tiles
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbath_tiles
-                      media_player: media_player.kiosk_tablet
+                  name: "Deep clean tile grout"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Deep clean tile grout"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1208,29 +650,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_toilet
                   name: "Clean & disinfect toilet"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_toilet
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_toilet
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_toilet
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_shower
@@ -1240,29 +667,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_shower
                   name: "Clean shower/bath"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_shower
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_shower
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_shower
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_basin
@@ -1272,29 +684,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_basin
                   name: "Clean basin & taps"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_basin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_basin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_basin
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_floor
@@ -1304,29 +701,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_floor
                   name: "Mop floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_floor
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_mirror
@@ -1336,29 +718,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_mirror
                   name: "Clean mirror"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_mirror
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_mirror
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_mirror
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_windows
@@ -1368,29 +735,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_tiles
@@ -1400,29 +752,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_tiles
                   name: "Deep clean tile grout"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_gbath_tiles
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_tiles
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_tiles
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Deep clean tile grout"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_toilet
@@ -1432,30 +769,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_toilet
-                  name: "C̶l̶e̶a̶n̶ ̶&̶ ̶d̶i̶s̶i̶n̶f̶e̶c̶t̶ ̶t̶o̶i̶l̶e̶t̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_toilet
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_toilet
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_toilet
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean & disinfect toilet"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_shower
@@ -1465,30 +786,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_shower
-                  name: "C̶l̶e̶a̶n̶ ̶s̶h̶o̶w̶e̶r̶/̶b̶a̶t̶h̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_shower
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_shower
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_shower
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean shower/bath"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_basin
@@ -1498,30 +803,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_basin
-                  name: "C̶l̶e̶a̶n̶ ̶b̶a̶s̶i̶n̶ ̶&̶ ̶t̶a̶p̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_basin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_basin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_basin
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean basin & taps"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_floor
@@ -1531,30 +820,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_floor
-                  name: "M̶o̶p̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_floor
-                      media_player: media_player.kiosk_tablet
+                  name: "Mop floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_mirror
@@ -1564,30 +837,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_mirror
-                  name: "C̶l̶e̶a̶n̶ ̶m̶i̶r̶r̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_mirror
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_mirror
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_mirror
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean mirror"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_windows
@@ -1597,30 +854,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_tiles
@@ -1630,30 +871,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_gbath_tiles
-                  name: "D̶e̶e̶p̶ ̶c̶l̶e̶a̶n̶ ̶t̶i̶l̶e̶ ̶g̶r̶o̶u̶t̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_gbath_tiles
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_tiles
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: gbath_tiles
-                      media_player: media_player.kiosk_tablet
+                  name: "Deep clean tile grout"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Deep clean tile grout"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1668,29 +893,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_dust
                   name: "Dust surfaces & shelves"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_dust
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces & shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_vacuum
@@ -1700,29 +910,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_vacuum
                   name: "Vacuum carpets/rugs"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_vacuum
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum carpets/rugs"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_floor
@@ -1732,29 +927,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_floor
                   name: "Mop hard floors"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_floor
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Mop hard floors"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_windows
@@ -1764,29 +944,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_curtains
@@ -1796,29 +961,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_curtains
                   name: "Vacuum curtains"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_curtains
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_curtains
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_curtains
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum curtains"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_skirting
@@ -1828,29 +978,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_skirting
                   name: "Wipe skirting boards"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_living_skirting
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_skirting
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_skirting
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe skirting boards"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_dust
@@ -1860,30 +995,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_dust
-                  name: "D̶u̶s̶t̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶ ̶&̶ ̶s̶h̶e̶l̶v̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_dust
-                      media_player: media_player.kiosk_tablet
+                  name: "Dust surfaces & shelves"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces & shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_vacuum
@@ -1893,30 +1012,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_vacuum
-                  name: "V̶a̶c̶u̶u̶m̶ ̶c̶a̶r̶p̶e̶t̶s̶/̶r̶u̶g̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_vacuum
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum carpets/rugs"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum carpets/rugs"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_floor
@@ -1926,30 +1029,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_floor
-                  name: "M̶o̶p̶ ̶h̶a̶r̶d̶ ̶f̶l̶o̶o̶r̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_floor
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_floor
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_floor
-                      media_player: media_player.kiosk_tablet
+                  name: "Mop hard floors"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Mop hard floors"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_windows
@@ -1959,30 +1046,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_curtains
@@ -1992,30 +1063,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_curtains
-                  name: "V̶a̶c̶u̶u̶m̶ ̶c̶u̶r̶t̶a̶i̶n̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_curtains
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_curtains
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_curtains
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum curtains"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum curtains"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_skirting
@@ -2025,30 +1080,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_living_skirting
-                  name: "W̶i̶p̶e̶ ̶s̶k̶i̶r̶t̶i̶n̶g̶ ̶b̶o̶a̶r̶d̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_living_skirting
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_skirting
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: living_skirting
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe skirting boards"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe skirting boards"
       - type: vertical-stack
         cards:
           - type: heading
@@ -2063,29 +1102,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_sweep
                   name: "Sweep floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_braai_sweep
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_sweep
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_sweep
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_surfaces
@@ -2095,29 +1119,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_surfaces
                   name: "Wipe down surfaces/counters"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_braai_surfaces
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_surfaces
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_surfaces
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe down surfaces/counters"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_grill_area
@@ -2127,29 +1136,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_grill_area
                   name: "Clean around braai/grill area"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_braai_grill_area
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_grill_area
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_grill_area
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean around braai/grill area"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_windows
@@ -2159,29 +1153,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_braai_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_cobwebs
@@ -2191,29 +1170,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_cobwebs
                   name: "Clear cobwebs / deep clean"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_braai_cobwebs
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_cobwebs
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_cobwebs
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clear cobwebs / deep clean"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_sweep
@@ -2223,30 +1187,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_sweep
-                  name: "S̶w̶e̶e̶p̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_braai_sweep
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_sweep
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_sweep
-                      media_player: media_player.kiosk_tablet
+                  name: "Sweep floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_surfaces
@@ -2256,30 +1204,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_surfaces
-                  name: "W̶i̶p̶e̶ ̶d̶o̶w̶n̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶/̶c̶o̶u̶n̶t̶e̶r̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_braai_surfaces
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_surfaces
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_surfaces
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe down surfaces/counters"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe down surfaces/counters"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_grill_area
@@ -2289,30 +1221,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_grill_area
-                  name: "C̶l̶e̶a̶n̶ ̶a̶r̶o̶u̶n̶d̶ ̶b̶r̶a̶a̶i̶/̶g̶r̶i̶l̶l̶ ̶a̶r̶e̶a̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_braai_grill_area
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_grill_area
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_grill_area
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean around braai/grill area"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean around braai/grill area"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_windows
@@ -2322,30 +1238,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_braai_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_cobwebs
@@ -2355,30 +1255,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_braai_cobwebs
-                  name: "C̶l̶e̶a̶r̶ ̶c̶o̶b̶w̶e̶b̶s̶ ̶/̶ ̶d̶e̶e̶p̶ ̶c̶l̶e̶a̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_braai_cobwebs
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_cobwebs
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: braai_cobwebs
-                      media_player: media_player.kiosk_tablet
+                  name: "Clear cobwebs / deep clean"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clear cobwebs / deep clean"
       - type: vertical-stack
         cards:
           - type: heading
@@ -2393,29 +1277,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_dust
                   name: "Dust desk & surfaces"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_office_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_dust
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Dust desk & surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_vacuum
@@ -2425,29 +1294,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_vacuum
                   name: "Vacuum floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_office_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_vacuum
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_bin
@@ -2457,29 +1311,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_bin
                   name: "Empty bin"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_office_bin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_bin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_bin
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Empty bin"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_windows
@@ -2489,29 +1328,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_office_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_dust
@@ -2521,30 +1345,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_dust
-                  name: "D̶u̶s̶t̶ ̶d̶e̶s̶k̶ ̶&̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_office_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_dust
-                      media_player: media_player.kiosk_tablet
+                  name: "Dust desk & surfaces"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Dust desk & surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_vacuum
@@ -2554,30 +1362,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_vacuum
-                  name: "V̶a̶c̶u̶u̶m̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_office_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_vacuum
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_bin
@@ -2587,30 +1379,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_bin
-                  name: "E̶m̶p̶t̶y̶ ̶b̶i̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_office_bin
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_bin
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_bin
-                      media_player: media_player.kiosk_tablet
+                  name: "Empty bin"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Empty bin"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_windows
@@ -2620,30 +1396,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_office_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_office_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: office_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
       - type: vertical-stack
         cards:
           - type: heading
@@ -2658,29 +1418,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_dust
                   name: "Dust surfaces"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_dust
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_vacuum
@@ -2690,29 +1435,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_vacuum
                   name: "Vacuum floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_linen
@@ -2722,29 +1452,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_linen
                   name: "Change bed linen"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_linen
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_windows
@@ -2754,29 +1469,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_wardrobe
@@ -2786,29 +1486,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_wardrobe
                   name: "Wipe wardrobe exterior"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_mbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_dust
@@ -2818,30 +1503,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_dust
-                  name: "D̶u̶s̶t̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_dust
-                      media_player: media_player.kiosk_tablet
+                  name: "Dust surfaces"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_vacuum
@@ -2851,30 +1520,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_vacuum
-                  name: "V̶a̶c̶u̶u̶m̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_linen
@@ -2884,30 +1537,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_linen
-                  name: "C̶h̶a̶n̶g̶e̶ ̶b̶e̶d̶ ̶l̶i̶n̶e̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_linen
-                      media_player: media_player.kiosk_tablet
+                  name: "Change bed linen"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_windows
@@ -2917,30 +1554,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_wardrobe
@@ -2950,30 +1571,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_mbed_wardrobe
-                  name: "W̶i̶p̶e̶ ̶w̶a̶r̶d̶r̶o̶b̶e̶ ̶e̶x̶t̶e̶r̶i̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_mbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: mbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe wardrobe exterior"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"
       - type: vertical-stack
         cards:
           - type: heading
@@ -2988,29 +1593,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_dust
                   name: "Dust surfaces"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_sbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_dust
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_vacuum
@@ -3020,29 +1610,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_vacuum
                   name: "Vacuum floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_sbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_linen
@@ -3052,29 +1627,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_linen
                   name: "Change bed linen"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_sbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_linen
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_windows
@@ -3084,29 +1644,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_sbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_wardrobe
@@ -3116,29 +1661,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_wardrobe
                   name: "Wipe wardrobe exterior"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_sbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_dust
@@ -3148,30 +1678,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_dust
-                  name: "D̶u̶s̶t̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_sbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_dust
-                      media_player: media_player.kiosk_tablet
+                  name: "Dust surfaces"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_vacuum
@@ -3181,30 +1695,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_vacuum
-                  name: "V̶a̶c̶u̶u̶m̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_sbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_linen
@@ -3214,30 +1712,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_linen
-                  name: "C̶h̶a̶n̶g̶e̶ ̶b̶e̶d̶ ̶l̶i̶n̶e̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_sbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_linen
-                      media_player: media_player.kiosk_tablet
+                  name: "Change bed linen"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_windows
@@ -3247,30 +1729,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_sbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_wardrobe
@@ -3280,30 +1746,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_sbed_wardrobe
-                  name: "W̶i̶p̶e̶ ̶w̶a̶r̶d̶r̶o̶b̶e̶ ̶e̶x̶t̶e̶r̶i̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_sbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: sbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe wardrobe exterior"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"
       - type: vertical-stack
         cards:
           - type: heading
@@ -3318,29 +1768,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_dust
                   name: "Dust surfaces"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_dbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_dust
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_vacuum
@@ -3350,29 +1785,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_vacuum
                   name: "Vacuum floor"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_dbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_linen
@@ -3382,29 +1802,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_linen
                   name: "Change bed linen"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_dbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_linen
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_windows
@@ -3414,29 +1819,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_windows
                   name: "Clean windows"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_dbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_windows
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_wardrobe
@@ -3446,29 +1836,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_wardrobe
                   name: "Wipe wardrobe exterior"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                - type: tile
-                  entity: input_boolean.done_dbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  label: "Do"
+                  struck: false
+                  color: ""
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_dust
@@ -3478,30 +1853,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_dust
-                  name: "D̶u̶s̶t̶ ̶s̶u̶r̶f̶a̶c̶e̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_dbed_dust
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_dust
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_dust
-                      media_player: media_player.kiosk_tablet
+                  name: "Dust surfaces"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_vacuum
@@ -3511,30 +1870,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_vacuum
-                  name: "V̶a̶c̶u̶u̶m̶ ̶f̶l̶o̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_dbed_vacuum
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_vacuum
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_vacuum
-                      media_player: media_player.kiosk_tablet
+                  name: "Vacuum floor"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_linen
@@ -3544,30 +1887,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_linen
-                  name: "C̶h̶a̶n̶g̶e̶ ̶b̶e̶d̶ ̶l̶i̶n̶e̶n̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_dbed_linen
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_linen
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_linen
-                      media_player: media_player.kiosk_tablet
+                  name: "Change bed linen"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_windows
@@ -3577,30 +1904,14 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_windows
-                  name: "C̶l̶e̶a̶n̶ ̶w̶i̶n̶d̶o̶w̶s̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_dbed_windows
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_windows
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_windows
-                      media_player: media_player.kiosk_tablet
+                  name: "Clean windows"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_wardrobe
@@ -3610,27 +1921,11 @@ views:
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_dbed_wardrobe
-                  name: "W̶i̶p̶e̶ ̶w̶a̶r̶d̶r̶o̶b̶e̶ ̶e̶x̶t̶e̶r̶i̶o̶r̶"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle
-                  color: green
-                - type: tile
-                  entity: input_boolean.done_dbed_wardrobe
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_wardrobe
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: dbed_wardrobe
-                      media_player: media_player.kiosk_tablet
+                  name: "Wipe wardrobe exterior"
+                  label: "Done"
+                  struck: true
+                  color: "green"
+                - type: custom:speak-tile-card
+                  text: "Wipe wardrobe exterior"

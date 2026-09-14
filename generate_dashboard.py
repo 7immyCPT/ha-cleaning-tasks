@@ -71,22 +71,17 @@ data_lines.append("]")
 with open(f"{OUT_DIR}/tasks_data_generated.py", "w", encoding="utf-8") as f:
     f.write("\n".join(data_lines) + "\n")
 
-def strike(text):
-    """Unicode combining strikethrough - crosses out text without needing
-    any custom card/CSS resource, just plain characters in the tile name."""
-    return "".join(ch + "̶" for ch in text)
-
-
 def task_row(room_name, task, done):
     """One task's conditional+horizontal-stack row. When done=True the row
-    only shows once the task is ticked, with the name struck through and
-    the icon colored green; when done=False it only shows while still
-    pending. Rendering pending tasks first and done tasks second in each
-    room's card is what pushes completed items to the bottom of the list
-    without needing any dynamic sort."""
+    only shows once the task is ticked, with the name struck through, the
+    "Done" label, and green coloring; when done=False it only shows while
+    still pending, labeled "Do". Rendering pending tasks first and done
+    tasks second in each room's card is what pushes completed items to the
+    bottom of the list without needing any dynamic sort. Uses task-tile-card
+    (not core tile) because tile can't relabel a boolean's "On"/"Off" text."""
     tid = task["id"]
-    name = strike(task["name"]) if done else task["name"]
-    color_line = "\n                  color: green" if done else ""
+    label = "Done" if done else "Do"
+    color = "green" if done else ""
     done_state = "on" if done else "off"
     return f"""          - type: conditional
             conditions:
@@ -97,29 +92,14 @@ def task_row(room_name, task, done):
             card:
               type: horizontal-stack
               cards:
-                - type: tile
+                - type: custom:task-tile-card
                   entity: input_boolean.done_{tid}
-                  name: "{name}"
-                  icon: mdi:broom
-                  tap_action:
-                    action: toggle{color_line}
-                - type: tile
-                  entity: input_boolean.done_{tid}
-                  name: " "
-                  icon: mdi:volume-high
-                  show_state: false
-                  tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: {tid}
-                      media_player: media_player.kiosk_tablet
-                  icon_tap_action:
-                    action: call-service
-                    service: pyscript.cleaning_speak_task
-                    service_data:
-                      task_id: {tid}
-                      media_player: media_player.kiosk_tablet"""
+                  name: "{task['name']}"
+                  label: "{label}"
+                  struck: {"true" if done else "false"}
+                  color: "{color}"
+                - type: custom:speak-tile-card
+                  text: "{task['name']}\""""
 
 
 # ---------- kiosk dashboard: ONLY today's tasks, no nav, no reports ----------
@@ -213,10 +193,7 @@ views:
           - input_boolean.cleaning_day_fri
           - input_boolean.cleaning_day_sat
           - input_boolean.cleaning_day_sun
-      - type: entities
-        title: Other settings
-        entities:
-          - input_select.cleaning_media_player
+      - type: custom:voice-picker-card
 """
 
 with open(f"{OUT_DIR}/admin_dashboard_generated.yaml", "w", encoding="utf-8") as f:

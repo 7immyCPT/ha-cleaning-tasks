@@ -109,7 +109,4 @@ views:
           - input_boolean.cleaning_day_fri
           - input_boolean.cleaning_day_sat
           - input_boolean.cleaning_day_sun
-      - type: entities
-        title: Other settings
-        entities:
-          - input_select.cleaning_media_player
+      - type: custom:voice-picker-card

@@ -27,13 +27,11 @@ input_boolean:
     name: Cleaner comes Sunday
     icon: mdi:calendar-check
 
-input_select:
-  cleaning_media_player:
-    name: Speaker for reading tasks aloud
-    options:
-      - media_player.kiosk_tablet
-    initial: media_player.kiosk_tablet
-    icon: mdi:volume-high
+input_text:
+  cleaning_voice_name:
+    name: Voice for reading tasks aloud
+    icon: mdi:account-voice
+    max: 100
 
 automation:
   - alias: Cleaning - daily refresh at 06:00
