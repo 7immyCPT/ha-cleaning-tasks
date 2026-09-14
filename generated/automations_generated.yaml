@@ -1,5 +1,7 @@
 automation:
   - alias: Cleaning - checkbox toggled to done
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:
@@ -66,6 +68,8 @@ automation:
             {{ trigger.entity_id.split('.')[1].removeprefix('done_') }}
 
   - alias: Cleaning - checkbox toggled to undone
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:

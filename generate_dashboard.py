@@ -208,6 +208,8 @@ entity_list = "\n".join(f"          - input_boolean.done_{tid}" for tid in all_i
 
 automations_yaml = f"""automation:
   - alias: Cleaning - checkbox toggled to done
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:
@@ -220,6 +222,8 @@ automations_yaml = f"""automation:
             {{{{ trigger.entity_id.split('.')[1].removeprefix('done_') }}}}
 
   - alias: Cleaning - checkbox toggled to undone
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:

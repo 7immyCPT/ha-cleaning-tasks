@@ -78,6 +78,18 @@ def _last_done(task_id):
     return val if val else None
 
 
+def _set_boolean(entity_id, want_on):
+    """Only call turn_on/turn_off when the state actually needs to change.
+    Unconditionally flipping all ~110 helper booleans on every refresh floods
+    the frontend with near-simultaneous state-changed events and freezes the
+    dashboard tab for several seconds - this keeps refreshes near-silent."""
+    current = state.get(entity_id)
+    if want_on and current != "on":
+        homeassistant.turn_on(entity_id=entity_id)
+    elif not want_on and current != "off":
+        homeassistant.turn_off(entity_id=entity_id)
+
+
 def _is_due(task, today, days_left_in_month):
     interval = _target_interval_days(task)
     last_done = _last_done(task["id"])
@@ -114,15 +126,16 @@ def cleaning_refresh_today():
         due_today = cleaning_today and _is_due(task, today, days_left_in_month)
         done_today = _last_done(task["id"]) == today_iso
 
-        if due_today:
-            homeassistant.turn_on(entity_id=due_entity)
-            if done_today:
-                homeassistant.turn_on(entity_id=done_entity)
-            else:
-                homeassistant.turn_off(entity_id=done_entity)
-        else:
-            homeassistant.turn_off(entity_id=due_entity)
-            homeassistant.turn_off(entity_id=done_entity)
+        _set_boolean(due_entity, due_today)
+        # done_<id> reflects "completed today", independent of due status - do
+        # NOT force it off just because due_today is False. Forcing it off
+        # here used to fire the "checkbox toggled to undone" automation as a
+        # side effect of marking the task done (due flips off the moment
+        # it's completed), which cleared last_done and called refresh again,
+        # undoing the completion - a feedback loop between the two
+        # automations that hammered the automation engine and the frontend
+        # websocket on every tap.
+        _set_boolean(done_entity, done_today)
 
         if due_today:
             due_by_room.setdefault(task["room"], []).append({

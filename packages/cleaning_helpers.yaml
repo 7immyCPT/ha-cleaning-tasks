@@ -44,6 +44,8 @@ automation:
       - service: pyscript.cleaning_daily_refresh
 
   - alias: Cleaning - refresh checklist when cleaning days change
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:
