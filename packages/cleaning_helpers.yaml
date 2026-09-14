@@ -2,14 +2,30 @@
 # Place in /config/packages/cleaning_helpers.yaml
 # Requires `homeassistant: packages: !include_dir_named packages` in configuration.yaml
 
-input_number:
-  visits_per_week:
-    name: Cleaning visits per week
-    min: 1
-    max: 7
-    step: 1
-    initial: 2
-    icon: mdi:calendar-week
+input_boolean:
+  cleaning_day_mon:
+    name: Cleaner comes Monday
+    icon: mdi:calendar-check
+  cleaning_day_tue:
+    name: Cleaner comes Tuesday
+    icon: mdi:calendar-check
+    initial: true
+  cleaning_day_wed:
+    name: Cleaner comes Wednesday
+    icon: mdi:calendar-check
+  cleaning_day_thu:
+    name: Cleaner comes Thursday
+    icon: mdi:calendar-check
+  cleaning_day_fri:
+    name: Cleaner comes Friday
+    icon: mdi:calendar-check
+    initial: true
+  cleaning_day_sat:
+    name: Cleaner comes Saturday
+    icon: mdi:calendar-check
+  cleaning_day_sun:
+    name: Cleaner comes Sunday
+    icon: mdi:calendar-check
 
 input_select:
   cleaning_media_player:
@@ -27,9 +43,16 @@ automation:
     action:
       - service: pyscript.cleaning_daily_refresh
 
-  - alias: Cleaning - refresh checklist on visits_per_week change
+  - alias: Cleaning - refresh checklist when cleaning days change
     trigger:
       - platform: state
-        entity_id: input_number.visits_per_week
+        entity_id:
+          - input_boolean.cleaning_day_mon
+          - input_boolean.cleaning_day_tue
+          - input_boolean.cleaning_day_wed
+          - input_boolean.cleaning_day_thu
+          - input_boolean.cleaning_day_fri
+          - input_boolean.cleaning_day_sat
+          - input_boolean.cleaning_day_sun
     action:
       - service: pyscript.cleaning_refresh_today

@@ -27,6 +27,12 @@ Services exposed to Home Assistant:
   pyscript.cleaning_speak_task         -> read a task aloud via TTS
   pyscript.cleaning_force_catchup      -> list anything still outstanding this month
   pyscript.cleaning_daily_refresh      -> refresh_today + force_catchup together
+  pyscript.cleaning_reset_today        -> undo every completion made today (start the day over)
+
+Which days the cleaner comes is set via 7 toggles, input_boolean.cleaning_day_mon
+.. cleaning_day_sun (see packages/cleaning_helpers.yaml, editable on the admin
+dashboard's Settings tab). On a day that isn't toggled on, the checklist is
+cleared to empty - nothing shows on the kiosk since nobody's there to do it.
 
 Exposes state:
   pyscript.cleaning_today       -> attributes.rooms = today's due tasks, grouped by room
@@ -37,13 +43,28 @@ from datetime import date
 import calendar
 from tasks_data_generated import TASKS
 
+_WEEKDAY_ENTITIES = [
+    "input_boolean.cleaning_day_mon",
+    "input_boolean.cleaning_day_tue",
+    "input_boolean.cleaning_day_wed",
+    "input_boolean.cleaning_day_thu",
+    "input_boolean.cleaning_day_fri",
+    "input_boolean.cleaning_day_sat",
+    "input_boolean.cleaning_day_sun",
+]
+
+
+def _is_cleaning_day(weekday):
+    """weekday: Monday=0 .. Sunday=6 (Python's date.weekday())."""
+    return state.get(_WEEKDAY_ENTITIES[weekday]) == "on"
+
 
 def _visits_per_week():
-    try:
-        v = float(state.get("input_number.visits_per_week"))
-        return v if v > 0 else 2
-    except Exception:
-        return 2
+    count = 0
+    for entity in _WEEKDAY_ENTITIES:
+        if state.get(entity) == "on":
+            count += 1
+    return count if count > 0 else 1
 
 
 def _target_interval_days(task):
@@ -79,16 +100,18 @@ def _is_due(task, today, days_left_in_month):
 @service
 def cleaning_refresh_today():
     """Recompute today's checklist and flip the due_<id>/done_<id> helper
-    booleans that drive the dashboard."""
+    booleans that drive the dashboard. On a day the cleaner isn't scheduled,
+    everything is cleared instead - nothing to show."""
     today = date.today()
     today_iso = today.isoformat()
     days_left_in_month = calendar.monthrange(today.year, today.month)[1] - today.day
+    cleaning_today = _is_cleaning_day(today.weekday())
 
     due_by_room = {}
     for task in TASKS:
         due_entity = f"input_boolean.due_{task['id']}"
         done_entity = f"input_boolean.done_{task['id']}"
-        due_today = _is_due(task, today, days_left_in_month)
+        due_today = cleaning_today and _is_due(task, today, days_left_in_month)
         done_today = _last_done(task["id"]) == today_iso
 
         if due_today:
@@ -109,12 +132,24 @@ def cleaning_refresh_today():
     total_due = 0
     for room_tasks in due_by_room.values():
         total_due += len(room_tasks)
+    status = f"{total_due} tasks due" if cleaning_today else "No cleaning today"
     state.set(
         "pyscript.cleaning_today",
-        f"{total_due} tasks due",
-        {"rooms": due_by_room, "date": today_iso, "friendly_name": "Today's Cleaning Tasks"},
+        status,
+        {"rooms": due_by_room, "date": today_iso, "is_cleaning_day": cleaning_today,
+         "friendly_name": "Today's Cleaning Tasks"},
     )
     return due_by_room
+
+
+@service
+def cleaning_reset_today():
+    """Undo every completion made today - start today's checklist over."""
+    today_iso = date.today().isoformat()
+    for task in TASKS:
+        if _last_done(task["id"]) == today_iso:
+            input_text.set_value(entity_id=f"input_text.last_done_{task['id']}", value="")
+    cleaning_refresh_today()
 
 
 @service

@@ -1,0 +1,2653 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.cleaning_today",
+  "data": {
+    "config": {
+      "title": "Cleaning - Today",
+      "views": [
+        {
+          "title": "Today's Tasks",
+          "path": "today",
+          "icon": "mdi:broom",
+          "cards": [
+            {
+              "type": "markdown",
+              "content": "## {{ now().strftime('%A %d %B %Y') }}\nTick each task off as you finish it. Tap the speaker icon to have it read aloud.\n"
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Kitchen",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_counters",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_counters",
+                        "name": "Wipe counters & stovetop",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_counters",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_counters",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_counters",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_floor",
+                        "name": "Sweep & mop floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_sink",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_sink",
+                        "name": "Clean sink & taps",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_sink",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_sink",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_sink",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_fridge",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_fridge",
+                        "name": "Wipe down fridge exterior",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_fridge",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_fridge",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_fridge",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_microwave",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_microwave",
+                        "name": "Clean inside of microwave",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_microwave",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_microwave",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_microwave",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_oven",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_oven",
+                        "name": "Deep clean oven",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_oven",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_oven",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_oven",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_cupboard_fronts",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                        "name": "Wipe cupboard fronts",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_cupboard_fronts",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_cupboard_fronts",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Pantry",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_shelves_wipe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_shelves_wipe",
+                        "name": "Wipe shelves",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_shelves_wipe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_shelves_wipe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_shelves_wipe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_floor",
+                        "name": "Sweep floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_tidy_expiry",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_tidy_expiry",
+                        "name": "Tidy & check for expired items",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_tidy_expiry",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_tidy_expiry",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_tidy_expiry",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Main Bathroom",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_toilet",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_toilet",
+                        "name": "Clean & disinfect toilet",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_toilet",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_shower",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_shower",
+                        "name": "Clean shower/bath",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_shower",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_basin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_basin",
+                        "name": "Clean basin & taps",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_basin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_floor",
+                        "name": "Mop floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_mirror",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_mirror",
+                        "name": "Clean mirror",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_mirror",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_tiles",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_tiles",
+                        "name": "Deep clean tile grout",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_tiles",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Guest Bathroom",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_toilet",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_toilet",
+                        "name": "Clean & disinfect toilet",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_toilet",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_shower",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_shower",
+                        "name": "Clean shower/bath",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_shower",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_basin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_basin",
+                        "name": "Clean basin & taps",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_basin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_floor",
+                        "name": "Mop floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_mirror",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_mirror",
+                        "name": "Clean mirror",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_mirror",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_tiles",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_tiles",
+                        "name": "Deep clean tile grout",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_tiles",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Living / Dining Area",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_dust",
+                        "name": "Dust surfaces & shelves",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_vacuum",
+                        "name": "Vacuum carpets/rugs",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_floor",
+                        "name": "Mop hard floors",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_curtains",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_curtains",
+                        "name": "Vacuum curtains",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_curtains",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_curtains",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_curtains",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_skirting",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_skirting",
+                        "name": "Wipe skirting boards",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_skirting",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_skirting",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_skirting",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Braai Room",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_sweep",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_sweep",
+                        "name": "Sweep floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_sweep",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_sweep",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_sweep",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_surfaces",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_surfaces",
+                        "name": "Wipe down surfaces/counters",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_surfaces",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_surfaces",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_surfaces",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_grill_area",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_grill_area",
+                        "name": "Clean around braai/grill area",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_grill_area",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_grill_area",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_grill_area",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_cobwebs",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_cobwebs",
+                        "name": "Clear cobwebs / deep clean",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_cobwebs",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_cobwebs",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_cobwebs",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Office (Desk)",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_dust",
+                        "name": "Dust desk & surfaces",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_vacuum",
+                        "name": "Vacuum floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_bin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_bin",
+                        "name": "Empty bin",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_bin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_bin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_bin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Main Bedroom",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_dust",
+                        "name": "Dust surfaces",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_vacuum",
+                        "name": "Vacuum floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_linen",
+                        "name": "Change bed linen",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_wardrobe",
+                        "name": "Wipe wardrobe exterior",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Bedroom - Single Beds",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_dust",
+                        "name": "Dust surfaces",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_vacuum",
+                        "name": "Vacuum floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_linen",
+                        "name": "Change bed linen",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_wardrobe",
+                        "name": "Wipe wardrobe exterior",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Bedroom - Double Bed",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_dust",
+                        "name": "Dust surfaces",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_vacuum",
+                        "name": "Vacuum floor",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_linen",
+                        "name": "Change bed linen",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_windows",
+                        "name": "Clean windows",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_wardrobe",
+                        "name": "Wipe wardrobe exterior",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

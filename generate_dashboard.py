@@ -100,6 +100,12 @@ for room in config["rooms"]:
                     service: pyscript.cleaning_speak_task
                     service_data:
                       task_id: {tid}
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: {tid}
                       media_player: media_player.kiosk_tablet"""
         room_rows.append(row)
     kiosk_cards.append(f"""      - type: vertical-stack
@@ -138,6 +144,20 @@ views:
     cards:
       - type: markdown
         content: >
+          ## Today ({{{{ states('pyscript.cleaning_today') }}}})
+
+          If the checklist got messed up (wrong day, mis-tap), this undoes
+          every tick made today and starts it over.
+      - type: button
+        name: Reset today's checklist
+        icon: mdi:restart
+        tap_action:
+          action: call-service
+          service: pyscript.cleaning_reset_today
+          confirmation:
+            text: Undo every task ticked off today?
+      - type: markdown
+        content: >
           ## Completion Log
 
           Every tick below is timestamped automatically by Home Assistant's
@@ -164,9 +184,18 @@ views:
     icon: mdi:cog
     cards:
       - type: entities
-        title: Cleaning schedule
+        title: Which days does the cleaner come?
         entities:
-          - input_number.visits_per_week
+          - input_boolean.cleaning_day_mon
+          - input_boolean.cleaning_day_tue
+          - input_boolean.cleaning_day_wed
+          - input_boolean.cleaning_day_thu
+          - input_boolean.cleaning_day_fri
+          - input_boolean.cleaning_day_sat
+          - input_boolean.cleaning_day_sun
+      - type: entities
+        title: Other settings
+        entities:
           - input_select.cleaning_media_player
 """
 

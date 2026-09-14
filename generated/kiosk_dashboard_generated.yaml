@@ -38,6 +38,12 @@ views:
                     service_data:
                       task_id: kitchen_counters
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_counters
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_floor
@@ -57,6 +63,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_floor
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -86,6 +98,12 @@ views:
                     service_data:
                       task_id: kitchen_sink
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_sink
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_fridge
@@ -105,6 +123,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_fridge
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -134,6 +158,12 @@ views:
                     service_data:
                       task_id: kitchen_microwave
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_microwave
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_windows
@@ -153,6 +183,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_windows
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -182,6 +218,12 @@ views:
                     service_data:
                       task_id: kitchen_oven
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_oven
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_cupboard_fronts
@@ -201,6 +243,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_cupboard_fronts
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -235,6 +283,12 @@ views:
                     service_data:
                       task_id: pantry_shelves_wipe
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: pantry_shelves_wipe
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_floor
@@ -259,6 +313,12 @@ views:
                     service_data:
                       task_id: pantry_floor
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: pantry_floor
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_tidy_expiry
@@ -278,6 +338,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: pantry_tidy_expiry
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -312,6 +378,12 @@ views:
                     service_data:
                       task_id: mbath_toilet
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_toilet
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_shower
@@ -331,6 +403,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_shower
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -360,6 +438,12 @@ views:
                     service_data:
                       task_id: mbath_basin
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_basin
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_floor
@@ -379,6 +463,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_floor
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -408,6 +498,12 @@ views:
                     service_data:
                       task_id: mbath_mirror
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_mirror
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_windows
@@ -432,6 +528,12 @@ views:
                     service_data:
                       task_id: mbath_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_tiles
@@ -451,6 +553,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbath_tiles
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -485,6 +593,12 @@ views:
                     service_data:
                       task_id: gbath_toilet
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_toilet
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_shower
@@ -504,6 +618,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_shower
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -533,6 +653,12 @@ views:
                     service_data:
                       task_id: gbath_basin
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_basin
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_floor
@@ -552,6 +678,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_floor
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -581,6 +713,12 @@ views:
                     service_data:
                       task_id: gbath_mirror
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_mirror
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_windows
@@ -605,6 +743,12 @@ views:
                     service_data:
                       task_id: gbath_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_tiles
@@ -624,6 +768,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: gbath_tiles
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -658,6 +808,12 @@ views:
                     service_data:
                       task_id: living_dust
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_dust
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_vacuum
@@ -677,6 +833,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_vacuum
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -706,6 +868,12 @@ views:
                     service_data:
                       task_id: living_floor
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_floor
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_windows
@@ -725,6 +893,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_windows
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -754,6 +928,12 @@ views:
                     service_data:
                       task_id: living_curtains
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_curtains
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_skirting
@@ -773,6 +953,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_skirting
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -807,6 +993,12 @@ views:
                     service_data:
                       task_id: braai_sweep
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: braai_sweep
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_surfaces
@@ -826,6 +1018,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: braai_surfaces
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -855,6 +1053,12 @@ views:
                     service_data:
                       task_id: braai_grill_area
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: braai_grill_area
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_windows
@@ -879,6 +1083,12 @@ views:
                     service_data:
                       task_id: braai_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: braai_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_cobwebs
@@ -898,6 +1108,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: braai_cobwebs
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -932,6 +1148,12 @@ views:
                     service_data:
                       task_id: office_dust
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: office_dust
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_vacuum
@@ -951,6 +1173,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: office_vacuum
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -980,6 +1208,12 @@ views:
                     service_data:
                       task_id: office_bin
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: office_bin
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_windows
@@ -999,6 +1233,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: office_windows
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1033,6 +1273,12 @@ views:
                     service_data:
                       task_id: mbed_dust
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbed_dust
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_vacuum
@@ -1052,6 +1298,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbed_vacuum
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1081,6 +1333,12 @@ views:
                     service_data:
                       task_id: mbed_linen
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbed_linen
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_windows
@@ -1105,6 +1363,12 @@ views:
                     service_data:
                       task_id: mbed_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbed_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_wardrobe
@@ -1124,6 +1388,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: mbed_wardrobe
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1158,6 +1428,12 @@ views:
                     service_data:
                       task_id: sbed_dust
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: sbed_dust
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_vacuum
@@ -1177,6 +1453,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: sbed_vacuum
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1206,6 +1488,12 @@ views:
                     service_data:
                       task_id: sbed_linen
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: sbed_linen
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_windows
@@ -1230,6 +1518,12 @@ views:
                     service_data:
                       task_id: sbed_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: sbed_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_wardrobe
@@ -1249,6 +1543,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: sbed_wardrobe
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1283,6 +1583,12 @@ views:
                     service_data:
                       task_id: dbed_dust
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: dbed_dust
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_vacuum
@@ -1302,6 +1608,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: dbed_vacuum
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
@@ -1331,6 +1643,12 @@ views:
                     service_data:
                       task_id: dbed_linen
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: dbed_linen
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_windows
@@ -1355,6 +1673,12 @@ views:
                     service_data:
                       task_id: dbed_windows
                       media_player: media_player.kiosk_tablet
+                  icon_tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: dbed_windows
+                      media_player: media_player.kiosk_tablet
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_wardrobe
@@ -1374,6 +1698,12 @@ views:
                   icon: mdi:volume-high
                   show_state: false
                   tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: dbed_wardrobe
+                      media_player: media_player.kiosk_tablet
+                  icon_tap_action:
                     action: call-service
                     service: pyscript.cleaning_speak_task
                     service_data:
