@@ -38,8 +38,8 @@ class TaskTileCard extends HTMLElement {
               <span class="tt-name" style="font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></span>
               <span class="tt-label" style="font-size:0.85em;opacity:0.75;"></span>
             </div>
-            <button class="tt-speak" type="button" style="flex:0 0 auto;width:28px;height:28px;padding:0;margin:0;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;">
-              <ha-icon class="tt-speak-icon" icon="mdi:volume-high" style="--mdc-icon-size:20px;color:var(--state-icon-color, var(--paper-item-icon-color));"></ha-icon>
+            <button class="tt-speak" type="button" style="-webkit-appearance:none;appearance:none;box-sizing:border-box;flex:0 0 28px;min-width:28px;width:28px;height:28px;padding:0;margin:0;border:none;outline:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;">
+              <ha-icon class="tt-speak-icon" icon="mdi:volume-high" style="--mdc-icon-size:20px;width:20px;height:20px;color:var(--state-icon-color, var(--paper-item-icon-color));"></ha-icon>
             </button>
           </div>
         </ha-card>`;
