@@ -134,3 +134,15 @@ automation:
         data:
           task_id: >
             {{ trigger.entity_id.split('.')[1].removeprefix('done_') }}
+
+  - alias: Cleaning - room used-flag changed
+    mode: queued
+    max: 10
+    trigger:
+      - platform: state
+        entity_id:
+          - input_boolean.room_used_braai_room
+          - input_boolean.room_used_bedroom_single_beds
+          - input_boolean.room_used_bedroom_double_bed
+    action:
+      - service: pyscript.cleaning_refresh_today

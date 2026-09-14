@@ -21,16 +21,13 @@ views:
               - entity: input_boolean.done_kitchen_counters
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_counters
-                  name: "Wipe counters & stovetop"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe counters & stovetop"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_counters
+              name: "Wipe counters & stovetop"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe counters & stovetop"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_floor
@@ -38,16 +35,13 @@ views:
               - entity: input_boolean.done_kitchen_floor
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_floor
-                  name: "Sweep & mop floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Sweep & mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_floor
+              name: "Sweep & mop floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Sweep & mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_sink
@@ -55,16 +49,13 @@ views:
               - entity: input_boolean.done_kitchen_sink
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_sink
-                  name: "Clean sink & taps"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean sink & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_sink
+              name: "Clean sink & taps"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean sink & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_fridge
@@ -72,16 +63,13 @@ views:
               - entity: input_boolean.done_kitchen_fridge
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_fridge
-                  name: "Wipe down fridge exterior"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe down fridge exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_fridge
+              name: "Wipe down fridge exterior"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe down fridge exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_microwave
@@ -89,16 +77,13 @@ views:
               - entity: input_boolean.done_kitchen_microwave
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_microwave
-                  name: "Clean inside of microwave"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean inside of microwave"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_microwave
+              name: "Clean inside of microwave"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean inside of microwave"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_windows
@@ -106,16 +91,13 @@ views:
               - entity: input_boolean.done_kitchen_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_oven
@@ -123,16 +105,13 @@ views:
               - entity: input_boolean.done_kitchen_oven
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_oven
-                  name: "Deep clean oven"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Deep clean oven"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_oven
+              name: "Deep clean oven"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Deep clean oven"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_cupboard_fronts
@@ -140,16 +119,13 @@ views:
               - entity: input_boolean.done_kitchen_cupboard_fronts
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_cupboard_fronts
-                  name: "Wipe cupboard fronts"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe cupboard fronts"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_cupboard_fronts
+              name: "Wipe cupboard fronts"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe cupboard fronts"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_counters
@@ -157,16 +133,13 @@ views:
               - entity: input_boolean.done_kitchen_counters
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_counters
-                  name: "Wipe counters & stovetop"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe counters & stovetop"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_counters
+              name: "Wipe counters & stovetop"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe counters & stovetop"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_floor
@@ -174,16 +147,13 @@ views:
               - entity: input_boolean.done_kitchen_floor
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_floor
-                  name: "Sweep & mop floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Sweep & mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_floor
+              name: "Sweep & mop floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Sweep & mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_sink
@@ -191,16 +161,13 @@ views:
               - entity: input_boolean.done_kitchen_sink
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_sink
-                  name: "Clean sink & taps"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean sink & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_sink
+              name: "Clean sink & taps"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean sink & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_fridge
@@ -208,16 +175,13 @@ views:
               - entity: input_boolean.done_kitchen_fridge
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_fridge
-                  name: "Wipe down fridge exterior"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe down fridge exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_fridge
+              name: "Wipe down fridge exterior"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe down fridge exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_microwave
@@ -225,16 +189,13 @@ views:
               - entity: input_boolean.done_kitchen_microwave
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_microwave
-                  name: "Clean inside of microwave"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean inside of microwave"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_microwave
+              name: "Clean inside of microwave"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean inside of microwave"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_windows
@@ -242,16 +203,13 @@ views:
               - entity: input_boolean.done_kitchen_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_oven
@@ -259,16 +217,13 @@ views:
               - entity: input_boolean.done_kitchen_oven
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_oven
-                  name: "Deep clean oven"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Deep clean oven"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_oven
+              name: "Deep clean oven"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Deep clean oven"
           - type: conditional
             conditions:
               - entity: input_boolean.due_kitchen_cupboard_fronts
@@ -276,16 +231,13 @@ views:
               - entity: input_boolean.done_kitchen_cupboard_fronts
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_kitchen_cupboard_fronts
-                  name: "Wipe cupboard fronts"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe cupboard fronts"
+              type: custom:task-tile-card
+              entity: input_boolean.done_kitchen_cupboard_fronts
+              name: "Wipe cupboard fronts"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe cupboard fronts"
       - type: vertical-stack
         cards:
           - type: heading
@@ -298,16 +250,13 @@ views:
               - entity: input_boolean.done_pantry_shelves_wipe
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_shelves_wipe
-                  name: "Wipe shelves"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe shelves"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_shelves_wipe
+              name: "Wipe shelves"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_floor
@@ -315,16 +264,13 @@ views:
               - entity: input_boolean.done_pantry_floor
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_floor
-                  name: "Sweep floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Sweep floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_floor
+              name: "Sweep floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_tidy_expiry
@@ -332,16 +278,13 @@ views:
               - entity: input_boolean.done_pantry_tidy_expiry
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_tidy_expiry
-                  name: "Tidy & check for expired items"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Tidy & check for expired items"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_tidy_expiry
+              name: "Tidy & check for expired items"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Tidy & check for expired items"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_shelves_wipe
@@ -349,16 +292,13 @@ views:
               - entity: input_boolean.done_pantry_shelves_wipe
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_shelves_wipe
-                  name: "Wipe shelves"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe shelves"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_shelves_wipe
+              name: "Wipe shelves"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_floor
@@ -366,16 +306,13 @@ views:
               - entity: input_boolean.done_pantry_floor
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_floor
-                  name: "Sweep floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Sweep floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_floor
+              name: "Sweep floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_pantry_tidy_expiry
@@ -383,16 +320,13 @@ views:
               - entity: input_boolean.done_pantry_tidy_expiry
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_pantry_tidy_expiry
-                  name: "Tidy & check for expired items"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Tidy & check for expired items"
+              type: custom:task-tile-card
+              entity: input_boolean.done_pantry_tidy_expiry
+              name: "Tidy & check for expired items"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Tidy & check for expired items"
       - type: vertical-stack
         cards:
           - type: heading
@@ -405,16 +339,13 @@ views:
               - entity: input_boolean.done_mbath_toilet
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_toilet
-                  name: "Clean & disinfect toilet"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean & disinfect toilet"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_toilet
+              name: "Clean & disinfect toilet"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_shower
@@ -422,16 +353,13 @@ views:
               - entity: input_boolean.done_mbath_shower
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_shower
-                  name: "Clean shower/bath"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean shower/bath"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_shower
+              name: "Clean shower/bath"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_basin
@@ -439,16 +367,13 @@ views:
               - entity: input_boolean.done_mbath_basin
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_basin
-                  name: "Clean basin & taps"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean basin & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_basin
+              name: "Clean basin & taps"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_floor
@@ -456,16 +381,13 @@ views:
               - entity: input_boolean.done_mbath_floor
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_floor
-                  name: "Mop floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_floor
+              name: "Mop floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_mirror
@@ -473,16 +395,13 @@ views:
               - entity: input_boolean.done_mbath_mirror
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_mirror
-                  name: "Clean mirror"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean mirror"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_mirror
+              name: "Clean mirror"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_windows
@@ -490,16 +409,13 @@ views:
               - entity: input_boolean.done_mbath_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_tiles
@@ -507,16 +423,13 @@ views:
               - entity: input_boolean.done_mbath_tiles
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_tiles
-                  name: "Deep clean tile grout"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Deep clean tile grout"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_tiles
+              name: "Deep clean tile grout"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Deep clean tile grout"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_toilet
@@ -524,16 +437,13 @@ views:
               - entity: input_boolean.done_mbath_toilet
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_toilet
-                  name: "Clean & disinfect toilet"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean & disinfect toilet"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_toilet
+              name: "Clean & disinfect toilet"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_shower
@@ -541,16 +451,13 @@ views:
               - entity: input_boolean.done_mbath_shower
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_shower
-                  name: "Clean shower/bath"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean shower/bath"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_shower
+              name: "Clean shower/bath"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_basin
@@ -558,16 +465,13 @@ views:
               - entity: input_boolean.done_mbath_basin
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_basin
-                  name: "Clean basin & taps"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean basin & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_basin
+              name: "Clean basin & taps"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_floor
@@ -575,16 +479,13 @@ views:
               - entity: input_boolean.done_mbath_floor
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_floor
-                  name: "Mop floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_floor
+              name: "Mop floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_mirror
@@ -592,16 +493,13 @@ views:
               - entity: input_boolean.done_mbath_mirror
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_mirror
-                  name: "Clean mirror"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean mirror"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_mirror
+              name: "Clean mirror"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_windows
@@ -609,16 +507,13 @@ views:
               - entity: input_boolean.done_mbath_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbath_tiles
@@ -626,16 +521,13 @@ views:
               - entity: input_boolean.done_mbath_tiles
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbath_tiles
-                  name: "Deep clean tile grout"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Deep clean tile grout"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbath_tiles
+              name: "Deep clean tile grout"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Deep clean tile grout"
       - type: vertical-stack
         cards:
           - type: heading
@@ -648,16 +540,13 @@ views:
               - entity: input_boolean.done_gbath_toilet
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_toilet
-                  name: "Clean & disinfect toilet"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean & disinfect toilet"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_toilet
+              name: "Clean & disinfect toilet"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_shower
@@ -665,16 +554,13 @@ views:
               - entity: input_boolean.done_gbath_shower
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_shower
-                  name: "Clean shower/bath"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean shower/bath"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_shower
+              name: "Clean shower/bath"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_basin
@@ -682,16 +568,13 @@ views:
               - entity: input_boolean.done_gbath_basin
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_basin
-                  name: "Clean basin & taps"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean basin & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_basin
+              name: "Clean basin & taps"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_floor
@@ -699,16 +582,13 @@ views:
               - entity: input_boolean.done_gbath_floor
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_floor
-                  name: "Mop floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_floor
+              name: "Mop floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_mirror
@@ -716,16 +596,13 @@ views:
               - entity: input_boolean.done_gbath_mirror
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_mirror
-                  name: "Clean mirror"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean mirror"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_mirror
+              name: "Clean mirror"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_windows
@@ -733,16 +610,13 @@ views:
               - entity: input_boolean.done_gbath_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_tiles
@@ -750,16 +624,13 @@ views:
               - entity: input_boolean.done_gbath_tiles
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_tiles
-                  name: "Deep clean tile grout"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Deep clean tile grout"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_tiles
+              name: "Deep clean tile grout"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Deep clean tile grout"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_toilet
@@ -767,16 +638,13 @@ views:
               - entity: input_boolean.done_gbath_toilet
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_toilet
-                  name: "Clean & disinfect toilet"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean & disinfect toilet"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_toilet
+              name: "Clean & disinfect toilet"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean & disinfect toilet"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_shower
@@ -784,16 +652,13 @@ views:
               - entity: input_boolean.done_gbath_shower
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_shower
-                  name: "Clean shower/bath"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean shower/bath"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_shower
+              name: "Clean shower/bath"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean shower/bath"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_basin
@@ -801,16 +666,13 @@ views:
               - entity: input_boolean.done_gbath_basin
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_basin
-                  name: "Clean basin & taps"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean basin & taps"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_basin
+              name: "Clean basin & taps"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean basin & taps"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_floor
@@ -818,16 +680,13 @@ views:
               - entity: input_boolean.done_gbath_floor
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_floor
-                  name: "Mop floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Mop floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_floor
+              name: "Mop floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Mop floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_mirror
@@ -835,16 +694,13 @@ views:
               - entity: input_boolean.done_gbath_mirror
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_mirror
-                  name: "Clean mirror"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean mirror"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_mirror
+              name: "Clean mirror"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean mirror"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_windows
@@ -852,16 +708,13 @@ views:
               - entity: input_boolean.done_gbath_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_gbath_tiles
@@ -869,16 +722,13 @@ views:
               - entity: input_boolean.done_gbath_tiles
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_gbath_tiles
-                  name: "Deep clean tile grout"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Deep clean tile grout"
+              type: custom:task-tile-card
+              entity: input_boolean.done_gbath_tiles
+              name: "Deep clean tile grout"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Deep clean tile grout"
       - type: vertical-stack
         cards:
           - type: heading
@@ -891,16 +741,13 @@ views:
               - entity: input_boolean.done_living_dust
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_dust
-                  name: "Dust surfaces & shelves"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces & shelves"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_dust
+              name: "Dust surfaces & shelves"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Dust surfaces & shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_vacuum
@@ -908,16 +755,13 @@ views:
               - entity: input_boolean.done_living_vacuum
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_vacuum
-                  name: "Vacuum carpets/rugs"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum carpets/rugs"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_vacuum
+              name: "Vacuum carpets/rugs"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum carpets/rugs"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_floor
@@ -925,16 +769,13 @@ views:
               - entity: input_boolean.done_living_floor
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_floor
-                  name: "Mop hard floors"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Mop hard floors"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_floor
+              name: "Mop hard floors"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Mop hard floors"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_windows
@@ -942,16 +783,13 @@ views:
               - entity: input_boolean.done_living_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_curtains
@@ -959,16 +797,13 @@ views:
               - entity: input_boolean.done_living_curtains
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_curtains
-                  name: "Vacuum curtains"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum curtains"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_curtains
+              name: "Vacuum curtains"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum curtains"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_skirting
@@ -976,16 +811,13 @@ views:
               - entity: input_boolean.done_living_skirting
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_skirting
-                  name: "Wipe skirting boards"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe skirting boards"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_skirting
+              name: "Wipe skirting boards"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe skirting boards"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_dust
@@ -993,16 +825,13 @@ views:
               - entity: input_boolean.done_living_dust
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_dust
-                  name: "Dust surfaces & shelves"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces & shelves"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_dust
+              name: "Dust surfaces & shelves"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Dust surfaces & shelves"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_vacuum
@@ -1010,16 +839,13 @@ views:
               - entity: input_boolean.done_living_vacuum
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_vacuum
-                  name: "Vacuum carpets/rugs"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum carpets/rugs"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_vacuum
+              name: "Vacuum carpets/rugs"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum carpets/rugs"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_floor
@@ -1027,16 +853,13 @@ views:
               - entity: input_boolean.done_living_floor
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_floor
-                  name: "Mop hard floors"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Mop hard floors"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_floor
+              name: "Mop hard floors"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Mop hard floors"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_windows
@@ -1044,16 +867,13 @@ views:
               - entity: input_boolean.done_living_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_curtains
@@ -1061,16 +881,13 @@ views:
               - entity: input_boolean.done_living_curtains
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_curtains
-                  name: "Vacuum curtains"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum curtains"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_curtains
+              name: "Vacuum curtains"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum curtains"
           - type: conditional
             conditions:
               - entity: input_boolean.due_living_skirting
@@ -1078,16 +895,13 @@ views:
               - entity: input_boolean.done_living_skirting
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_living_skirting
-                  name: "Wipe skirting boards"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe skirting boards"
+              type: custom:task-tile-card
+              entity: input_boolean.done_living_skirting
+              name: "Wipe skirting boards"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe skirting boards"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1100,16 +914,13 @@ views:
               - entity: input_boolean.done_braai_sweep
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_sweep
-                  name: "Sweep floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Sweep floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_sweep
+              name: "Sweep floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_surfaces
@@ -1117,16 +928,13 @@ views:
               - entity: input_boolean.done_braai_surfaces
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_surfaces
-                  name: "Wipe down surfaces/counters"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe down surfaces/counters"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_surfaces
+              name: "Wipe down surfaces/counters"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe down surfaces/counters"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_grill_area
@@ -1134,16 +942,13 @@ views:
               - entity: input_boolean.done_braai_grill_area
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_grill_area
-                  name: "Clean around braai/grill area"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean around braai/grill area"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_grill_area
+              name: "Clean around braai/grill area"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean around braai/grill area"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_windows
@@ -1151,16 +956,13 @@ views:
               - entity: input_boolean.done_braai_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_cobwebs
@@ -1168,16 +970,13 @@ views:
               - entity: input_boolean.done_braai_cobwebs
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_cobwebs
-                  name: "Clear cobwebs / deep clean"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clear cobwebs / deep clean"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_cobwebs
+              name: "Clear cobwebs / deep clean"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clear cobwebs / deep clean"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_sweep
@@ -1185,16 +984,13 @@ views:
               - entity: input_boolean.done_braai_sweep
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_sweep
-                  name: "Sweep floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Sweep floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_sweep
+              name: "Sweep floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Sweep floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_surfaces
@@ -1202,16 +998,13 @@ views:
               - entity: input_boolean.done_braai_surfaces
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_surfaces
-                  name: "Wipe down surfaces/counters"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe down surfaces/counters"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_surfaces
+              name: "Wipe down surfaces/counters"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe down surfaces/counters"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_grill_area
@@ -1219,16 +1012,13 @@ views:
               - entity: input_boolean.done_braai_grill_area
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_grill_area
-                  name: "Clean around braai/grill area"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean around braai/grill area"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_grill_area
+              name: "Clean around braai/grill area"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean around braai/grill area"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_windows
@@ -1236,16 +1026,13 @@ views:
               - entity: input_boolean.done_braai_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_braai_cobwebs
@@ -1253,16 +1040,13 @@ views:
               - entity: input_boolean.done_braai_cobwebs
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_braai_cobwebs
-                  name: "Clear cobwebs / deep clean"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clear cobwebs / deep clean"
+              type: custom:task-tile-card
+              entity: input_boolean.done_braai_cobwebs
+              name: "Clear cobwebs / deep clean"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clear cobwebs / deep clean"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1275,16 +1059,13 @@ views:
               - entity: input_boolean.done_office_dust
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_dust
-                  name: "Dust desk & surfaces"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Dust desk & surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_dust
+              name: "Dust desk & surfaces"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Dust desk & surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_vacuum
@@ -1292,16 +1073,13 @@ views:
               - entity: input_boolean.done_office_vacuum
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_vacuum
-                  name: "Vacuum floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_vacuum
+              name: "Vacuum floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_bin
@@ -1309,16 +1087,13 @@ views:
               - entity: input_boolean.done_office_bin
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_bin
-                  name: "Empty bin"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Empty bin"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_bin
+              name: "Empty bin"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Empty bin"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_windows
@@ -1326,16 +1101,13 @@ views:
               - entity: input_boolean.done_office_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_dust
@@ -1343,16 +1115,13 @@ views:
               - entity: input_boolean.done_office_dust
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_dust
-                  name: "Dust desk & surfaces"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Dust desk & surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_dust
+              name: "Dust desk & surfaces"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Dust desk & surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_vacuum
@@ -1360,16 +1129,13 @@ views:
               - entity: input_boolean.done_office_vacuum
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_vacuum
-                  name: "Vacuum floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_vacuum
+              name: "Vacuum floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_bin
@@ -1377,16 +1143,13 @@ views:
               - entity: input_boolean.done_office_bin
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_bin
-                  name: "Empty bin"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Empty bin"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_bin
+              name: "Empty bin"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Empty bin"
           - type: conditional
             conditions:
               - entity: input_boolean.due_office_windows
@@ -1394,16 +1157,13 @@ views:
               - entity: input_boolean.done_office_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_office_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_office_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1416,16 +1176,13 @@ views:
               - entity: input_boolean.done_mbed_dust
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_dust
-                  name: "Dust surfaces"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_dust
+              name: "Dust surfaces"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_vacuum
@@ -1433,16 +1190,13 @@ views:
               - entity: input_boolean.done_mbed_vacuum
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_vacuum
+              name: "Vacuum floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_linen
@@ -1450,16 +1204,13 @@ views:
               - entity: input_boolean.done_mbed_linen
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_linen
-                  name: "Change bed linen"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_linen
+              name: "Change bed linen"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_windows
@@ -1467,16 +1218,13 @@ views:
               - entity: input_boolean.done_mbed_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_wardrobe
@@ -1484,16 +1232,13 @@ views:
               - entity: input_boolean.done_mbed_wardrobe
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_dust
@@ -1501,16 +1246,13 @@ views:
               - entity: input_boolean.done_mbed_dust
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_dust
-                  name: "Dust surfaces"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_dust
+              name: "Dust surfaces"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_vacuum
@@ -1518,16 +1260,13 @@ views:
               - entity: input_boolean.done_mbed_vacuum
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_vacuum
+              name: "Vacuum floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_linen
@@ -1535,16 +1274,13 @@ views:
               - entity: input_boolean.done_mbed_linen
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_linen
-                  name: "Change bed linen"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_linen
+              name: "Change bed linen"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_windows
@@ -1552,16 +1288,13 @@ views:
               - entity: input_boolean.done_mbed_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_mbed_wardrobe
@@ -1569,16 +1302,13 @@ views:
               - entity: input_boolean.done_mbed_wardrobe
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_mbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_mbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe wardrobe exterior"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1591,16 +1321,13 @@ views:
               - entity: input_boolean.done_sbed_dust
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_dust
-                  name: "Dust surfaces"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_dust
+              name: "Dust surfaces"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_vacuum
@@ -1608,16 +1335,13 @@ views:
               - entity: input_boolean.done_sbed_vacuum
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_vacuum
+              name: "Vacuum floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_linen
@@ -1625,16 +1349,13 @@ views:
               - entity: input_boolean.done_sbed_linen
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_linen
-                  name: "Change bed linen"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_linen
+              name: "Change bed linen"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_windows
@@ -1642,16 +1363,13 @@ views:
               - entity: input_boolean.done_sbed_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_wardrobe
@@ -1659,16 +1377,13 @@ views:
               - entity: input_boolean.done_sbed_wardrobe
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_dust
@@ -1676,16 +1391,13 @@ views:
               - entity: input_boolean.done_sbed_dust
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_dust
-                  name: "Dust surfaces"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_dust
+              name: "Dust surfaces"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_vacuum
@@ -1693,16 +1405,13 @@ views:
               - entity: input_boolean.done_sbed_vacuum
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_vacuum
+              name: "Vacuum floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_linen
@@ -1710,16 +1419,13 @@ views:
               - entity: input_boolean.done_sbed_linen
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_linen
-                  name: "Change bed linen"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_linen
+              name: "Change bed linen"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_windows
@@ -1727,16 +1433,13 @@ views:
               - entity: input_boolean.done_sbed_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_sbed_wardrobe
@@ -1744,16 +1447,13 @@ views:
               - entity: input_boolean.done_sbed_wardrobe
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_sbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_sbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe wardrobe exterior"
       - type: vertical-stack
         cards:
           - type: heading
@@ -1766,16 +1466,13 @@ views:
               - entity: input_boolean.done_dbed_dust
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_dust
-                  name: "Dust surfaces"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_dust
+              name: "Dust surfaces"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_vacuum
@@ -1783,16 +1480,13 @@ views:
               - entity: input_boolean.done_dbed_vacuum
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_vacuum
+              name: "Vacuum floor"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_linen
@@ -1800,16 +1494,13 @@ views:
               - entity: input_boolean.done_dbed_linen
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_linen
-                  name: "Change bed linen"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_linen
+              name: "Change bed linen"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_windows
@@ -1817,16 +1508,13 @@ views:
               - entity: input_boolean.done_dbed_windows
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_windows
-                  name: "Clean windows"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_windows
+              name: "Clean windows"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_wardrobe
@@ -1834,16 +1522,13 @@ views:
               - entity: input_boolean.done_dbed_wardrobe
                 state: "off"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Do"
-                  struck: false
-                  color: ""
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Do"
+              struck: false
+              color: ""
+              speak_text: "Wipe wardrobe exterior"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_dust
@@ -1851,16 +1536,13 @@ views:
               - entity: input_boolean.done_dbed_dust
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_dust
-                  name: "Dust surfaces"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Dust surfaces"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_dust
+              name: "Dust surfaces"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Dust surfaces"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_vacuum
@@ -1868,16 +1550,13 @@ views:
               - entity: input_boolean.done_dbed_vacuum
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_vacuum
-                  name: "Vacuum floor"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Vacuum floor"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_vacuum
+              name: "Vacuum floor"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Vacuum floor"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_linen
@@ -1885,16 +1564,13 @@ views:
               - entity: input_boolean.done_dbed_linen
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_linen
-                  name: "Change bed linen"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Change bed linen"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_linen
+              name: "Change bed linen"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Change bed linen"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_windows
@@ -1902,16 +1578,13 @@ views:
               - entity: input_boolean.done_dbed_windows
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_windows
-                  name: "Clean windows"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Clean windows"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_windows
+              name: "Clean windows"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Clean windows"
           - type: conditional
             conditions:
               - entity: input_boolean.due_dbed_wardrobe
@@ -1919,13 +1592,10 @@ views:
               - entity: input_boolean.done_dbed_wardrobe
                 state: "on"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_dbed_wardrobe
-                  name: "Wipe wardrobe exterior"
-                  label: "Done"
-                  struck: true
-                  color: "green"
-                - type: custom:speak-tile-card
-                  text: "Wipe wardrobe exterior"
+              type: custom:task-tile-card
+              entity: input_boolean.done_dbed_wardrobe
+              name: "Wipe wardrobe exterior"
+              label: "Done"
+              struck: true
+              color: "green"
+              speak_text: "Wipe wardrobe exterior"

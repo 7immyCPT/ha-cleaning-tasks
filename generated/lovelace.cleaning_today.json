@@ -36,21 +36,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_counters",
-                        "name": "Wipe counters & stovetop",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe counters & stovetop"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_counters",
+                    "name": "Wipe counters & stovetop",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe counters & stovetop"
                   }
                 },
                 {
@@ -66,21 +58,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_floor",
-                        "name": "Sweep & mop floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep & mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_floor",
+                    "name": "Sweep & mop floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Sweep & mop floor"
                   }
                 },
                 {
@@ -96,21 +80,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_sink",
-                        "name": "Clean sink & taps",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean sink & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_sink",
+                    "name": "Clean sink & taps",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean sink & taps"
                   }
                 },
                 {
@@ -126,21 +102,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_fridge",
-                        "name": "Wipe down fridge exterior",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe down fridge exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_fridge",
+                    "name": "Wipe down fridge exterior",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe down fridge exterior"
                   }
                 },
                 {
@@ -156,21 +124,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_microwave",
-                        "name": "Clean inside of microwave",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean inside of microwave"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_microwave",
+                    "name": "Clean inside of microwave",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean inside of microwave"
                   }
                 },
                 {
@@ -186,21 +146,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -216,21 +168,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_oven",
-                        "name": "Deep clean oven",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean oven"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_oven",
+                    "name": "Deep clean oven",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Deep clean oven"
                   }
                 },
                 {
@@ -246,21 +190,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
-                        "name": "Wipe cupboard fronts",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe cupboard fronts"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                    "name": "Wipe cupboard fronts",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe cupboard fronts"
                   }
                 },
                 {
@@ -276,21 +212,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_counters",
-                        "name": "Wipe counters & stovetop",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe counters & stovetop"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_counters",
+                    "name": "Wipe counters & stovetop",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe counters & stovetop"
                   }
                 },
                 {
@@ -306,21 +234,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_floor",
-                        "name": "Sweep & mop floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep & mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_floor",
+                    "name": "Sweep & mop floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Sweep & mop floor"
                   }
                 },
                 {
@@ -336,21 +256,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_sink",
-                        "name": "Clean sink & taps",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean sink & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_sink",
+                    "name": "Clean sink & taps",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean sink & taps"
                   }
                 },
                 {
@@ -366,21 +278,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_fridge",
-                        "name": "Wipe down fridge exterior",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe down fridge exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_fridge",
+                    "name": "Wipe down fridge exterior",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe down fridge exterior"
                   }
                 },
                 {
@@ -396,21 +300,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_microwave",
-                        "name": "Clean inside of microwave",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean inside of microwave"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_microwave",
+                    "name": "Clean inside of microwave",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean inside of microwave"
                   }
                 },
                 {
@@ -426,21 +322,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -456,21 +344,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_oven",
-                        "name": "Deep clean oven",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean oven"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_oven",
+                    "name": "Deep clean oven",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Deep clean oven"
                   }
                 },
                 {
@@ -486,21 +366,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
-                        "name": "Wipe cupboard fronts",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe cupboard fronts"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                    "name": "Wipe cupboard fronts",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe cupboard fronts"
                   }
                 }
               ]
@@ -526,21 +398,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_shelves_wipe",
-                        "name": "Wipe shelves",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe shelves"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_shelves_wipe",
+                    "name": "Wipe shelves",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe shelves"
                   }
                 },
                 {
@@ -556,21 +420,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_floor",
-                        "name": "Sweep floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_floor",
+                    "name": "Sweep floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Sweep floor"
                   }
                 },
                 {
@@ -586,21 +442,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_tidy_expiry",
-                        "name": "Tidy & check for expired items",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Tidy & check for expired items"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_tidy_expiry",
+                    "name": "Tidy & check for expired items",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Tidy & check for expired items"
                   }
                 },
                 {
@@ -616,21 +464,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_shelves_wipe",
-                        "name": "Wipe shelves",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe shelves"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_shelves_wipe",
+                    "name": "Wipe shelves",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe shelves"
                   }
                 },
                 {
@@ -646,21 +486,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_floor",
-                        "name": "Sweep floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_floor",
+                    "name": "Sweep floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Sweep floor"
                   }
                 },
                 {
@@ -676,21 +508,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_pantry_tidy_expiry",
-                        "name": "Tidy & check for expired items",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Tidy & check for expired items"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_pantry_tidy_expiry",
+                    "name": "Tidy & check for expired items",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Tidy & check for expired items"
                   }
                 }
               ]
@@ -716,21 +540,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_toilet",
-                        "name": "Clean & disinfect toilet",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean & disinfect toilet"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_toilet",
+                    "name": "Clean & disinfect toilet",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean & disinfect toilet"
                   }
                 },
                 {
@@ -746,21 +562,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_shower",
-                        "name": "Clean shower/bath",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean shower/bath"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_shower",
+                    "name": "Clean shower/bath",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean shower/bath"
                   }
                 },
                 {
@@ -776,21 +584,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_basin",
-                        "name": "Clean basin & taps",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean basin & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_basin",
+                    "name": "Clean basin & taps",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean basin & taps"
                   }
                 },
                 {
@@ -806,21 +606,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_floor",
-                        "name": "Mop floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_floor",
+                    "name": "Mop floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Mop floor"
                   }
                 },
                 {
@@ -836,21 +628,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_mirror",
-                        "name": "Clean mirror",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean mirror"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_mirror",
+                    "name": "Clean mirror",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean mirror"
                   }
                 },
                 {
@@ -866,21 +650,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -896,21 +672,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_tiles",
-                        "name": "Deep clean tile grout",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean tile grout"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_tiles",
+                    "name": "Deep clean tile grout",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Deep clean tile grout"
                   }
                 },
                 {
@@ -926,21 +694,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_toilet",
-                        "name": "Clean & disinfect toilet",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean & disinfect toilet"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_toilet",
+                    "name": "Clean & disinfect toilet",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean & disinfect toilet"
                   }
                 },
                 {
@@ -956,21 +716,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_shower",
-                        "name": "Clean shower/bath",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean shower/bath"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_shower",
+                    "name": "Clean shower/bath",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean shower/bath"
                   }
                 },
                 {
@@ -986,21 +738,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_basin",
-                        "name": "Clean basin & taps",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean basin & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_basin",
+                    "name": "Clean basin & taps",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean basin & taps"
                   }
                 },
                 {
@@ -1016,21 +760,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_floor",
-                        "name": "Mop floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_floor",
+                    "name": "Mop floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Mop floor"
                   }
                 },
                 {
@@ -1046,21 +782,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_mirror",
-                        "name": "Clean mirror",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean mirror"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_mirror",
+                    "name": "Clean mirror",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean mirror"
                   }
                 },
                 {
@@ -1076,21 +804,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -1106,21 +826,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbath_tiles",
-                        "name": "Deep clean tile grout",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean tile grout"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbath_tiles",
+                    "name": "Deep clean tile grout",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Deep clean tile grout"
                   }
                 }
               ]
@@ -1146,21 +858,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_toilet",
-                        "name": "Clean & disinfect toilet",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean & disinfect toilet"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_toilet",
+                    "name": "Clean & disinfect toilet",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean & disinfect toilet"
                   }
                 },
                 {
@@ -1176,21 +880,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_shower",
-                        "name": "Clean shower/bath",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean shower/bath"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_shower",
+                    "name": "Clean shower/bath",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean shower/bath"
                   }
                 },
                 {
@@ -1206,21 +902,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_basin",
-                        "name": "Clean basin & taps",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean basin & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_basin",
+                    "name": "Clean basin & taps",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean basin & taps"
                   }
                 },
                 {
@@ -1236,21 +924,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_floor",
-                        "name": "Mop floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_floor",
+                    "name": "Mop floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Mop floor"
                   }
                 },
                 {
@@ -1266,21 +946,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_mirror",
-                        "name": "Clean mirror",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean mirror"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_mirror",
+                    "name": "Clean mirror",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean mirror"
                   }
                 },
                 {
@@ -1296,21 +968,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -1326,21 +990,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_tiles",
-                        "name": "Deep clean tile grout",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean tile grout"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_tiles",
+                    "name": "Deep clean tile grout",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Deep clean tile grout"
                   }
                 },
                 {
@@ -1356,21 +1012,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_toilet",
-                        "name": "Clean & disinfect toilet",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean & disinfect toilet"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_toilet",
+                    "name": "Clean & disinfect toilet",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean & disinfect toilet"
                   }
                 },
                 {
@@ -1386,21 +1034,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_shower",
-                        "name": "Clean shower/bath",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean shower/bath"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_shower",
+                    "name": "Clean shower/bath",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean shower/bath"
                   }
                 },
                 {
@@ -1416,21 +1056,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_basin",
-                        "name": "Clean basin & taps",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean basin & taps"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_basin",
+                    "name": "Clean basin & taps",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean basin & taps"
                   }
                 },
                 {
@@ -1446,21 +1078,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_floor",
-                        "name": "Mop floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_floor",
+                    "name": "Mop floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Mop floor"
                   }
                 },
                 {
@@ -1476,21 +1100,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_mirror",
-                        "name": "Clean mirror",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean mirror"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_mirror",
+                    "name": "Clean mirror",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean mirror"
                   }
                 },
                 {
@@ -1506,21 +1122,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -1536,21 +1144,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_gbath_tiles",
-                        "name": "Deep clean tile grout",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Deep clean tile grout"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_gbath_tiles",
+                    "name": "Deep clean tile grout",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Deep clean tile grout"
                   }
                 }
               ]
@@ -1576,21 +1176,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_dust",
-                        "name": "Dust surfaces & shelves",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces & shelves"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_dust",
+                    "name": "Dust surfaces & shelves",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Dust surfaces & shelves"
                   }
                 },
                 {
@@ -1606,21 +1198,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_vacuum",
-                        "name": "Vacuum carpets/rugs",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum carpets/rugs"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_vacuum",
+                    "name": "Vacuum carpets/rugs",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum carpets/rugs"
                   }
                 },
                 {
@@ -1636,21 +1220,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_floor",
-                        "name": "Mop hard floors",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop hard floors"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_floor",
+                    "name": "Mop hard floors",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Mop hard floors"
                   }
                 },
                 {
@@ -1666,21 +1242,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -1696,21 +1264,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_curtains",
-                        "name": "Vacuum curtains",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum curtains"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_curtains",
+                    "name": "Vacuum curtains",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum curtains"
                   }
                 },
                 {
@@ -1726,21 +1286,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_skirting",
-                        "name": "Wipe skirting boards",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe skirting boards"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_skirting",
+                    "name": "Wipe skirting boards",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe skirting boards"
                   }
                 },
                 {
@@ -1756,21 +1308,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_dust",
-                        "name": "Dust surfaces & shelves",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces & shelves"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_dust",
+                    "name": "Dust surfaces & shelves",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Dust surfaces & shelves"
                   }
                 },
                 {
@@ -1786,21 +1330,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_vacuum",
-                        "name": "Vacuum carpets/rugs",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum carpets/rugs"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_vacuum",
+                    "name": "Vacuum carpets/rugs",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum carpets/rugs"
                   }
                 },
                 {
@@ -1816,21 +1352,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_floor",
-                        "name": "Mop hard floors",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Mop hard floors"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_floor",
+                    "name": "Mop hard floors",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Mop hard floors"
                   }
                 },
                 {
@@ -1846,21 +1374,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -1876,21 +1396,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_curtains",
-                        "name": "Vacuum curtains",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum curtains"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_curtains",
+                    "name": "Vacuum curtains",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum curtains"
                   }
                 },
                 {
@@ -1906,21 +1418,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_living_skirting",
-                        "name": "Wipe skirting boards",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe skirting boards"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_living_skirting",
+                    "name": "Wipe skirting boards",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe skirting boards"
                   }
                 }
               ]
@@ -1946,21 +1450,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_sweep",
-                        "name": "Sweep floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_sweep",
+                    "name": "Sweep floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Sweep floor"
                   }
                 },
                 {
@@ -1976,21 +1472,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_surfaces",
-                        "name": "Wipe down surfaces/counters",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe down surfaces/counters"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_surfaces",
+                    "name": "Wipe down surfaces/counters",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe down surfaces/counters"
                   }
                 },
                 {
@@ -2006,21 +1494,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_grill_area",
-                        "name": "Clean around braai/grill area",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean around braai/grill area"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_grill_area",
+                    "name": "Clean around braai/grill area",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean around braai/grill area"
                   }
                 },
                 {
@@ -2036,21 +1516,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2066,21 +1538,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_cobwebs",
-                        "name": "Clear cobwebs / deep clean",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clear cobwebs / deep clean"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_cobwebs",
+                    "name": "Clear cobwebs / deep clean",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clear cobwebs / deep clean"
                   }
                 },
                 {
@@ -2096,21 +1560,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_sweep",
-                        "name": "Sweep floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Sweep floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_sweep",
+                    "name": "Sweep floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Sweep floor"
                   }
                 },
                 {
@@ -2126,21 +1582,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_surfaces",
-                        "name": "Wipe down surfaces/counters",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe down surfaces/counters"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_surfaces",
+                    "name": "Wipe down surfaces/counters",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe down surfaces/counters"
                   }
                 },
                 {
@@ -2156,21 +1604,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_grill_area",
-                        "name": "Clean around braai/grill area",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean around braai/grill area"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_grill_area",
+                    "name": "Clean around braai/grill area",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean around braai/grill area"
                   }
                 },
                 {
@@ -2186,21 +1626,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2216,21 +1648,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_braai_cobwebs",
-                        "name": "Clear cobwebs / deep clean",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clear cobwebs / deep clean"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_braai_cobwebs",
+                    "name": "Clear cobwebs / deep clean",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clear cobwebs / deep clean"
                   }
                 }
               ]
@@ -2256,21 +1680,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_dust",
-                        "name": "Dust desk & surfaces",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust desk & surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_dust",
+                    "name": "Dust desk & surfaces",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Dust desk & surfaces"
                   }
                 },
                 {
@@ -2286,21 +1702,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -2316,21 +1724,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_bin",
-                        "name": "Empty bin",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Empty bin"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_bin",
+                    "name": "Empty bin",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Empty bin"
                   }
                 },
                 {
@@ -2346,21 +1746,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2376,21 +1768,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_dust",
-                        "name": "Dust desk & surfaces",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust desk & surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_dust",
+                    "name": "Dust desk & surfaces",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Dust desk & surfaces"
                   }
                 },
                 {
@@ -2406,21 +1790,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -2436,21 +1812,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_bin",
-                        "name": "Empty bin",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Empty bin"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_bin",
+                    "name": "Empty bin",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Empty bin"
                   }
                 },
                 {
@@ -2466,21 +1834,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_office_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_office_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 }
               ]
@@ -2506,21 +1866,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -2536,21 +1888,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -2566,21 +1910,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -2596,21 +1932,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2626,21 +1954,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 },
                 {
@@ -2656,21 +1976,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -2686,21 +1998,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -2716,21 +2020,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -2746,21 +2042,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2776,21 +2064,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_mbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_mbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 }
               ]
@@ -2816,21 +2096,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -2846,21 +2118,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -2876,21 +2140,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -2906,21 +2162,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -2936,21 +2184,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 },
                 {
@@ -2966,21 +2206,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -2996,21 +2228,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -3026,21 +2250,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -3056,21 +2272,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -3086,21 +2294,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_sbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_sbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 }
               ]
@@ -3126,21 +2326,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -3156,21 +2348,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -3186,21 +2370,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -3216,21 +2392,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_windows",
-                        "name": "Clean windows",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_windows",
+                    "name": "Clean windows",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -3246,21 +2414,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Do",
-                        "struck": false,
-                        "color": ""
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Do",
+                    "struck": false,
+                    "color": "",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 },
                 {
@@ -3276,21 +2436,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_dust",
-                        "name": "Dust surfaces",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Dust surfaces"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_dust",
+                    "name": "Dust surfaces",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Dust surfaces"
                   }
                 },
                 {
@@ -3306,21 +2458,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_vacuum",
-                        "name": "Vacuum floor",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Vacuum floor"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_vacuum",
+                    "name": "Vacuum floor",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Vacuum floor"
                   }
                 },
                 {
@@ -3336,21 +2480,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_linen",
-                        "name": "Change bed linen",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Change bed linen"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_linen",
+                    "name": "Change bed linen",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Change bed linen"
                   }
                 },
                 {
@@ -3366,21 +2502,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_windows",
-                        "name": "Clean windows",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Clean windows"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_windows",
+                    "name": "Clean windows",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Clean windows"
                   }
                 },
                 {
@@ -3396,21 +2524,13 @@
                     }
                   ],
                   "card": {
-                    "type": "horizontal-stack",
-                    "cards": [
-                      {
-                        "type": "custom:task-tile-card",
-                        "entity": "input_boolean.done_dbed_wardrobe",
-                        "name": "Wipe wardrobe exterior",
-                        "label": "Done",
-                        "struck": true,
-                        "color": "green"
-                      },
-                      {
-                        "type": "custom:speak-tile-card",
-                        "text": "Wipe wardrobe exterior"
-                      }
-                    ]
+                    "type": "custom:task-tile-card",
+                    "entity": "input_boolean.done_dbed_wardrobe",
+                    "name": "Wipe wardrobe exterior",
+                    "label": "Done",
+                    "struck": true,
+                    "color": "green",
+                    "speak_text": "Wipe wardrobe exterior"
                   }
                 }
               ]

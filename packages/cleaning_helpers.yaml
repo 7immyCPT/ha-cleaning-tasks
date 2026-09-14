@@ -3,13 +3,16 @@
 # Requires `homeassistant: packages: !include_dir_named packages` in configuration.yaml
 
 input_boolean:
+  # No `initial:` on any of these - that key forces the entity back to a
+  # fixed value on every Home Assistant restart instead of restoring
+  # whatever it was last set to, which was wiping the user's chosen
+  # cleaning days on every restart.
   cleaning_day_mon:
     name: Cleaner comes Monday
     icon: mdi:calendar-check
   cleaning_day_tue:
     name: Cleaner comes Tuesday
     icon: mdi:calendar-check
-    initial: true
   cleaning_day_wed:
     name: Cleaner comes Wednesday
     icon: mdi:calendar-check
@@ -19,7 +22,6 @@ input_boolean:
   cleaning_day_fri:
     name: Cleaner comes Friday
     icon: mdi:calendar-check
-    initial: true
   cleaning_day_sat:
     name: Cleaner comes Saturday
     icon: mdi:calendar-check

@@ -109,4 +109,10 @@ views:
           - input_boolean.cleaning_day_fri
           - input_boolean.cleaning_day_sat
           - input_boolean.cleaning_day_sun
+      - type: entities
+        title: Used since last clean?
+        entities:
+          - input_boolean.room_used_braai_room
+          - input_boolean.room_used_bedroom_single_beds
+          - input_boolean.room_used_bedroom_double_bed
       - type: custom:voice-picker-card

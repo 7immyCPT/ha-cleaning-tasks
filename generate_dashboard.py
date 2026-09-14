@@ -18,6 +18,7 @@ with open("tasks_config.json", "r", encoding="utf-8") as f:
 # ---------- input_booleans (due/done flags) + input_text (last-done date) ----------
 booleans = {"input_boolean": {}}
 texts = {"input_text": {}}
+tracked_rooms = [room for room in config["rooms"] if room.get("tracks_usage")]
 for room in config["rooms"]:
     for task in room["tasks"]:
         tid = task["id"]
@@ -34,6 +35,18 @@ for room in config["rooms"]:
             "icon": "mdi:calendar-check",
             "max": 10,
         }
+
+# Rooms that "track usage" (spare bedrooms, the braai room, ...) get a
+# "was this room used since the last clean?" toggle, set on the admin
+# dashboard. While it's on, that room's conditional_on_used task(s) (change
+# linen, clean the braai/grill area, ...) become due on the next cleaning
+# day; once ticked off, pyscript turns this back off automatically so it
+# doesn't stay "due" forever.
+for room in tracked_rooms:
+    booleans["input_boolean"][f"room_used_{room['id']}"] = {
+        "name": f"{room['name']} was used since last clean",
+        "icon": "mdi:alert-circle-check-outline",
+    }
 
 def dump_yaml_booleans():
     lines = ["input_boolean:"]
@@ -64,7 +77,8 @@ for room in config["rooms"]:
     for task in room["tasks"]:
         data_lines.append(
             f'    {{"id": {task["id"]!r}, "name": {task["name"]!r}, "room": {room["name"]!r}, '
-            f'"unit": {task["unit"]!r}, "count": {task["count"]}}},'
+            f'"room_id": {room["id"]!r}, "unit": {task["unit"]!r}, "count": {task["count"]}, '
+            f'"conditional_on_used": {task.get("conditional_on_used", False)!r}}},'
         )
 data_lines.append("]")
 
@@ -72,13 +86,18 @@ with open(f"{OUT_DIR}/tasks_data_generated.py", "w", encoding="utf-8") as f:
     f.write("\n".join(data_lines) + "\n")
 
 def task_row(room_name, task, done):
-    """One task's conditional+horizontal-stack row. When done=True the row
-    only shows once the task is ticked, with the name struck through, the
-    "Done" label, and green coloring; when done=False it only shows while
-    still pending, labeled "Do". Rendering pending tasks first and done
-    tasks second in each room's card is what pushes completed items to the
-    bottom of the list without needing any dynamic sort. Uses task-tile-card
-    (not core tile) because tile can't relabel a boolean's "On"/"Off" text."""
+    """One task's conditional row. When done=True the row only shows once
+    the task is ticked, with the name struck through, the "Done" label, and
+    green coloring; when done=False it only shows while still pending,
+    labeled "Do". Rendering pending tasks first and done tasks second in
+    each room's card is what pushes completed items to the bottom of the
+    list without needing any dynamic sort.
+
+    Uses a single custom:task-tile-card (not a horizontal-stack of two
+    cards) with the speak button built in as a small icon on the right -
+    that keeps the task name column full width instead of losing half the
+    row to a separate speaker card, which was clipping longer task names on
+    the kiosk tablet's screen."""
     tid = task["id"]
     label = "Done" if done else "Do"
     color = "green" if done else ""
@@ -90,16 +109,13 @@ def task_row(room_name, task, done):
               - entity: input_boolean.done_{tid}
                 state: "{done_state}"
             card:
-              type: horizontal-stack
-              cards:
-                - type: custom:task-tile-card
-                  entity: input_boolean.done_{tid}
-                  name: "{task['name']}"
-                  label: "{label}"
-                  struck: {"true" if done else "false"}
-                  color: "{color}"
-                - type: custom:speak-tile-card
-                  text: "{task['name']}\""""
+              type: custom:task-tile-card
+              entity: input_boolean.done_{tid}
+              name: "{task['name']}"
+              label: "{label}"
+              struck: {"true" if done else "false"}
+              color: "{color}"
+              speak_text: "{task['name']}\""""
 
 
 # ---------- kiosk dashboard: ONLY today's tasks, no nav, no reports ----------
@@ -135,6 +151,17 @@ with open(f"{OUT_DIR}/kiosk_dashboard_generated.yaml", "w", encoding="utf-8") as
 # ---------- admin dashboard: completion log (native Logbook) + settings ----------
 done_entities = [f"input_boolean.done_{task['id']}" for room in config["rooms"] for task in room["tasks"]]
 logbook_entities_yaml = "\n".join(f"          - {e}" for e in done_entities)
+
+room_used_entities_yaml = "\n".join(
+    f"          - input_boolean.room_used_{room['id']}" for room in tracked_rooms
+)
+room_used_card = ""
+if tracked_rooms:
+    room_used_card = f"""      - type: entities
+        title: Used since last clean?
+        entities:
+{room_used_entities_yaml}
+"""
 
 admin_yaml = f"""title: Cleaning - Admin
 views:
@@ -193,7 +220,7 @@ views:
           - input_boolean.cleaning_day_fri
           - input_boolean.cleaning_day_sat
           - input_boolean.cleaning_day_sun
-      - type: custom:voice-picker-card
+{room_used_card}      - type: custom:voice-picker-card
 """
 
 with open(f"{OUT_DIR}/admin_dashboard_generated.yaml", "w", encoding="utf-8") as f:
@@ -202,6 +229,23 @@ with open(f"{OUT_DIR}/admin_dashboard_generated.yaml", "w", encoding="utf-8") as
 # ---------- automation: checkbox -> pyscript mark_done/undone ----------
 all_ids = [task["id"] for room in config["rooms"] for task in room["tasks"]]
 entity_list = "\n".join(f"          - input_boolean.done_{tid}" for tid in all_ids)
+
+room_used_automation = ""
+if tracked_rooms:
+    room_used_entity_list = "\n".join(
+        f"          - input_boolean.room_used_{room['id']}" for room in tracked_rooms
+    )
+    room_used_automation = f"""
+  - alias: Cleaning - room used-flag changed
+    mode: queued
+    max: 10
+    trigger:
+      - platform: state
+        entity_id:
+{room_used_entity_list}
+    action:
+      - service: pyscript.cleaning_refresh_today
+"""
 
 automations_yaml = f"""automation:
   - alias: Cleaning - checkbox toggled to done
@@ -231,7 +275,7 @@ automations_yaml = f"""automation:
         data:
           task_id: >
             {{{{ trigger.entity_id.split('.')[1].removeprefix('done_') }}}}
-"""
+{room_used_automation}"""
 
 with open(f"{OUT_DIR}/automations_generated.yaml", "w", encoding="utf-8") as f:
     f.write(automations_yaml)

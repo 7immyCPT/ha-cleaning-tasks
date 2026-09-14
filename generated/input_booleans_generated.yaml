@@ -329,3 +329,12 @@ input_boolean:
   done_dbed_wardrobe:
     name: "DONE: Bedroom - Double Bed - Wipe wardrobe exterior"
     icon: mdi:checkbox-marked-circle-outline
+  room_used_braai_room:
+    name: "Braai Room was used since last clean"
+    icon: mdi:alert-circle-check-outline
+  room_used_bedroom_single_beds:
+    name: "Bedroom - Single Beds was used since last clean"
+    icon: mdi:alert-circle-check-outline
+  room_used_bedroom_double_bed:
+    name: "Bedroom - Double Bed was used since last clean"
+    icon: mdi:alert-circle-check-outline

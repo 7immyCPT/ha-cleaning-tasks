@@ -126,6 +126,15 @@
               ]
             },
             {
+              "type": "entities",
+              "title": "Used since last clean?",
+              "entities": [
+                "input_boolean.room_used_braai_room",
+                "input_boolean.room_used_bedroom_single_beds",
+                "input_boolean.room_used_bedroom_double_bed"
+              ]
+            },
+            {
               "type": "custom:voice-picker-card"
             }
           ]

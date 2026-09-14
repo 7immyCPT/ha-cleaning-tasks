@@ -64,10 +64,11 @@
     {
       "id": "braai_room",
       "name": "Braai Room",
+      "tracks_usage": true,
       "tasks": [
         {"id": "braai_sweep", "name": "Sweep floor", "unit": "week", "count": 1},
         {"id": "braai_surfaces", "name": "Wipe down surfaces/counters", "unit": "week", "count": 1},
-        {"id": "braai_grill_area", "name": "Clean around braai/grill area", "unit": "week", "count": 1},
+        {"id": "braai_grill_area", "name": "Clean around braai/grill area", "unit": "week", "count": 1, "conditional_on_used": true},
         {"id": "braai_windows", "name": "Clean windows", "unit": "month", "count": 1},
         {"id": "braai_cobwebs", "name": "Clear cobwebs / deep clean", "unit": "month", "count": 1}
       ]
@@ -96,10 +97,11 @@
     {
       "id": "bedroom_single_beds",
       "name": "Bedroom - Single Beds",
+      "tracks_usage": true,
       "tasks": [
         {"id": "sbed_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
         {"id": "sbed_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
-        {"id": "sbed_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "sbed_linen", "name": "Change bed linen", "unit": "week", "count": 1, "conditional_on_used": true},
         {"id": "sbed_windows", "name": "Clean windows", "unit": "month", "count": 1},
         {"id": "sbed_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
       ]
@@ -107,10 +109,11 @@
     {
       "id": "bedroom_double_bed",
       "name": "Bedroom - Double Bed",
+      "tracks_usage": true,
       "tasks": [
         {"id": "dbed_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
         {"id": "dbed_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
-        {"id": "dbed_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "dbed_linen", "name": "Change bed linen", "unit": "week", "count": 1, "conditional_on_used": true},
         {"id": "dbed_windows", "name": "Clean windows", "unit": "month", "count": 1},
         {"id": "dbed_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
       ]

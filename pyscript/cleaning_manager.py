@@ -48,6 +48,8 @@ from datetime import date
 import calendar
 from tasks_data_generated import TASKS
 
+_TASKS_BY_ID = {task["id"]: task for task in TASKS}
+
 _WEEKDAY_ENTITIES = [
     "input_boolean.cleaning_day_mon",
     "input_boolean.cleaning_day_tue",
@@ -96,6 +98,11 @@ def _set_boolean(entity_id, want_on):
 
 
 def _is_due(task, today, days_left_in_month):
+    if task.get("conditional_on_used"):
+        # e.g. spare-bedroom linen, or the braai/grill area: only due if
+        # that room's "used since last clean" toggle is on (set from the
+        # admin dashboard) - otherwise nobody used it, so leave it alone.
+        return state.get(f"input_boolean.room_used_{task['room_id']}") == "on"
     interval = _target_interval_days(task)
     last_done = _last_done(task["id"])
     if not last_done:
@@ -183,6 +190,12 @@ def cleaning_mark_done(task_id=None):
         log.error("cleaning_mark_done called without task_id")
         return
     input_text.set_value(entity_id=f"input_text.last_done_{task_id}", value=date.today().isoformat())
+    task = _TASKS_BY_ID.get(task_id)
+    if task and task.get("conditional_on_used"):
+        # That task's been done (linen changed, braai cleaned, ...) - clear
+        # the "used" flag so this room doesn't stay marked as needing it
+        # again until it's actually used again.
+        _set_boolean(f"input_boolean.room_used_{task['room_id']}", False)
     cleaning_refresh_today()
 
 
