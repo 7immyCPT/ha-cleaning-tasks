@@ -20,19 +20,16 @@ input_select:
     icon: mdi:volume-high
 
 automation:
+  - alias: Cleaning - daily refresh at 06:00
+    trigger:
+      - platform: time
+        at: "06:00:00"
+    action:
+      - service: pyscript.cleaning_daily_refresh
+
   - alias: Cleaning - refresh checklist on visits_per_week change
     trigger:
       - platform: state
         entity_id: input_number.visits_per_week
     action:
       - service: pyscript.cleaning_refresh_today
-
-  - alias: Cleaning - generate monthly report on the 1st
-    trigger:
-      - platform: time
-        at: "06:05:00"
-    condition:
-      - condition: template
-        value_template: "{{ now().day == 1 }}"
-    action:
-      - service: pyscript.cleaning_generate_report

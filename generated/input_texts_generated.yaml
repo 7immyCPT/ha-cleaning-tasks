@@ -1,0 +1,221 @@
+input_text:
+  last_done_kitchen_counters:
+    name: "Last done: Kitchen - Wipe counters & stovetop"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_floor:
+    name: "Last done: Kitchen - Sweep & mop floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_sink:
+    name: "Last done: Kitchen - Clean sink & taps"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_fridge:
+    name: "Last done: Kitchen - Wipe down fridge exterior"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_microwave:
+    name: "Last done: Kitchen - Clean inside of microwave"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_windows:
+    name: "Last done: Kitchen - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_oven:
+    name: "Last done: Kitchen - Deep clean oven"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_kitchen_cupboard_fronts:
+    name: "Last done: Kitchen - Wipe cupboard fronts"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_pantry_shelves_wipe:
+    name: "Last done: Pantry - Wipe shelves"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_pantry_floor:
+    name: "Last done: Pantry - Sweep floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_pantry_tidy_expiry:
+    name: "Last done: Pantry - Tidy & check for expired items"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_toilet:
+    name: "Last done: Main Bathroom - Clean & disinfect toilet"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_shower:
+    name: "Last done: Main Bathroom - Clean shower/bath"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_basin:
+    name: "Last done: Main Bathroom - Clean basin & taps"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_floor:
+    name: "Last done: Main Bathroom - Mop floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_mirror:
+    name: "Last done: Main Bathroom - Clean mirror"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_windows:
+    name: "Last done: Main Bathroom - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbath_tiles:
+    name: "Last done: Main Bathroom - Deep clean tile grout"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_toilet:
+    name: "Last done: Guest Bathroom - Clean & disinfect toilet"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_shower:
+    name: "Last done: Guest Bathroom - Clean shower/bath"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_basin:
+    name: "Last done: Guest Bathroom - Clean basin & taps"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_floor:
+    name: "Last done: Guest Bathroom - Mop floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_mirror:
+    name: "Last done: Guest Bathroom - Clean mirror"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_windows:
+    name: "Last done: Guest Bathroom - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_gbath_tiles:
+    name: "Last done: Guest Bathroom - Deep clean tile grout"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_dust:
+    name: "Last done: Living / Dining Area - Dust surfaces & shelves"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_vacuum:
+    name: "Last done: Living / Dining Area - Vacuum carpets/rugs"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_floor:
+    name: "Last done: Living / Dining Area - Mop hard floors"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_windows:
+    name: "Last done: Living / Dining Area - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_curtains:
+    name: "Last done: Living / Dining Area - Vacuum curtains"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_living_skirting:
+    name: "Last done: Living / Dining Area - Wipe skirting boards"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_braai_sweep:
+    name: "Last done: Braai Room - Sweep floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_braai_surfaces:
+    name: "Last done: Braai Room - Wipe down surfaces/counters"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_braai_grill_area:
+    name: "Last done: Braai Room - Clean around braai/grill area"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_braai_windows:
+    name: "Last done: Braai Room - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_braai_cobwebs:
+    name: "Last done: Braai Room - Clear cobwebs / deep clean"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_office_dust:
+    name: "Last done: Office (Desk) - Dust desk & surfaces"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_office_vacuum:
+    name: "Last done: Office (Desk) - Vacuum floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_office_bin:
+    name: "Last done: Office (Desk) - Empty bin"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_office_windows:
+    name: "Last done: Office (Desk) - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbed_dust:
+    name: "Last done: Main Bedroom - Dust surfaces"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbed_vacuum:
+    name: "Last done: Main Bedroom - Vacuum floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbed_linen:
+    name: "Last done: Main Bedroom - Change bed linen"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbed_windows:
+    name: "Last done: Main Bedroom - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_mbed_wardrobe:
+    name: "Last done: Main Bedroom - Wipe wardrobe exterior"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_sbed_dust:
+    name: "Last done: Bedroom - Single Beds - Dust surfaces"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_sbed_vacuum:
+    name: "Last done: Bedroom - Single Beds - Vacuum floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_sbed_linen:
+    name: "Last done: Bedroom - Single Beds - Change bed linen"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_sbed_windows:
+    name: "Last done: Bedroom - Single Beds - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_sbed_wardrobe:
+    name: "Last done: Bedroom - Single Beds - Wipe wardrobe exterior"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_dbed_dust:
+    name: "Last done: Bedroom - Double Bed - Dust surfaces"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_dbed_vacuum:
+    name: "Last done: Bedroom - Double Bed - Vacuum floor"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_dbed_linen:
+    name: "Last done: Bedroom - Double Bed - Change bed linen"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_dbed_windows:
+    name: "Last done: Bedroom - Double Bed - Clean windows"
+    icon: mdi:calendar-check
+    max: 10
+  last_done_dbed_wardrobe:
+    name: "Last done: Bedroom - Double Bed - Wipe wardrobe exterior"
+    icon: mdi:calendar-check
+    max: 10
