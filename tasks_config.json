@@ -1,0 +1,54 @@
+{
+  "rooms": [
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "tasks": [
+        {"id": "kitchen_counters", "name": "Wipe counters & stovetop", "unit": "week", "count": 2},
+        {"id": "kitchen_floor", "name": "Sweep & mop floor", "unit": "week", "count": 2},
+        {"id": "kitchen_sink", "name": "Clean sink & taps", "unit": "week", "count": 2},
+        {"id": "kitchen_fridge", "name": "Wipe down fridge exterior", "unit": "week", "count": 1},
+        {"id": "kitchen_microwave", "name": "Clean inside of microwave", "unit": "week", "count": 1},
+        {"id": "kitchen_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "kitchen_oven", "name": "Deep clean oven", "unit": "month", "count": 1},
+        {"id": "kitchen_cupboard_fronts", "name": "Wipe cupboard fronts", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "bathroom_main",
+      "name": "Main Bathroom",
+      "tasks": [
+        {"id": "bath_toilet", "name": "Clean & disinfect toilet", "unit": "week", "count": 2},
+        {"id": "bath_shower", "name": "Clean shower/bath", "unit": "week", "count": 2},
+        {"id": "bath_basin", "name": "Clean basin & taps", "unit": "week", "count": 2},
+        {"id": "bath_floor", "name": "Mop floor", "unit": "week", "count": 2},
+        {"id": "bath_mirror", "name": "Clean mirror", "unit": "week", "count": 1},
+        {"id": "bath_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "bath_tiles", "name": "Deep clean tile grout", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "living_room",
+      "name": "Living Room",
+      "tasks": [
+        {"id": "living_dust", "name": "Dust surfaces & shelves", "unit": "week", "count": 2},
+        {"id": "living_vacuum", "name": "Vacuum carpets/rugs", "unit": "week", "count": 2},
+        {"id": "living_floor", "name": "Mop hard floors", "unit": "week", "count": 1},
+        {"id": "living_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "living_curtains", "name": "Vacuum curtains", "unit": "month", "count": 1},
+        {"id": "living_skirting", "name": "Wipe skirting boards", "unit": "month", "count": 1}
+      ]
+    },
+    {
+      "id": "bedroom_main",
+      "name": "Main Bedroom",
+      "tasks": [
+        {"id": "bed1_dust", "name": "Dust surfaces", "unit": "week", "count": 1},
+        {"id": "bed1_vacuum", "name": "Vacuum floor", "unit": "week", "count": 1},
+        {"id": "bed1_linen", "name": "Change bed linen", "unit": "week", "count": 1},
+        {"id": "bed1_windows", "name": "Clean windows", "unit": "month", "count": 1},
+        {"id": "bed1_wardrobe", "name": "Wipe wardrobe exterior", "unit": "month", "count": 1}
+      ]
+    }
+  ]
+}

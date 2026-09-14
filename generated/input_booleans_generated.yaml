@@ -1,0 +1,157 @@
+input_boolean:
+  due_kitchen_counters:
+    name: "DUE: Kitchen - Wipe counters & stovetop"
+    icon: mdi:calendar-alert
+  done_kitchen_counters:
+    name: "DONE: Kitchen - Wipe counters & stovetop"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_floor:
+    name: "DUE: Kitchen - Sweep & mop floor"
+    icon: mdi:calendar-alert
+  done_kitchen_floor:
+    name: "DONE: Kitchen - Sweep & mop floor"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_sink:
+    name: "DUE: Kitchen - Clean sink & taps"
+    icon: mdi:calendar-alert
+  done_kitchen_sink:
+    name: "DONE: Kitchen - Clean sink & taps"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_fridge:
+    name: "DUE: Kitchen - Wipe down fridge exterior"
+    icon: mdi:calendar-alert
+  done_kitchen_fridge:
+    name: "DONE: Kitchen - Wipe down fridge exterior"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_microwave:
+    name: "DUE: Kitchen - Clean inside of microwave"
+    icon: mdi:calendar-alert
+  done_kitchen_microwave:
+    name: "DONE: Kitchen - Clean inside of microwave"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_windows:
+    name: "DUE: Kitchen - Clean windows"
+    icon: mdi:calendar-alert
+  done_kitchen_windows:
+    name: "DONE: Kitchen - Clean windows"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_oven:
+    name: "DUE: Kitchen - Deep clean oven"
+    icon: mdi:calendar-alert
+  done_kitchen_oven:
+    name: "DONE: Kitchen - Deep clean oven"
+    icon: mdi:checkbox-marked-circle-outline
+  due_kitchen_cupboard_fronts:
+    name: "DUE: Kitchen - Wipe cupboard fronts"
+    icon: mdi:calendar-alert
+  done_kitchen_cupboard_fronts:
+    name: "DONE: Kitchen - Wipe cupboard fronts"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_toilet:
+    name: "DUE: Main Bathroom - Clean & disinfect toilet"
+    icon: mdi:calendar-alert
+  done_bath_toilet:
+    name: "DONE: Main Bathroom - Clean & disinfect toilet"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_shower:
+    name: "DUE: Main Bathroom - Clean shower/bath"
+    icon: mdi:calendar-alert
+  done_bath_shower:
+    name: "DONE: Main Bathroom - Clean shower/bath"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_basin:
+    name: "DUE: Main Bathroom - Clean basin & taps"
+    icon: mdi:calendar-alert
+  done_bath_basin:
+    name: "DONE: Main Bathroom - Clean basin & taps"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_floor:
+    name: "DUE: Main Bathroom - Mop floor"
+    icon: mdi:calendar-alert
+  done_bath_floor:
+    name: "DONE: Main Bathroom - Mop floor"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_mirror:
+    name: "DUE: Main Bathroom - Clean mirror"
+    icon: mdi:calendar-alert
+  done_bath_mirror:
+    name: "DONE: Main Bathroom - Clean mirror"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_windows:
+    name: "DUE: Main Bathroom - Clean windows"
+    icon: mdi:calendar-alert
+  done_bath_windows:
+    name: "DONE: Main Bathroom - Clean windows"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bath_tiles:
+    name: "DUE: Main Bathroom - Deep clean tile grout"
+    icon: mdi:calendar-alert
+  done_bath_tiles:
+    name: "DONE: Main Bathroom - Deep clean tile grout"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_dust:
+    name: "DUE: Living Room - Dust surfaces & shelves"
+    icon: mdi:calendar-alert
+  done_living_dust:
+    name: "DONE: Living Room - Dust surfaces & shelves"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_vacuum:
+    name: "DUE: Living Room - Vacuum carpets/rugs"
+    icon: mdi:calendar-alert
+  done_living_vacuum:
+    name: "DONE: Living Room - Vacuum carpets/rugs"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_floor:
+    name: "DUE: Living Room - Mop hard floors"
+    icon: mdi:calendar-alert
+  done_living_floor:
+    name: "DONE: Living Room - Mop hard floors"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_windows:
+    name: "DUE: Living Room - Clean windows"
+    icon: mdi:calendar-alert
+  done_living_windows:
+    name: "DONE: Living Room - Clean windows"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_curtains:
+    name: "DUE: Living Room - Vacuum curtains"
+    icon: mdi:calendar-alert
+  done_living_curtains:
+    name: "DONE: Living Room - Vacuum curtains"
+    icon: mdi:checkbox-marked-circle-outline
+  due_living_skirting:
+    name: "DUE: Living Room - Wipe skirting boards"
+    icon: mdi:calendar-alert
+  done_living_skirting:
+    name: "DONE: Living Room - Wipe skirting boards"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bed1_dust:
+    name: "DUE: Main Bedroom - Dust surfaces"
+    icon: mdi:calendar-alert
+  done_bed1_dust:
+    name: "DONE: Main Bedroom - Dust surfaces"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bed1_vacuum:
+    name: "DUE: Main Bedroom - Vacuum floor"
+    icon: mdi:calendar-alert
+  done_bed1_vacuum:
+    name: "DONE: Main Bedroom - Vacuum floor"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bed1_linen:
+    name: "DUE: Main Bedroom - Change bed linen"
+    icon: mdi:calendar-alert
+  done_bed1_linen:
+    name: "DONE: Main Bedroom - Change bed linen"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bed1_windows:
+    name: "DUE: Main Bedroom - Clean windows"
+    icon: mdi:calendar-alert
+  done_bed1_windows:
+    name: "DONE: Main Bedroom - Clean windows"
+    icon: mdi:checkbox-marked-circle-outline
+  due_bed1_wardrobe:
+    name: "DUE: Main Bedroom - Wipe wardrobe exterior"
+    icon: mdi:calendar-alert
+  done_bed1_wardrobe:
+    name: "DONE: Main Bedroom - Wipe wardrobe exterior"
+    icon: mdi:checkbox-marked-circle-outline

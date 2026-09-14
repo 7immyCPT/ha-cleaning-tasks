@@ -1,0 +1,43 @@
+title: Cleaning - Admin
+views:
+  - title: Reports
+    path: reports
+    icon: mdi:file-chart
+    cards:
+      - type: markdown
+        content: >
+          ## Monthly Completion Report
+
+          Current month: **{{ states('pyscript.cleaning_report') }}** complete
+          ({{ state_attr('pyscript.cleaning_report','entries') }} of
+          {{ state_attr('pyscript.cleaning_report','required') }} required tasks logged).
+
+          [Open full report]({{ state_attr('pyscript.cleaning_report','path') }})
+      - type: button
+        name: Generate report now
+        icon: mdi:file-refresh
+        tap_action:
+          action: call-service
+          service: pyscript.cleaning_generate_report
+      - type: markdown
+        content: >
+          ## Outstanding this month ({{ states('pyscript.cleaning_outstanding') }} items)
+
+          {% for item in state_attr('pyscript.cleaning_outstanding','items') or [] %}
+          - **{{ item.room }}**: {{ item.task }} ({{ item.done }}/{{ item.required }})
+          {% endfor %}
+      - type: button
+        name: Refresh outstanding list
+        icon: mdi:refresh
+        tap_action:
+          action: call-service
+          service: pyscript.cleaning_force_catchup
+  - title: Settings
+    path: settings
+    icon: mdi:cog
+    cards:
+      - type: entities
+        title: Cleaning schedule
+        entities:
+          - input_number.visits_per_week
+          - input_select.cleaning_media_player

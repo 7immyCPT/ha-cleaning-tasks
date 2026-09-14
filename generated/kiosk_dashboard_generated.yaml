@@ -1,0 +1,655 @@
+title: Cleaning - Today
+views:
+  - title: Today's Tasks
+    path: today
+    icon: mdi:broom
+    cards:
+      - type: markdown
+        content: >
+          ## {{ now().strftime('%A %d %B %Y') }}
+
+          Tick each task off as you finish it. Tap the speaker icon to have it read aloud.
+      - type: vertical-stack
+        cards:
+          - type: heading
+            heading: "Kitchen"
+            heading_style: title
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_counters
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_counters
+                  name: "Wipe counters & stovetop"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_counters
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_counters
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_floor
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_floor
+                  name: "Sweep & mop floor"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_floor
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_floor
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_sink
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_sink
+                  name: "Clean sink & taps"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_sink
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_sink
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_fridge
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_fridge
+                  name: "Wipe down fridge exterior"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_fridge
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_fridge
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_microwave
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_microwave
+                  name: "Clean inside of microwave"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_microwave
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_microwave
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_windows
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_windows
+                  name: "Clean windows"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_windows
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_windows
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_oven
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_oven
+                  name: "Deep clean oven"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_oven
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_oven
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_kitchen_cupboard_fronts
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_kitchen_cupboard_fronts
+                  name: "Wipe cupboard fronts"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_kitchen_cupboard_fronts
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: kitchen_cupboard_fronts
+                      media_player: media_player.kiosk_tablet
+      - type: vertical-stack
+        cards:
+          - type: heading
+            heading: "Main Bathroom"
+            heading_style: title
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_toilet
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_toilet
+                  name: "Clean & disinfect toilet"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_toilet
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_toilet
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_shower
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_shower
+                  name: "Clean shower/bath"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_shower
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_shower
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_basin
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_basin
+                  name: "Clean basin & taps"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_basin
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_basin
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_floor
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_floor
+                  name: "Mop floor"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_floor
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_floor
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_mirror
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_mirror
+                  name: "Clean mirror"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_mirror
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_mirror
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_windows
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_windows
+                  name: "Clean windows"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_windows
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_windows
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bath_tiles
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bath_tiles
+                  name: "Deep clean tile grout"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bath_tiles
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bath_tiles
+                      media_player: media_player.kiosk_tablet
+      - type: vertical-stack
+        cards:
+          - type: heading
+            heading: "Living Room"
+            heading_style: title
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_dust
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_dust
+                  name: "Dust surfaces & shelves"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_dust
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_dust
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_vacuum
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_vacuum
+                  name: "Vacuum carpets/rugs"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_vacuum
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_vacuum
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_floor
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_floor
+                  name: "Mop hard floors"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_floor
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_floor
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_windows
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_windows
+                  name: "Clean windows"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_windows
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_windows
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_curtains
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_curtains
+                  name: "Vacuum curtains"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_curtains
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_curtains
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_living_skirting
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_living_skirting
+                  name: "Wipe skirting boards"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_living_skirting
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: living_skirting
+                      media_player: media_player.kiosk_tablet
+      - type: vertical-stack
+        cards:
+          - type: heading
+            heading: "Main Bedroom"
+            heading_style: title
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bed1_dust
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bed1_dust
+                  name: "Dust surfaces"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bed1_dust
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bed1_dust
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bed1_vacuum
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bed1_vacuum
+                  name: "Vacuum floor"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bed1_vacuum
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bed1_vacuum
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bed1_linen
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bed1_linen
+                  name: "Change bed linen"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bed1_linen
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bed1_linen
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bed1_windows
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bed1_windows
+                  name: "Clean windows"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bed1_windows
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bed1_windows
+                      media_player: media_player.kiosk_tablet
+          - type: conditional
+            conditions:
+              - entity: input_boolean.due_bed1_wardrobe
+                state: "on"
+            card:
+              type: horizontal-stack
+              cards:
+                - type: tile
+                  entity: input_boolean.done_bed1_wardrobe
+                  name: "Wipe wardrobe exterior"
+                  icon: mdi:broom
+                  tap_action:
+                    action: toggle
+                - type: tile
+                  entity: input_boolean.done_bed1_wardrobe
+                  name: " "
+                  icon: mdi:volume-high
+                  show_state: false
+                  tap_action:
+                    action: call-service
+                    service: pyscript.cleaning_speak_task
+                    service_data:
+                      task_id: bed1_wardrobe
+                      media_player: media_player.kiosk_tablet

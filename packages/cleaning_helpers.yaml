@@ -1,0 +1,38 @@
+# Package: cleaning helpers
+# Place in /config/packages/cleaning_helpers.yaml
+# Requires `homeassistant: packages: !include_dir_named packages` in configuration.yaml
+
+input_number:
+  visits_per_week:
+    name: Cleaning visits per week
+    min: 1
+    max: 7
+    step: 1
+    initial: 2
+    icon: mdi:calendar-week
+
+input_select:
+  cleaning_media_player:
+    name: Speaker for reading tasks aloud
+    options:
+      - media_player.kiosk_tablet
+    initial: media_player.kiosk_tablet
+    icon: mdi:volume-high
+
+automation:
+  - alias: Cleaning - refresh checklist on visits_per_week change
+    trigger:
+      - platform: state
+        entity_id: input_number.visits_per_week
+    action:
+      - service: pyscript.cleaning_refresh_today
+
+  - alias: Cleaning - generate monthly report on the 1st
+    trigger:
+      - platform: time
+        at: "06:05:00"
+    condition:
+      - condition: template
+        value_template: "{{ now().day == 1 }}"
+    action:
+      - service: pyscript.cleaning_generate_report

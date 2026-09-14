@@ -1,0 +1,74 @@
+automation:
+  - alias: Cleaning - checkbox toggled to done
+    trigger:
+      - platform: state
+        entity_id:
+          - input_boolean.done_kitchen_counters
+          - input_boolean.done_kitchen_floor
+          - input_boolean.done_kitchen_sink
+          - input_boolean.done_kitchen_fridge
+          - input_boolean.done_kitchen_microwave
+          - input_boolean.done_kitchen_windows
+          - input_boolean.done_kitchen_oven
+          - input_boolean.done_kitchen_cupboard_fronts
+          - input_boolean.done_bath_toilet
+          - input_boolean.done_bath_shower
+          - input_boolean.done_bath_basin
+          - input_boolean.done_bath_floor
+          - input_boolean.done_bath_mirror
+          - input_boolean.done_bath_windows
+          - input_boolean.done_bath_tiles
+          - input_boolean.done_living_dust
+          - input_boolean.done_living_vacuum
+          - input_boolean.done_living_floor
+          - input_boolean.done_living_windows
+          - input_boolean.done_living_curtains
+          - input_boolean.done_living_skirting
+          - input_boolean.done_bed1_dust
+          - input_boolean.done_bed1_vacuum
+          - input_boolean.done_bed1_linen
+          - input_boolean.done_bed1_windows
+          - input_boolean.done_bed1_wardrobe
+        to: "on"
+    action:
+      - service: pyscript.cleaning_mark_done
+        data:
+          task_id: >
+            {{ trigger.entity_id.split('.')[1].removeprefix('done_') }}
+
+  - alias: Cleaning - checkbox toggled to undone
+    trigger:
+      - platform: state
+        entity_id:
+          - input_boolean.done_kitchen_counters
+          - input_boolean.done_kitchen_floor
+          - input_boolean.done_kitchen_sink
+          - input_boolean.done_kitchen_fridge
+          - input_boolean.done_kitchen_microwave
+          - input_boolean.done_kitchen_windows
+          - input_boolean.done_kitchen_oven
+          - input_boolean.done_kitchen_cupboard_fronts
+          - input_boolean.done_bath_toilet
+          - input_boolean.done_bath_shower
+          - input_boolean.done_bath_basin
+          - input_boolean.done_bath_floor
+          - input_boolean.done_bath_mirror
+          - input_boolean.done_bath_windows
+          - input_boolean.done_bath_tiles
+          - input_boolean.done_living_dust
+          - input_boolean.done_living_vacuum
+          - input_boolean.done_living_floor
+          - input_boolean.done_living_windows
+          - input_boolean.done_living_curtains
+          - input_boolean.done_living_skirting
+          - input_boolean.done_bed1_dust
+          - input_boolean.done_bed1_vacuum
+          - input_boolean.done_bed1_linen
+          - input_boolean.done_bed1_windows
+          - input_boolean.done_bed1_wardrobe
+        to: "off"
+    action:
+      - service: pyscript.cleaning_mark_undone
+        data:
+          task_id: >
+            {{ trigger.entity_id.split('.')[1].removeprefix('done_') }}
