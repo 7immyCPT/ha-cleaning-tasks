@@ -123,8 +123,13 @@ def cleaning_refresh_today():
     for task in TASKS:
         due_entity = f"input_boolean.due_{task['id']}"
         done_entity = f"input_boolean.done_{task['id']}"
-        due_today = cleaning_today and _is_due(task, today, days_left_in_month)
         done_today = _last_done(task["id"]) == today_iso
+        # Once a task is shown for today, keep it on the list (crossed out)
+        # for the rest of the day even after it's ticked - don't let it
+        # vanish the instant it's completed. _is_due() alone would say
+        # "not due" right after marking done (days_since back to 0), so
+        # also stay due if it was already completed today.
+        due_today = cleaning_today and (_is_due(task, today, days_left_in_month) or done_today)
 
         _set_boolean(due_entity, due_today)
         # done_<id> reflects "completed today", independent of due status - do

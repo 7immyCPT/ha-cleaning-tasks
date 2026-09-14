@@ -29,6 +29,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_counters",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_counters",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -75,6 +79,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_floor",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_floor",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -121,6 +129,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_sink",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_sink",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -167,6 +179,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_fridge",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_fridge",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -213,6 +229,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_microwave",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_microwave",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -259,6 +279,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -305,6 +329,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_oven",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_oven",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -351,6 +379,10 @@
                     {
                       "entity": "input_boolean.due_kitchen_cupboard_fronts",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -364,6 +396,414 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_cupboard_fronts",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_cupboard_fronts",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_counters",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_counters",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_counters",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336c\u0336o\u0336u\u0336n\u0336t\u0336e\u0336r\u0336s\u0336 \u0336&\u0336 \u0336s\u0336t\u0336o\u0336v\u0336e\u0336t\u0336o\u0336p\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_counters",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_counters",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_counters",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_floor",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_floor",
+                        "name": "S\u0336w\u0336e\u0336e\u0336p\u0336 \u0336&\u0336 \u0336m\u0336o\u0336p\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_sink",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_sink",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_sink",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336s\u0336i\u0336n\u0336k\u0336 \u0336&\u0336 \u0336t\u0336a\u0336p\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_sink",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_sink",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_sink",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_fridge",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_fridge",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_fridge",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336d\u0336o\u0336w\u0336n\u0336 \u0336f\u0336r\u0336i\u0336d\u0336g\u0336e\u0336 \u0336e\u0336x\u0336t\u0336e\u0336r\u0336i\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_fridge",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_fridge",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_fridge",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_microwave",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_microwave",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_microwave",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336i\u0336n\u0336s\u0336i\u0336d\u0336e\u0336 \u0336o\u0336f\u0336 \u0336m\u0336i\u0336c\u0336r\u0336o\u0336w\u0336a\u0336v\u0336e\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_microwave",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_microwave",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_microwave",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_oven",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_oven",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_oven",
+                        "name": "D\u0336e\u0336e\u0336p\u0336 \u0336c\u0336l\u0336e\u0336a\u0336n\u0336 \u0336o\u0336v\u0336e\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_oven",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_oven",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "kitchen_oven",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_kitchen_cupboard_fronts",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_kitchen_cupboard_fronts",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336c\u0336u\u0336p\u0336b\u0336o\u0336a\u0336r\u0336d\u0336 \u0336f\u0336r\u0336o\u0336n\u0336t\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -407,6 +847,10 @@
                     {
                       "entity": "input_boolean.due_pantry_shelves_wipe",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_shelves_wipe",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -453,6 +897,10 @@
                     {
                       "entity": "input_boolean.due_pantry_floor",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_floor",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -499,6 +947,10 @@
                     {
                       "entity": "input_boolean.due_pantry_tidy_expiry",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_tidy_expiry",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -512,6 +964,159 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_tidy_expiry",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_tidy_expiry",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_tidy_expiry",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_shelves_wipe",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_shelves_wipe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_shelves_wipe",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336s\u0336h\u0336e\u0336l\u0336v\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_shelves_wipe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_shelves_wipe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_shelves_wipe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_floor",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_floor",
+                        "name": "S\u0336w\u0336e\u0336e\u0336p\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "pantry_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_pantry_tidy_expiry",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_pantry_tidy_expiry",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_pantry_tidy_expiry",
+                        "name": "T\u0336i\u0336d\u0336y\u0336 \u0336&\u0336 \u0336c\u0336h\u0336e\u0336c\u0336k\u0336 \u0336f\u0336o\u0336r\u0336 \u0336e\u0336x\u0336p\u0336i\u0336r\u0336e\u0336d\u0336 \u0336i\u0336t\u0336e\u0336m\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -555,6 +1160,10 @@
                     {
                       "entity": "input_boolean.due_mbath_toilet",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_toilet",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -601,6 +1210,10 @@
                     {
                       "entity": "input_boolean.due_mbath_shower",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_shower",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -647,6 +1260,10 @@
                     {
                       "entity": "input_boolean.due_mbath_basin",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_basin",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -693,6 +1310,10 @@
                     {
                       "entity": "input_boolean.due_mbath_floor",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_floor",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -739,6 +1360,10 @@
                     {
                       "entity": "input_boolean.due_mbath_mirror",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_mirror",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -785,6 +1410,10 @@
                     {
                       "entity": "input_boolean.due_mbath_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -831,6 +1460,10 @@
                     {
                       "entity": "input_boolean.due_mbath_tiles",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_tiles",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -844,6 +1477,363 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_tiles",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_toilet",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_toilet",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_toilet",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336&\u0336 \u0336d\u0336i\u0336s\u0336i\u0336n\u0336f\u0336e\u0336c\u0336t\u0336 \u0336t\u0336o\u0336i\u0336l\u0336e\u0336t\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_toilet",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_shower",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_shower",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_shower",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336s\u0336h\u0336o\u0336w\u0336e\u0336r\u0336/\u0336b\u0336a\u0336t\u0336h\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_shower",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_basin",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_basin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_basin",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336b\u0336a\u0336s\u0336i\u0336n\u0336 \u0336&\u0336 \u0336t\u0336a\u0336p\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_basin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_floor",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_floor",
+                        "name": "M\u0336o\u0336p\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_mirror",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_mirror",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_mirror",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336m\u0336i\u0336r\u0336r\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_mirror",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbath_tiles",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbath_tiles",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbath_tiles",
+                        "name": "D\u0336e\u0336e\u0336p\u0336 \u0336c\u0336l\u0336e\u0336a\u0336n\u0336 \u0336t\u0336i\u0336l\u0336e\u0336 \u0336g\u0336r\u0336o\u0336u\u0336t\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -887,6 +1877,10 @@
                     {
                       "entity": "input_boolean.due_gbath_toilet",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_toilet",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -933,6 +1927,10 @@
                     {
                       "entity": "input_boolean.due_gbath_shower",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_shower",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -979,6 +1977,10 @@
                     {
                       "entity": "input_boolean.due_gbath_basin",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_basin",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1025,6 +2027,10 @@
                     {
                       "entity": "input_boolean.due_gbath_floor",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_floor",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1071,6 +2077,10 @@
                     {
                       "entity": "input_boolean.due_gbath_mirror",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_mirror",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1117,6 +2127,10 @@
                     {
                       "entity": "input_boolean.due_gbath_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1163,6 +2177,10 @@
                     {
                       "entity": "input_boolean.due_gbath_tiles",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_tiles",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1176,6 +2194,363 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_tiles",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_tiles",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_toilet",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_toilet",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_toilet",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336&\u0336 \u0336d\u0336i\u0336s\u0336i\u0336n\u0336f\u0336e\u0336c\u0336t\u0336 \u0336t\u0336o\u0336i\u0336l\u0336e\u0336t\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_toilet",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_toilet",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_shower",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_shower",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_shower",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336s\u0336h\u0336o\u0336w\u0336e\u0336r\u0336/\u0336b\u0336a\u0336t\u0336h\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_shower",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_shower",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_basin",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_basin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_basin",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336b\u0336a\u0336s\u0336i\u0336n\u0336 \u0336&\u0336 \u0336t\u0336a\u0336p\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_basin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_basin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_floor",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_floor",
+                        "name": "M\u0336o\u0336p\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_mirror",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_mirror",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_mirror",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336m\u0336i\u0336r\u0336r\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_mirror",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_mirror",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "gbath_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_gbath_tiles",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_gbath_tiles",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_gbath_tiles",
+                        "name": "D\u0336e\u0336e\u0336p\u0336 \u0336c\u0336l\u0336e\u0336a\u0336n\u0336 \u0336t\u0336i\u0336l\u0336e\u0336 \u0336g\u0336r\u0336o\u0336u\u0336t\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -1219,6 +2594,10 @@
                     {
                       "entity": "input_boolean.due_living_dust",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_dust",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1265,6 +2644,10 @@
                     {
                       "entity": "input_boolean.due_living_vacuum",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_vacuum",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1311,6 +2694,10 @@
                     {
                       "entity": "input_boolean.due_living_floor",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_floor",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1357,6 +2744,10 @@
                     {
                       "entity": "input_boolean.due_living_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1403,6 +2794,10 @@
                     {
                       "entity": "input_boolean.due_living_curtains",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_curtains",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1449,6 +2844,10 @@
                     {
                       "entity": "input_boolean.due_living_skirting",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_skirting",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1462,6 +2861,312 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_skirting",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_skirting",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_skirting",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_dust",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_dust",
+                        "name": "D\u0336u\u0336s\u0336t\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336 \u0336&\u0336 \u0336s\u0336h\u0336e\u0336l\u0336v\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_vacuum",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_vacuum",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336c\u0336a\u0336r\u0336p\u0336e\u0336t\u0336s\u0336/\u0336r\u0336u\u0336g\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_floor",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_floor",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_floor",
+                        "name": "M\u0336o\u0336p\u0336 \u0336h\u0336a\u0336r\u0336d\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_floor",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_floor",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_curtains",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_curtains",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_curtains",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336c\u0336u\u0336r\u0336t\u0336a\u0336i\u0336n\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_curtains",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_curtains",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "living_curtains",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_living_skirting",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_living_skirting",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_living_skirting",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336s\u0336k\u0336i\u0336r\u0336t\u0336i\u0336n\u0336g\u0336 \u0336b\u0336o\u0336a\u0336r\u0336d\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -1505,6 +3210,10 @@
                     {
                       "entity": "input_boolean.due_braai_sweep",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_sweep",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1551,6 +3260,10 @@
                     {
                       "entity": "input_boolean.due_braai_surfaces",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_surfaces",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1597,6 +3310,10 @@
                     {
                       "entity": "input_boolean.due_braai_grill_area",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_grill_area",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1643,6 +3360,10 @@
                     {
                       "entity": "input_boolean.due_braai_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1689,6 +3410,10 @@
                     {
                       "entity": "input_boolean.due_braai_cobwebs",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_cobwebs",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1702,6 +3427,261 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_cobwebs",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_cobwebs",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_cobwebs",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_sweep",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_sweep",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_sweep",
+                        "name": "S\u0336w\u0336e\u0336e\u0336p\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_sweep",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_sweep",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_sweep",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_surfaces",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_surfaces",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_surfaces",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336d\u0336o\u0336w\u0336n\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336/\u0336c\u0336o\u0336u\u0336n\u0336t\u0336e\u0336r\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_surfaces",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_surfaces",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_surfaces",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_grill_area",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_grill_area",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_grill_area",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336a\u0336r\u0336o\u0336u\u0336n\u0336d\u0336 \u0336b\u0336r\u0336a\u0336a\u0336i\u0336/\u0336g\u0336r\u0336i\u0336l\u0336l\u0336 \u0336a\u0336r\u0336e\u0336a\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_grill_area",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_grill_area",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_grill_area",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "braai_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_braai_cobwebs",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_braai_cobwebs",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_braai_cobwebs",
+                        "name": "C\u0336l\u0336e\u0336a\u0336r\u0336 \u0336c\u0336o\u0336b\u0336w\u0336e\u0336b\u0336s\u0336 \u0336/\u0336 \u0336d\u0336e\u0336e\u0336p\u0336 \u0336c\u0336l\u0336e\u0336a\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -1745,6 +3725,10 @@
                     {
                       "entity": "input_boolean.due_office_dust",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_dust",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1791,6 +3775,10 @@
                     {
                       "entity": "input_boolean.due_office_vacuum",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_vacuum",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1837,6 +3825,10 @@
                     {
                       "entity": "input_boolean.due_office_bin",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_bin",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1883,6 +3875,10 @@
                     {
                       "entity": "input_boolean.due_office_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1896,6 +3892,210 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_dust",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_dust",
+                        "name": "D\u0336u\u0336s\u0336t\u0336 \u0336d\u0336e\u0336s\u0336k\u0336 \u0336&\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_vacuum",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_vacuum",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_bin",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_bin",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_bin",
+                        "name": "E\u0336m\u0336p\u0336t\u0336y\u0336 \u0336b\u0336i\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_bin",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_bin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "office_bin",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_office_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_office_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_office_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -1939,6 +4139,10 @@
                     {
                       "entity": "input_boolean.due_mbed_dust",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_dust",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -1985,6 +4189,10 @@
                     {
                       "entity": "input_boolean.due_mbed_vacuum",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_vacuum",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2031,6 +4239,10 @@
                     {
                       "entity": "input_boolean.due_mbed_linen",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_linen",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2077,6 +4289,10 @@
                     {
                       "entity": "input_boolean.due_mbed_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2123,6 +4339,10 @@
                     {
                       "entity": "input_boolean.due_mbed_wardrobe",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_wardrobe",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2136,6 +4356,261 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_dust",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_dust",
+                        "name": "D\u0336u\u0336s\u0336t\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_vacuum",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_vacuum",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_linen",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_linen",
+                        "name": "C\u0336h\u0336a\u0336n\u0336g\u0336e\u0336 \u0336b\u0336e\u0336d\u0336 \u0336l\u0336i\u0336n\u0336e\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "mbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_mbed_wardrobe",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_mbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_mbed_wardrobe",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336w\u0336a\u0336r\u0336d\u0336r\u0336o\u0336b\u0336e\u0336 \u0336e\u0336x\u0336t\u0336e\u0336r\u0336i\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -2179,6 +4654,10 @@
                     {
                       "entity": "input_boolean.due_sbed_dust",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_dust",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2225,6 +4704,10 @@
                     {
                       "entity": "input_boolean.due_sbed_vacuum",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_vacuum",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2271,6 +4754,10 @@
                     {
                       "entity": "input_boolean.due_sbed_linen",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_linen",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2317,6 +4804,10 @@
                     {
                       "entity": "input_boolean.due_sbed_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2363,6 +4854,10 @@
                     {
                       "entity": "input_boolean.due_sbed_wardrobe",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_wardrobe",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2376,6 +4871,261 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_dust",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_dust",
+                        "name": "D\u0336u\u0336s\u0336t\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_vacuum",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_vacuum",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_linen",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_linen",
+                        "name": "C\u0336h\u0336a\u0336n\u0336g\u0336e\u0336 \u0336b\u0336e\u0336d\u0336 \u0336l\u0336i\u0336n\u0336e\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "sbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_sbed_wardrobe",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_sbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_sbed_wardrobe",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336w\u0336a\u0336r\u0336d\u0336r\u0336o\u0336b\u0336e\u0336 \u0336e\u0336x\u0336t\u0336e\u0336r\u0336i\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",
@@ -2419,6 +5169,10 @@
                     {
                       "entity": "input_boolean.due_dbed_dust",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_dust",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2465,6 +5219,10 @@
                     {
                       "entity": "input_boolean.due_dbed_vacuum",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_vacuum",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2511,6 +5269,10 @@
                     {
                       "entity": "input_boolean.due_dbed_linen",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_linen",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2557,6 +5319,10 @@
                     {
                       "entity": "input_boolean.due_dbed_windows",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_windows",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2603,6 +5369,10 @@
                     {
                       "entity": "input_boolean.due_dbed_wardrobe",
                       "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_wardrobe",
+                      "state": "off"
                     }
                   ],
                   "card": {
@@ -2616,6 +5386,261 @@
                         "tap_action": {
                           "action": "toggle"
                         }
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_wardrobe",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_wardrobe",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_dust",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_dust",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_dust",
+                        "name": "D\u0336u\u0336s\u0336t\u0336 \u0336s\u0336u\u0336r\u0336f\u0336a\u0336c\u0336e\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_dust",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_dust",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_vacuum",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_vacuum",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_vacuum",
+                        "name": "V\u0336a\u0336c\u0336u\u0336u\u0336m\u0336 \u0336f\u0336l\u0336o\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_vacuum",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_vacuum",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_linen",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_linen",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_linen",
+                        "name": "C\u0336h\u0336a\u0336n\u0336g\u0336e\u0336 \u0336b\u0336e\u0336d\u0336 \u0336l\u0336i\u0336n\u0336e\u0336n\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_linen",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_linen",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_windows",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_windows",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_windows",
+                        "name": "C\u0336l\u0336e\u0336a\u0336n\u0336 \u0336w\u0336i\u0336n\u0336d\u0336o\u0336w\u0336s\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
+                      },
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_windows",
+                        "name": " ",
+                        "icon": "mdi:volume-high",
+                        "show_state": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        },
+                        "icon_tap_action": {
+                          "action": "call-service",
+                          "service": "pyscript.cleaning_speak_task",
+                          "service_data": {
+                            "task_id": "dbed_windows",
+                            "media_player": "media_player.kiosk_tablet"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "input_boolean.due_dbed_wardrobe",
+                      "state": "on"
+                    },
+                    {
+                      "entity": "input_boolean.done_dbed_wardrobe",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "tile",
+                        "entity": "input_boolean.done_dbed_wardrobe",
+                        "name": "W\u0336i\u0336p\u0336e\u0336 \u0336w\u0336a\u0336r\u0336d\u0336r\u0336o\u0336b\u0336e\u0336 \u0336e\u0336x\u0336t\u0336e\u0336r\u0336i\u0336o\u0336r\u0336",
+                        "icon": "mdi:broom",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "color": "green"
                       },
                       {
                         "type": "tile",

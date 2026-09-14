@@ -71,25 +71,38 @@ data_lines.append("]")
 with open(f"{OUT_DIR}/tasks_data_generated.py", "w", encoding="utf-8") as f:
     f.write("\n".join(data_lines) + "\n")
 
-# ---------- kiosk dashboard: ONLY today's tasks, no nav, no reports ----------
-kiosk_cards = []
-for room in config["rooms"]:
-    room_rows = []
-    for task in room["tasks"]:
-        tid = task["id"]
-        row = f"""          - type: conditional
+def strike(text):
+    """Unicode combining strikethrough - crosses out text without needing
+    any custom card/CSS resource, just plain characters in the tile name."""
+    return "".join(ch + "̶" for ch in text)
+
+
+def task_row(room_name, task, done):
+    """One task's conditional+horizontal-stack row. When done=True the row
+    only shows once the task is ticked, with the name struck through and
+    the icon colored green; when done=False it only shows while still
+    pending. Rendering pending tasks first and done tasks second in each
+    room's card is what pushes completed items to the bottom of the list
+    without needing any dynamic sort."""
+    tid = task["id"]
+    name = strike(task["name"]) if done else task["name"]
+    color_line = "\n                  color: green" if done else ""
+    done_state = "on" if done else "off"
+    return f"""          - type: conditional
             conditions:
               - entity: input_boolean.due_{tid}
                 state: "on"
+              - entity: input_boolean.done_{tid}
+                state: "{done_state}"
             card:
               type: horizontal-stack
               cards:
                 - type: tile
                   entity: input_boolean.done_{tid}
-                  name: "{task['name']}"
+                  name: "{name}"
                   icon: mdi:broom
                   tap_action:
-                    action: toggle
+                    action: toggle{color_line}
                 - type: tile
                   entity: input_boolean.done_{tid}
                   name: " "
@@ -107,7 +120,14 @@ for room in config["rooms"]:
                     service_data:
                       task_id: {tid}
                       media_player: media_player.kiosk_tablet"""
-        room_rows.append(row)
+
+
+# ---------- kiosk dashboard: ONLY today's tasks, no nav, no reports ----------
+kiosk_cards = []
+for room in config["rooms"]:
+    pending_rows = [task_row(room["name"], task, done=False) for task in room["tasks"]]
+    done_rows = [task_row(room["name"], task, done=True) for task in room["tasks"]]
+    room_rows = pending_rows + done_rows
     kiosk_cards.append(f"""      - type: vertical-stack
         cards:
           - type: heading
