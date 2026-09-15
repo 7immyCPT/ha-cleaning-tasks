@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Cleaning Tasks",
+        "description": "Adds the cleaning task entities and cards. Manage rooms and tasks from the editor card afterwards."
+      }
+    },
+    "abort": {
+      "already_configured": "Cleaning Tasks is already set up."
+    }
+  }
+}

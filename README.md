@@ -1,84 +1,79 @@
 # HA Cleaning Tasks
 
-A Home Assistant kiosk task manager: enter your cleaning tasks once (by room,
-with how often each needs doing), and it auto-distributes them across your
-cleaning visits so everything gets done by month-end — with a tap-to-hear
-option and a full timestamped completion log kept separate from the kiosk.
+A Home Assistant custom integration (installable via HACS) that turns
+cleaning tasks into a kiosk checklist: enter tasks per room with how often
+each needs doing, and it auto-distributes them across your cleaning visits
+so everything gets done by month-end — with a tap-to-hear option in
+multiple languages, and a full timestamped completion log.
 
-## Where the task list lives
+## How it's built
 
-**`tasks_config.json`** is the single source of truth. It's organized exactly
-how you'd think about it: a list of **rooms**, each with a list of **tasks**,
-each task carrying its own **frequency**:
+This is a real custom integration (`custom_components/cleaning_tasks/`),
+not a collection of scripts and generated YAML. That means:
 
-```json
-{
-  "id": "kitchen_counters",
-  "name": "Wipe counters & stovetop",
-  "unit": "week",
-  "count": 2
-}
-```
+- **Rooms and tasks live in Home Assistant's own storage** (`hass.helpers.storage.Store`,
+  the same mechanism every core integration uses) — not a JSON file you
+  hand-edit and regenerate from.
+- **Every task is a real entity** (`switch.cleaning_task_<id>`) created and
+  removed dynamically as you add/remove tasks. No restart needed to see a
+  new task on the kiosk.
+- **Cards are cards, not dashboards.** Add whichever ones you want to any
+  existing dashboard view:
+  - `cleaning-today-card` — the kiosk checklist (add this to a
+    kiosk-restricted dashboard)
+  - `cleaning-task-editor-card` — search, add, edit, remove rooms/tasks;
+    CSV export/import
+  - `cleaning-settings-card` — which days the cleaner comes, and "used
+    since last clean?" toggles for tracked rooms
+  - `cleaning-reports-card` — small reset/refresh buttons + what's
+    outstanding this month
+  - `cleaning-voice-picker-card` — pick a speech-synthesis voice per
+    language
 
-- `unit: "week"` + `count: 2` → twice a week
-- `unit: "month"` + `count: 1` → once a month
+## Multi-language
 
-That's the whole vocabulary — every task is either "N times a week" or "N
-times a month," which covers daily-ish chores (set `unit: week, count` equal
-to your visits/week) through to windows/deep-cleans (`unit: month`). Keeping
-it as one flat JSON file (rather than scattering task definitions across HA
-YAML) means:
-
-- it's easy to scan and edit by hand, or hand to Claude to edit for you
-- adding/removing/renaming a task never touches the scheduling logic
-- it's the only file you regenerate everything else *from* — see below
-
-To change your task list: edit `tasks_config.json`, then run:
-
-```bash
-python generate_dashboard.py
-```
-
-This regenerates everything in `generated/` (helper entities, both
-dashboards, the checkbox automation) from the current task list. Nothing is
-hand-maintained outside that one file.
+`select.cleaning_display_language` (English / Afrikaans / isiXhosa) is
+shared across every card. Each task can optionally have an Afrikaans and
+isiXhosa name (set in the task editor) — the kiosk card shows whichever
+language is selected, falling back to the English name if no translation
+was entered. The voice picker lets you choose a different
+speech-synthesis voice per language for the read-aloud button.
 
 ## How the scheduling works
 
-Each morning, `pyscript/cleaning_manager.py` compares "days since last done"
-against each task's target interval. If a task is due — or the month is
-running out and it still hasn't been done — it's surfaced as due today. This
-is self-correcting: skip a visit, and overdue tasks just carry forward and
-get caught up, rather than being silently dropped.
+Each task has a `unit` (`week` or `month`) and a `count` — "N times a
+week" or "N times a month." The integration compares days-since-last-done
+against that interval; if a task is due — or the month is running out and
+it still hasn't been done — it's surfaced as due today. Skip a cleaning
+day and overdue tasks just carry forward, rather than being silently
+dropped.
 
-## Privacy split: kiosk vs. reports
+A task can also be marked **"only if used"** (`conditional_on_used`) and
+tied to a room that "tracks usage" (e.g. a spare bedroom, the braai) —
+that task only becomes due if the room's "used since last clean?" toggle
+is on. Ticking the task off clears that toggle automatically.
 
-- **Kiosk dashboard** (`generated/kiosk_dashboard_generated.yaml`) shows
-  *only* today's due tasks, room by room, with a checkbox and a 🔊 speak
-  button. No navigation, no history, no settings.
-- **Admin dashboard** (`generated/admin_dashboard_generated.yaml`) has the
-  monthly report, the outstanding-tasks list, and the schedule settings.
+## Privacy: kiosk vs. admin
 
-The split only becomes a real access boundary once it's paired with a
-**restricted, non-admin HA user** for the kiosk device — see `SETUP.md` for
-the exact steps (create the user, assign only the kiosk dashboard, hide the
-sidebar). A second dashboard alone doesn't hide anything from someone using
-your own admin login.
+There's no separate "admin dashboard" baked in — the admin-style cards are
+just cards, added wherever you like. The actual access boundary is a
+**restricted, non-admin HA user** for the kiosk device: create that user,
+give it only a dashboard with `cleaning-today-card` on it, and don't show
+it the view(s) with the other cards. See `SETUP.md`.
 
 ## Repo layout
 
 ```
-tasks_config.json              <- edit this to change tasks/rooms/frequency
-generate_dashboard.py          <- regenerates everything below from the above
-pyscript/cleaning_manager.py   <- scheduling, completion logging, TTS, reports
-packages/cleaning_helpers.yaml <- input_number (visits/week), input_select (speaker)
-generated/                     <- output of generate_dashboard.py (don't hand-edit)
+custom_components/cleaning_tasks/   <- the integration (Python backend)
+custom_components/cleaning_tasks/www/  <- the Lovelace cards (JS)
+generated/seed_cleaning_tasks_storage.json  <- one-time migration seed used when this
+                                                project moved off its earlier pyscript version
 ```
 
 ## Requirements
 
-- HACS integration: **pyscript**
-- Core HA only otherwise (tile cards, conditional cards, input_booleans) —
-  no other HACS frontend cards required, for reliability.
+- HACS custom repository install of this integration (Settings → Devices
+  & services → Add Integration → "Cleaning Tasks" once installed)
+- Core HA only otherwise — no other HACS cards required
 
 See `SETUP.md` for full install steps.

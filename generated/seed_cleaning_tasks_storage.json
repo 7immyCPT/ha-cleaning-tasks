@@ -1,0 +1,686 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "cleaning_tasks",
+  "data": {
+    "rooms": [
+      {
+        "id": "kitchen",
+        "name": "Kitchen",
+        "tracks_usage": false
+      },
+      {
+        "id": "pantry",
+        "name": "Pantry",
+        "tracks_usage": false
+      },
+      {
+        "id": "main_bathroom",
+        "name": "Main Bathroom",
+        "tracks_usage": false
+      },
+      {
+        "id": "guest_bathroom",
+        "name": "Guest Bathroom",
+        "tracks_usage": false
+      },
+      {
+        "id": "living_dining",
+        "name": "Living / Dining Area",
+        "tracks_usage": false
+      },
+      {
+        "id": "braai_room",
+        "name": "Braai Room",
+        "tracks_usage": true
+      },
+      {
+        "id": "office_desk",
+        "name": "Office (Desk)",
+        "tracks_usage": false
+      },
+      {
+        "id": "main_bedroom",
+        "name": "Main Bedroom",
+        "tracks_usage": false
+      },
+      {
+        "id": "bedroom_single_beds",
+        "name": "Bedroom - Single Beds",
+        "tracks_usage": true
+      },
+      {
+        "id": "bedroom_double_bed",
+        "name": "Bedroom - Double Bed",
+        "tracks_usage": true
+      }
+    ],
+    "tasks": [
+      {
+        "id": "kitchen_counters",
+        "room_id": "kitchen",
+        "name": "Wipe counters & stovetop",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_floor",
+        "room_id": "kitchen",
+        "name": "Sweep & mop floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_sink",
+        "room_id": "kitchen",
+        "name": "Clean sink & taps",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_fridge",
+        "room_id": "kitchen",
+        "name": "Wipe down fridge exterior",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_microwave",
+        "room_id": "kitchen",
+        "name": "Clean inside of microwave",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_windows",
+        "room_id": "kitchen",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_oven",
+        "room_id": "kitchen",
+        "name": "Deep clean oven",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "kitchen_cupboard_fronts",
+        "room_id": "kitchen",
+        "name": "Wipe cupboard fronts",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "pantry_shelves_wipe",
+        "room_id": "pantry",
+        "name": "Wipe shelves",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "pantry_floor",
+        "room_id": "pantry",
+        "name": "Sweep floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "pantry_tidy_expiry",
+        "room_id": "pantry",
+        "name": "Tidy & check for expired items",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_toilet",
+        "room_id": "main_bathroom",
+        "name": "Clean & disinfect toilet",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_shower",
+        "room_id": "main_bathroom",
+        "name": "Clean shower/bath",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_basin",
+        "room_id": "main_bathroom",
+        "name": "Clean basin & taps",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_floor",
+        "room_id": "main_bathroom",
+        "name": "Mop floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_mirror",
+        "room_id": "main_bathroom",
+        "name": "Clean mirror",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_windows",
+        "room_id": "main_bathroom",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbath_tiles",
+        "room_id": "main_bathroom",
+        "name": "Deep clean tile grout",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_toilet",
+        "room_id": "guest_bathroom",
+        "name": "Clean & disinfect toilet",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_shower",
+        "room_id": "guest_bathroom",
+        "name": "Clean shower/bath",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_basin",
+        "room_id": "guest_bathroom",
+        "name": "Clean basin & taps",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_floor",
+        "room_id": "guest_bathroom",
+        "name": "Mop floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_mirror",
+        "room_id": "guest_bathroom",
+        "name": "Clean mirror",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_windows",
+        "room_id": "guest_bathroom",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "gbath_tiles",
+        "room_id": "guest_bathroom",
+        "name": "Deep clean tile grout",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_dust",
+        "room_id": "living_dining",
+        "name": "Dust surfaces & shelves",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_vacuum",
+        "room_id": "living_dining",
+        "name": "Vacuum carpets/rugs",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 2,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_floor",
+        "room_id": "living_dining",
+        "name": "Mop hard floors",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_windows",
+        "room_id": "living_dining",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_curtains",
+        "room_id": "living_dining",
+        "name": "Vacuum curtains",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "living_skirting",
+        "room_id": "living_dining",
+        "name": "Wipe skirting boards",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "braai_sweep",
+        "room_id": "braai_room",
+        "name": "Sweep floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "braai_surfaces",
+        "room_id": "braai_room",
+        "name": "Wipe down surfaces/counters",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "braai_grill_area",
+        "room_id": "braai_room",
+        "name": "Clean around braai/grill area",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": true,
+        "last_done": null
+      },
+      {
+        "id": "braai_windows",
+        "room_id": "braai_room",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "braai_cobwebs",
+        "room_id": "braai_room",
+        "name": "Clear cobwebs / deep clean",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "office_dust",
+        "room_id": "office_desk",
+        "name": "Dust desk & surfaces",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "office_vacuum",
+        "room_id": "office_desk",
+        "name": "Vacuum floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "office_bin",
+        "room_id": "office_desk",
+        "name": "Empty bin",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "office_windows",
+        "room_id": "office_desk",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbed_dust",
+        "room_id": "main_bedroom",
+        "name": "Dust surfaces",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbed_vacuum",
+        "room_id": "main_bedroom",
+        "name": "Vacuum floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbed_linen",
+        "room_id": "main_bedroom",
+        "name": "Change bed linen",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbed_windows",
+        "room_id": "main_bedroom",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "mbed_wardrobe",
+        "room_id": "main_bedroom",
+        "name": "Wipe wardrobe exterior",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "sbed_dust",
+        "room_id": "bedroom_single_beds",
+        "name": "Dust surfaces",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "sbed_vacuum",
+        "room_id": "bedroom_single_beds",
+        "name": "Vacuum floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "sbed_linen",
+        "room_id": "bedroom_single_beds",
+        "name": "Change bed linen",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": true,
+        "last_done": null
+      },
+      {
+        "id": "sbed_windows",
+        "room_id": "bedroom_single_beds",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "sbed_wardrobe",
+        "room_id": "bedroom_single_beds",
+        "name": "Wipe wardrobe exterior",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "dbed_dust",
+        "room_id": "bedroom_double_bed",
+        "name": "Dust surfaces",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "dbed_vacuum",
+        "room_id": "bedroom_double_bed",
+        "name": "Vacuum floor",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "dbed_linen",
+        "room_id": "bedroom_double_bed",
+        "name": "Change bed linen",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "week",
+        "count": 1,
+        "conditional_on_used": true,
+        "last_done": null
+      },
+      {
+        "id": "dbed_windows",
+        "room_id": "bedroom_double_bed",
+        "name": "Clean windows",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      },
+      {
+        "id": "dbed_wardrobe",
+        "room_id": "bedroom_double_bed",
+        "name": "Wipe wardrobe exterior",
+        "name_af": "",
+        "name_xh": "",
+        "unit": "month",
+        "count": 1,
+        "conditional_on_used": false,
+        "last_done": null
+      }
+    ],
+    "cleaning_days": {
+      "mon": true,
+      "tue": false,
+      "wed": true,
+      "thu": false,
+      "fri": false,
+      "sat": false,
+      "sun": false
+    },
+    "room_used": {
+      "braai_room": true,
+      "bedroom_single_beds": true,
+      "bedroom_double_bed": false
+    },
+    "display_language": "English",
+    "voice_names": {
+      "English": "Google US English",
+      "Afrikaans": "",
+      "isiXhosa": ""
+    }
+  }
+}

@@ -1,0 +1,25 @@
+mark_done:
+  name: Mark task done
+  description: Mark a cleaning task done today.
+  fields:
+    task_id:
+      required: true
+      selector:
+        text:
+
+mark_undone:
+  name: Undo task
+  description: Undo today's completion of a cleaning task.
+  fields:
+    task_id:
+      required: true
+      selector:
+        text:
+
+reset_today:
+  name: Reset today's checklist
+  description: Undo every task ticked off today.
+
+refresh_today:
+  name: Refresh today's checklist
+  description: Recompute which tasks are due today.
