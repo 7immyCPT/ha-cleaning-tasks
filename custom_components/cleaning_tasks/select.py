@@ -27,6 +27,11 @@ class CleaningLanguageSelect(SelectEntity):
         self._attr_unique_id = f"{DOMAIN}_display_language"
         self.entity_id = "select.cleaning_display_language"
         self._attr_current_option = manager.store.data.get("display_language", LANGUAGES[0])
+        manager.language_entity = self
+
+    @property
+    def extra_state_attributes(self) -> dict:
+        return {"enabled_languages": self._manager.store.enabled_languages()}
 
     async def async_select_option(self, option: str) -> None:
         if option not in LANGUAGES:

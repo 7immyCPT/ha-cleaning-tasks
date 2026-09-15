@@ -106,6 +106,7 @@ class CleaningTaskSwitch(SwitchEntity):
         self.entity_id = f"switch.cleaning_task_{task_id}"
         self._due = False
         self._done = False
+        self._weather_deferred = False
 
     @property
     def _task(self) -> dict:
@@ -126,24 +127,27 @@ class CleaningTaskSwitch(SwitchEntity):
     def extra_state_attributes(self) -> dict:
         task = self._task
         room = self._manager.store.get_room(task.get("room_id", ""))
-        shared_translation = self._manager.store.get_translation(task.get("name", ""))
         return {
             "task_id": self._task_id,
+            # English only - the kiosk card translates this on the fly for
+            # whichever language is selected, rather than us storing a
+            # translation per task.
             "task_name": task.get("name"),
-            "task_name_af": task.get("name_af") or shared_translation.get("Afrikaans", ""),
-            "task_name_xh": task.get("name_xh") or shared_translation.get("isiXhosa", ""),
             "room": room["name"] if room else task.get("room_id"),
             "room_id": task.get("room_id"),
             "unit": task.get("unit"),
             "count": task.get("count"),
             "conditional_on_used": task.get("conditional_on_used", False),
+            "weather_dependent": task.get("weather_dependent", False),
+            "weather_deferred": self._weather_deferred,
             "last_done": task.get("last_done"),
             "due": self._due,
         }
 
-    def set_state(self, due: bool, done: bool) -> None:
+    def set_state(self, due: bool, done: bool, weather_deferred: bool = False) -> None:
         self._due = due
         self._done = done
+        self._weather_deferred = weather_deferred
         if self.hass is not None:
             self.async_write_ha_state()
 

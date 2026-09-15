@@ -9,13 +9,18 @@ from __future__ import annotations
 
 import calendar
 import logging
-from datetime import date
+from datetime import date, timedelta
 from typing import Any, Callable
 
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.event import async_track_state_change_event, async_track_time_change
 
-from .const import WEEKDAYS
+from .const import (
+    BAD_WEATHER_CONDITIONS,
+    BAD_WEATHER_PRECIPITATION_PROBABILITY,
+    WEATHER_GRACE_DAYS,
+    WEEKDAYS,
+)
 from .store import CleaningTasksStore
 
 _LOGGER = logging.getLogger(__name__)
@@ -38,9 +43,12 @@ class CleaningManager:
         self.room_used_entities: dict[str, Any] = {}
         self.task_entities: dict[str, Any] = {}
         self.voice_entity: Any = None
+        self.language_entity: Any = None
         self._add_switch_entities: Callable | None = None
         self._add_text_entities: Callable | None = None
         self._unsubs: list[Callable] = []
+        self._forecast_date: date | None = None
+        self._forecast_cache: list[dict] = []
 
     async def async_load(self) -> None:
         await self.store.async_load()
@@ -143,8 +151,11 @@ class CleaningManager:
         conditional_on_used: bool,
         name_af: str = "",
         name_xh: str = "",
+        weather_dependent: bool = False,
     ) -> dict | None:
-        task = self.store.add_task(room_id, name, unit, count, conditional_on_used, name_af, name_xh)
+        task = self.store.add_task(
+            room_id, name, unit, count, conditional_on_used, name_af, name_xh, weather_dependent,
+        )
         if task is None:
             return None
         from .switch import CleaningTaskSwitch
@@ -249,11 +260,80 @@ class CleaningManager:
             return True
         return False
 
+    # ---------- weather-aware scheduling ----------
+
+    async def _async_get_forecast(self) -> list[dict]:
+        entity_id = self.store.weather_entity()
+        if not entity_id:
+            return []
+        today = date.today()
+        if self._forecast_date == today:
+            return self._forecast_cache
+        forecast: list[dict] = []
+        try:
+            result = await self.hass.services.async_call(
+                "weather", "get_forecasts", {"entity_id": entity_id, "type": "daily"},
+                blocking=True, return_response=True,
+            )
+            forecast = (result or {}).get(entity_id, {}).get("forecast", [])
+        except Exception:  # noqa: BLE001 - forecast is best-effort, never block scheduling
+            _LOGGER.warning("cleaning_tasks: failed to fetch weather forecast from %s", entity_id, exc_info=True)
+        self._forecast_cache = forecast
+        self._forecast_date = today
+        return forecast
+
+    def _bad_weather_by_date(self, forecast: list[dict]) -> dict[str, bool]:
+        result: dict[str, bool] = {}
+        for entry in forecast:
+            dt = entry.get("datetime") or ""
+            day = dt[:10]
+            if not day:
+                continue
+            condition = (entry.get("condition") or "").lower()
+            precip_prob = entry.get("precipitation_probability")
+            bad = condition in BAD_WEATHER_CONDITIONS or (
+                precip_prob is not None and precip_prob >= BAD_WEATHER_PRECIPITATION_PROBABILITY
+            )
+            result[day] = bad
+        return result
+
+    def _due_date(self, task: dict, today: date) -> date:
+        last_done = task.get("last_done")
+        if not last_done:
+            return today
+        try:
+            last_done_date = date.fromisoformat(last_done)
+        except ValueError:
+            return today
+        return last_done_date + timedelta(days=_target_interval_days(task))
+
+    def _should_defer_for_weather(self, task: dict, today: date, bad_by_date: dict[str, bool]) -> bool:
+        """True if a weather-dependent task that's otherwise due today should
+        wait for a drier upcoming cleaning day instead - as long as it hasn't
+        already been waiting more than WEATHER_GRACE_DAYS."""
+        if not bad_by_date or not bad_by_date.get(today.isoformat(), False):
+            return False
+        days_overdue = (today - self._due_date(task, today)).days
+        remaining_grace = WEATHER_GRACE_DAYS - max(days_overdue, 0)
+        if remaining_grace <= 0:
+            return False
+        for offset in range(1, remaining_grace + 1):
+            future = today + timedelta(days=offset)
+            if not self.is_cleaning_day(future.weekday()):
+                continue
+            if not bad_by_date.get(future.isoformat(), True):
+                return True
+        return False
+
     def refresh_today(self) -> None:
+        self.hass.async_create_task(self.async_refresh_today())
+
+    async def async_refresh_today(self) -> None:
         today = date.today()
         today_iso = today.isoformat()
         days_left_in_month = calendar.monthrange(today.year, today.month)[1] - today.day
         cleaning_today = self.is_cleaning_day(today.weekday())
+        bad_by_date = self._bad_weather_by_date(await self._async_get_forecast())
 
         for task in self.store.tasks():
             entity = self.task_entities.get(task["id"])
@@ -261,7 +341,12 @@ class CleaningManager:
                 continue
             done_today = task.get("last_done") == today_iso
             due_today = cleaning_today and (self._is_due(task, today, days_left_in_month) or done_today)
-            entity.set_state(due=due_today, done=done_today)
+            weather_deferred = False
+            if due_today and not done_today and task.get("weather_dependent"):
+                if self._should_defer_for_weather(task, today, bad_by_date):
+                    due_today = False
+                    weather_deferred = True
+            entity.set_state(due=due_today, done=done_today, weather_deferred=weather_deferred)
 
     def mark_done(self, task_id: str) -> None:
         task = self.store.get_task(task_id)
@@ -294,6 +379,20 @@ class CleaningManager:
         if changed:
             self.hass.async_create_task(self.store.async_save())
         self.refresh_today()
+
+    def set_language_enabled(self, lang: str, enabled: bool) -> list[str]:
+        result = self.store.set_language_enabled(lang, enabled)
+        if self.language_entity is not None:
+            self.language_entity.async_write_ha_state()
+        self.hass.async_create_task(self.store.async_save())
+        return result
+
+    def set_weather_entity(self, entity_id: str) -> str:
+        result = self.store.set_weather_entity(entity_id)
+        self._forecast_date = None
+        self.hass.async_create_task(self.store.async_save())
+        self.refresh_today()
+        return result
 
     def on_day_or_room_used_changed(self) -> None:
         self.hass.async_create_task(self.store.async_save())

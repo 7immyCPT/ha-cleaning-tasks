@@ -1,17 +1,14 @@
 """The Cleaning Tasks integration."""
 from __future__ import annotations
 
-import hashlib
 import logging
-import time
+import shutil
 from pathlib import Path
 
 import voluptuous as vol
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import config_validation as cv
-from homeassistant.components.http import StaticPathConfig
-from homeassistant.components.frontend import add_extra_js_url
 from homeassistant.const import Platform
 
 from . import http_views, websocket_api
@@ -60,7 +57,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         manager.reset_today()
 
     async def _handle_refresh_today(call: ServiceCall) -> None:
-        manager.refresh_today()
+        await manager.async_refresh_today()
 
     hass.services.async_register(
         DOMAIN, SERVICE_MARK_DONE, _handle_mark_done,
@@ -76,30 +73,27 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     websocket_api.async_register(hass)
     http_views.async_register(hass)
 
-    www_path = Path(__file__).parent / "www"
-    # Cache-bust with a content hash baked into the URL PATH, under a
-    # per-restart build directory. The Nabu Casa remote-UI CDN in front of
-    # this instance caches by path, and different edge nodes can end up
-    # holding different cached bytes for the exact same path indefinitely
-    # (observed directly: two requests for the same hashed path, moments
-    # apart, returned two different ETags/bodies - an edge-consistency
-    # issue, not something purgeable from here). A path that has never
-    # existed on any edge before - guaranteed by folding in this restart's
-    # timestamp - sidesteps that entirely rather than racing it.
-    build_id = str(int(time.time()))
-    static_paths = []
-    hashed_names = {}
+    # Copy the frontend files into /config/www/cleaning_tasks/ so they're
+    # served through Home Assistant's own built-in /local/ static mount -
+    # the same mechanism every other custom card on this instance already
+    # uses reliably (e.g. /local/f1-sensor-live-data-card/...). A custom
+    # StaticPathConfig registration under a component-private URL
+    # (/cleaning_tasks_frontend/...) was tried first, several different
+    # ways (per-restart timestamp path, content-hash path, epoch-salted
+    # filename) - all of them got stuck serving stale bytes to every
+    # external client (confirmed on a real browser AND via direct LAN IP
+    # access, even after a full site-data/service-worker wipe), while curl
+    # to the HA host itself always saw the fresh file. /local/ doesn't
+    # show this problem. The Lovelace resources for these 5 files (type
+    # "JavaScript module") must point at /local/cleaning_tasks/<file>.js -
+    # see SESSION_SUMMARY.md's "Frontend deploy workflow" section for the
+    # websocket script that (re)registers them after any content change.
+    src_www = Path(__file__).parent / "www"
+    dest_www = Path(hass.config.path("www", "cleaning_tasks"))
+    dest_www.mkdir(parents=True, exist_ok=True)
     for f in FRONTEND_FILES:
-        digest = hashlib.sha256((www_path / f).read_bytes()).hexdigest()[:10]
-        stem, ext = f.rsplit(".", 1)
-        hashed_name = f"{stem}.{digest}.{ext}"
-        hashed_names[f] = hashed_name
-        static_paths.append(
-            StaticPathConfig(f"/cleaning_tasks_frontend/{build_id}/{hashed_name}", str(www_path / f), True)
-        )
-    await hass.http.async_register_static_paths(static_paths)
-    for f in FRONTEND_FILES:
-        add_extra_js_url(hass, f"/cleaning_tasks_frontend/{build_id}/{hashed_names[f]}")
+        shutil.copyfile(src_www / f, dest_www / f)
+    _LOGGER.info("cleaning_tasks frontend files synced to %s", dest_www)
 
     return True
 

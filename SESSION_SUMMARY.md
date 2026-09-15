@@ -1,5 +1,226 @@
 # Session summary — HA Cleaning Tasks (for continuing in a new chat)
 
+## Latest session (2026-09-15) — language translation, voice pronunciation, multi-language support
+Started from: "when I select a language I want it to translate the task and
+voice to that language" — it wasn't.
+
+1. **Root cause of "nothing translates"**: not a bug — the shared
+   `translations` dict in the live store was completely empty (verified via
+   SSH: `voice_names` also all blank). Task text falls back to English when
+   there's no translation, which is what the user was seeing.
+2. **First fix attempt was wrong and got silently reverted**: wrote
+   Afrikaans/isiXhosa translations directly into
+   `/config/.storage/cleaning_tasks` over SSH while HA was running, then
+   asked for a restart. Between the edit and the restart, the user's kiosk
+   toggled a task switch, which triggered `manager.py`'s `mark_done()` →
+   `store.async_save()` using the **still-empty in-memory data**, clobbering
+   the file edit. **Lesson: never hand-edit `.storage/*` files on a live HA
+   instance — always go through the running integration (service call /
+   websocket command) so the in-memory `manager.store.data` and the file
+   stay in sync.**
+3. **Correct fix**: user generated a Long-Lived Access Token from their HA
+   profile page, which was used to open a raw WebSocket connection to
+   `ws://localhost:8123/api/websocket` from the HA host (SSH) — no
+   third-party `websockets` pip package was available/desired, so a ~90
+   line dependency-free WS client (stdlib `socket`, handshake + frame
+   parsing) was written and used to call `cleaning_tasks/translations/set`
+   for all 31 distinct task names × Afrikaans/isiXhosa. This went through
+   the live manager, so it saved correctly with no race. **This is the
+   pattern to reuse for any future one-off bulk data push**: don't touch
+   `.storage` directly, script the websocket API instead.
+4. **Voice/pronunciation fix**: `SpeechSynthesisUtterance.lang` was never
+   being set anywhere (only `.voice` when a voice name happened to be
+   picked) — Afrikaans text was being read by whatever default voice the
+   browser used for its own locale. Fixed in `cleaning-today-card.js`
+   (`_speak`) and `cleaning-voice-picker-card.js` (`_test`) to always set
+   `utterance.lang` (from a BCP-47 map, or from `voice.lang` when an actual
+   voice is picked). The voice picker card was also changed to group
+   available device voices into "Matches `<language>`" vs "Other voices
+   (will mispronounce)" `<optgroup>`s, so it's obvious which ones are real.
+   **Underlying accent quality is still capped by what TTS voices are
+   actually installed at the OS level on the kiosk device** — HA can't fix
+   a missing voice pack.
+5. **Multi-language support (all 11 SA official languages) + admin
+   enable/disable toggle**, per explicit user request ("choose south
+   afrikaan supported languages" + "admin be able to mark which one are
+   turned on and off as i dont want to many options displayed to the
+   cleaner on the dash"):
+   - `const.py`: `LANGUAGES` now lists all 11 (English, Afrikaans,
+     isiXhosa, isiZulu, Sepedi, Setswana, Sesotho, Xitsonga, siSwati,
+     Tshivenda, isiNdebele), plus `LANGUAGE_BCP47` and `LANGUAGE_CODE` (the
+     short code used to build `task_name_<code>` attributes) and
+     `DEFAULT_ENABLED_LANGUAGES` (English/Afrikaans/isiXhosa, to preserve
+     prior behaviour for the kiosk).
+   - `store.py`: new `enabled_languages` list in the store, with
+     `enabled_languages()` / `set_language_enabled()` helpers. Always keeps
+     at least one language enabled.
+   - `switch.py`: `extra_state_attributes` now generates
+     `task_name_<code>` generically for every non-English language from the
+     shared translations dict (Afrikaans/isiXhosa keep their legacy
+     per-task `name_af`/`name_xh` override field for back-compat; the other
+     8 languages are shared-translation-only, no per-task field).
+   - `select.py`: `select.cleaning_display_language` now exposes an
+     `enabled_languages` attribute (read by every frontend card) and keeps
+     a reference to itself on `manager.language_entity` so it can be
+     refreshed immediately when the admin toggles a language.
+   - `manager.py`: new `set_language_enabled()` that updates the store,
+     refreshes the select entity's state, and saves.
+   - `websocket_api.py`: new `cleaning_tasks/languages/list` and
+     `cleaning_tasks/languages/set` (admin-only) commands.
+   - `cleaning-today-card.js`: `STRINGS` (chrome text: instructions/
+     nothingDue/do/done) now has all 11 languages; the language dropdown
+     only lists whatever is in `enabled_languages` instead of hardcoding
+     3 options.
+   - `cleaning-voice-picker-card.js`: rows are now built dynamically from
+     `enabled_languages` instead of a hardcoded 3-language list.
+   - `cleaning-task-editor-card.js`: new **"Languages" admin section**
+     (checkbox grid, all 11, calls `cleaning_tasks/languages/set`); the
+     shared translations table now renders one column per *enabled*
+     non-English language instead of hardcoded Afrikaans/isiXhosa columns.
+   - **Translation quality caveat, told to the user explicitly**: only
+     isiZulu chrome text is reasonably confident (close to isiXhosa); the
+     other 7 (Sepedi, Setswana, Sesotho, Xitsonga, siSwati, Tshivenda,
+     isiNdebele) are best-effort/machine-assisted and should be reviewed by
+     a native speaker before being relied on. Task-name translations for
+     these 8 languages were **not** pre-filled — only the infrastructure
+     was built; a real translation still needs to be typed into the
+     translations table per language once enabled (same flow already
+     validated for Afrikaans/isiXhosa in step 3).
+   - **CSV export/import was intentionally left untouched** (`store.py`'s
+     `CSV_FIELDS` still only has `task_name_af`/`task_name_xh`) — not
+     extended to all 11 languages, out of scope for this ask. The shared
+     translations table is the supported way to add translations now.
+   - All Python files were syntax-checked via `python3 -m py_compile` **on
+     the HA host over SSH** (not locally — the local Windows machine's
+     `python3` shell alias is broken/redirects to the Microsoft Store).
+     Deployed via the usual `cat file | ssh ha "sudo tee ..."` pattern (see
+     Dev workflow below), then a full HA restart was needed (new
+     entities/attributes + new websocket commands + frontend hash change).
+   - **Not yet pushed to GitHub** — still needs `git add -A && git commit
+     && git push` per the "Dev workflow" section once the user has
+     confirmed the Languages toggle and translations work correctly after
+     restart.
+6. **Manual "Task name translations" table REMOVED, replaced with
+   automatic on-the-fly translation** — user feedback: "we cant transalte
+   each task manually so there is no longer a need for that". The shared
+   `translations` dict/table (added in step 3/5 above) was fully ripped
+   out again: `store.py`'s `get_translation`/`set_translation`/
+   `list_translations` and the `translations` dict in `_default_data()`,
+   `websocket_api.py`'s `cleaning_tasks/translations/list`+`/set` commands,
+   `switch.py`'s per-language `task_name_<code>` attribute generation (task
+   switches now only expose English `task_name`), and the whole
+   "Task name translations" `ha-card` + JS in `cleaning-task-editor-card.js`
+   (`_loadTranslations`, `_setTranslation`, `_renderTranslations`,
+   `_translatedLanguages`). Replaced with client-side auto-translation in
+   `cleaning-today-card.js`: a `translateText()`/`_cachedTranslation()` pair
+   that calls Google Translate's free, keyless public endpoint
+   (`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=<code>&dt=t&q=<text>`
+   — CORS-open, verified directly), caches results in that browser's
+   `localStorage` (`cleaning_tasks_translation_cache_v1`) so each task name
+   is only fetched once per language ever. `GOOGLE_LANG` in
+   `cleaning-today-card.js` maps each of the 11 languages to Google's code,
+   with `null` for the 3 Google doesn't support (siSwati, Tshivenda,
+   isiNdebele — those silently stay in English). The Afrikaans/isiXhosa
+   *legacy per-task* `name_af`/`name_xh` fields in `store.py`/`add_task`/
+   `update_task`/CSV were left alone (harmless, no longer read by anything
+   in the UI) rather than doing a second breaking data-model change in the
+   same session.
+7. **RESOLVED: the frontend-JS caching bug that blocked this entire
+   session's UI changes from ever showing up** (this is the same "CDN
+   cache inconsistency" issue the previous session hit and left
+   unresolved, documented lower in this file - keeping that section below
+   as the historical record of what was tried and ruled out first).
+   Symptom: after every restart, `curl` to the HA host (both `localhost`
+   and its own LAN IP) always returned the correct, current file - but
+   **every external client** (a real browser on the user's own device,
+   after a genuine hard refresh AND a full "clear site data" wipe
+   including Service Worker + Cache Storage; a separate remote-automation
+   browser; both the Nabu Casa remote-UI URL AND the raw local LAN IP)
+   kept getting an old, shorter, wrong version of `cleaning-today-card.js`
+   indefinitely, with a stale `Last-Modified` header that didn't match the
+   real file's mtime on disk. Ruled out, in order, with hard evidence for
+   each: browser HTTP cache (`fetch(..., {cache:'no-store'})` didn't help),
+   a wrong/different HA instance (disproved conclusively - set
+   `select.cleaning_display_language` to `Tshivenda` from the backend,
+   user's own Developer Tools > States page showed it immediately,
+   proving same live backend), a reverse proxy in front of HA (user
+   confirmed none exists), URL-path reuse in the CDN (a brand-new,
+   never-before-used content-hash+epoch-salted filename was *still*
+   stale). **Actual fix**: stopped using a component-private URL
+   (`/cleaning_tasks_frontend/...`, registered via `StaticPathConfig` +
+   either `add_extra_js_url` or a manual Lovelace resource) entirely, and
+   instead serve the 5 frontend files through Home Assistant's **built-in
+   `/local/` static mount** - the same mechanism the user's already-working
+   `f1-sensor-live-data-card` custom card uses. `__init__.py` now copies
+   `custom_components/cleaning_tasks/www/*.js` into
+   `/config/www/cleaning_tasks/` on every `async_setup_entry` (via
+   `shutil.copyfile`), and the 5 Lovelace resources point at
+   `/local/cleaning_tasks/<file>.js?v=<content-hash>` (see "Frontend
+   deploy workflow" below for the script that updates those resource URLs
+   after a content change) - `/local/` immediately worked where every
+   variant of the custom static-path scheme failed, on the very first try,
+   for reasons still not fully understood (some difference in how HA's
+   `frontend` integration's own long-established `/local/` route vs. an
+   ad-hoc `StaticPathConfig` interacts with Nabu Casa's remote-UI relay -
+   not confirmed, just empirically the fix that worked). **Lesson for any
+   future custom card in this integration: always serve frontend JS via
+   `/config/www/<name>/` + a Lovelace resource, never a custom
+   `StaticPathConfig`+`add_extra_js_url` path** — the latter is what
+   caused this entire mess both this session and the previous one.
+
+## Frontend deploy workflow (established this session, supersedes the old
+## "Dev workflow" step 3-4 for *frontend .js files specifically* - Python
+## backend files still use the plain SSH `tee` + restart flow below)
+1. Edit `custom_components/cleaning_tasks/www/<file>.js` locally.
+2. Deploy the source file (so it's still correct for the next HA restart's
+   auto-copy, and for git/HACS): `cat <file> | ssh ha "sudo tee
+   /config/custom_components/cleaning_tasks/www/<file> > /dev/null"`.
+3. Also copy it straight to the actually-served location (no restart
+   needed for this part): `cat <file> | ssh ha "sudo tee
+   /config/www/cleaning_tasks/<file> > /dev/null"`.
+4. Update that file's Lovelace resource to a fresh `?v=<hash>` so browsers
+   that already cached the old query string pick up the change - compute
+   `sha256(file)[:12]` and push a `lovelace/resources/update` websocket
+   command (`res_type: "module"`, `url:
+   "/local/cleaning_tasks/<file>.js?v=<hash>"`) using a Long-Lived Access
+   Token (ask the user for one via their HA profile page if you don't
+   already have one from this session) - see this session's transcript for
+   the ~90-line dependency-free Python WebSocket client (stdlib `socket`,
+   no `websockets` pip package needed/wanted) used to do this over SSH.
+   The 5 resource ids from this session:
+   `edd00bd77ad347fc9c496d0c5f3a9213` (today-card),
+   `9b1d448310214d3488f92e118d81eb93` (task-editor-card),
+   `2d3975c9e7734ad3ac4fa3aab0b1f79b` (settings-card),
+   `7aff01ac1e9c42c9b829b2c2a7535814` (reports-card),
+   `08a3ac1b2763450a9eef07ebe5c87ca8` (voice-picker-card).
+5. No HA restart is needed for a pure frontend change once the resource
+   points at `/local/...` — just have the user reload the dashboard tab.
+
+8. **HA Cloud (Nabu Casa) text-to-speech wired in for Afrikaans/isiZulu**,
+   replacing the earlier Google-Translate-audio-endpoint hack. User added
+   two TTS integrations to HA (`tts.home_assistant_cloud` and
+   `tts.google_translate_en_com`); queried both via
+   `tts/engine/get`/`tts/engine/voices` websocket commands - HA Cloud
+   (Azure-backed) has real neural voices for **exactly 2 of the 11
+   languages**: Afrikaans (`af-ZA`: `AdriNeural`, `WillemNeural`) and
+   isiZulu (`zu-ZA`: `ThandoNeural`, `ThembaNeural`) - confirmed by
+   querying every language code directly, nothing else in the SA set
+   exists on Azure. `cleaning-today-card.js` and
+   `cleaning-voice-picker-card.js` both got a `HA_CLOUD_TTS` map + a
+   `playHaCloudTts()` helper that calls HA's own REST endpoint
+   `hass.callApi("POST", "tts_get_url", {engine_id:
+   "tts.home_assistant_cloud", message, language, options: {voice}})`,
+   which returns `{path: "/api/tts_proxy/<id>.mp3"}` - played via a plain
+   `new Audio(result.path)` (the proxy URL isn't auth-gated, works as a
+   relative `<audio src>` directly). The voice picker now shows an
+   explicit **"HA Cloud (recommended)"** `<optgroup>` with named voices
+   (Adri/Willem, Thando/Themba) for those two languages, and the speak
+   button automatically prefers HA Cloud when nothing else is picked.
+   isiZulu is not in `DEFAULT_ENABLED_LANGUAGES` yet - if the user wants
+   it, they can flip it on in the task editor's Languages section and it
+   already has both translation (Google Translate text endpoint, `zu` is
+   supported) and voice (HA Cloud) working.
+
 ## What this project is
 A Home Assistant custom integration (`custom_components/cleaning_tasks/`) that
 replaced an earlier pyscript + generated-YAML version entirely. Repo:
@@ -25,11 +246,14 @@ stays in sync — see "Dev workflow" below).
   - `text.py` — `text.cleaning_voice_name`, stores a JSON blob
     `{"English": "...", "Afrikaans": "...", "isiXhosa": "..."}` of chosen
     speech-synthesis voice per language.
-  - `select.py` — `select.cleaning_display_language` (English/Afrikaans/
-    isiXhosa), shared across every card.
+  - `select.py` — `select.cleaning_display_language` (all 11 SA official
+    languages are valid options; which ones actually show on the kiosk is
+    controlled separately by `enabled_languages`, exposed as an attribute
+    on this entity), shared across every card.
   - `websocket_api.py` — CRUD commands for rooms/tasks
-    (`cleaning_tasks/room/*`, `/task/*`) plus shared translations
-    (`cleaning_tasks/translations/list`, `/set`).
+    (`cleaning_tasks/room/*`, `/task/*`), shared translations
+    (`cleaning_tasks/translations/list`, `/set`), and which languages are
+    enabled (`cleaning_tasks/languages/list`, `/set`).
   - `http_views.py` — CSV export/import at `/api/cleaning_tasks/export`
     and `/import`.
   - `__init__.py` — sets everything up, registers the 5 frontend JS cards.
@@ -40,10 +264,13 @@ stays in sync — see "Dev workflow" below).
     needed). Has the language dropdown in its header. Built-in compact
     speak button per row (Web Speech API).
   - `cleaning-task-editor-card.js` — search/add/edit/remove rooms & tasks,
-    CSV export/import, **and a shared "Task name translations" table**
-    (translate each distinct English task name once, applies to every task
-    using that name — this replaced earlier per-task Afrikaans/isiXhosa
-    input fields, which was tedious since names repeat across rooms).
+    CSV export/import, **a "Languages" section** (checkbox grid to enable/
+    disable which of the 11 SA official languages show on the kiosk/voice
+    picker), **and a shared "Task name translations" table** (one column
+    per *enabled* non-English language; translate each distinct English
+    task name once, applies to every task using that name — this replaced
+    earlier per-task Afrikaans/isiXhosa input fields, which was tedious
+    since names repeat across rooms).
   - `cleaning-settings-card.js` — cleaning-day toggles (**should be sorted
     Monday-first**, fixed this session — see unresolved issue below) +
     "used since last clean?" toggles for tracked rooms.
@@ -74,7 +301,12 @@ stays in sync — see "Dev workflow" below).
    Settings → Apps (or Supervisor Add-ons) in the HA UI, start it, and
    enable "Start on boot" + "Watchdog" to prevent recurrence.
 
-## UNRESOLVED — CDN cache inconsistency (where this session left off)
+## RESOLVED (2026-09-15) — CDN/frontend-caching inconsistency
+See point 7 under "Latest session" near the top of this file for the fix
+(serve frontend JS via `/local/`, not a custom `StaticPathConfig` path).
+The write-up below is kept as-is for historical context — everything tried
+here was tried again this session too, with the same failure, before the
+`/local/` fix was found.
 The live HA instance is reached via Nabu Casa's remote-UI cloud proxy
 (`https://6vmtz8amuqwkmqz50qz0jno5dy9vqils.ui.nabu.casa/`). There appears
 to be a **CDN layer in front of it that caches by path and has edge nodes

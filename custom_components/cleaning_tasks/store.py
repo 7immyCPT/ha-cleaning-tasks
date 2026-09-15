@@ -16,7 +16,7 @@ from typing import Any
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.storage import Store
 
-from .const import LANGUAGES, STORAGE_KEY, STORAGE_VERSION, WEEKDAYS
+from .const import DEFAULT_ENABLED_LANGUAGES, LANGUAGES, STORAGE_KEY, STORAGE_VERSION, WEEKDAYS
 
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -33,13 +33,9 @@ def _default_data() -> dict[str, Any]:
         "cleaning_days": {day: False for day in WEEKDAYS},
         "room_used": {},
         "display_language": LANGUAGES[0],
+        "enabled_languages": list(DEFAULT_ENABLED_LANGUAGES),
         "voice_names": {lang: "" for lang in LANGUAGES},
-        # Shared translations keyed by a task's English name, e.g.
-        # {"Clean windows": {"Afrikaans": "...", "isiXhosa": "..."}} - many
-        # tasks share the same name across rooms, so translating once here
-        # applies everywhere that name is used, instead of needing a
-        # translation typed into every single task.
-        "translations": {},
+        "weather_entity": "",
     }
 
 
@@ -57,7 +53,9 @@ class CleaningTasksStore:
             merged.update(stored)
             merged["cleaning_days"] = {**merged["cleaning_days"], **stored.get("cleaning_days", {})}
             merged["voice_names"] = {**merged["voice_names"], **stored.get("voice_names", {})}
-            merged["translations"] = stored.get("translations", {})
+            stored_enabled = stored.get("enabled_languages")
+            if stored_enabled:
+                merged["enabled_languages"] = [lang for lang in LANGUAGES if lang in stored_enabled]
             self.data = merged
 
     async def async_save(self) -> None:
@@ -133,6 +131,7 @@ class CleaningTasksStore:
         conditional_on_used: bool = False,
         name_af: str = "",
         name_xh: str = "",
+        weather_dependent: bool = False,
     ) -> dict | None:
         if not self.get_room(room_id):
             return None
@@ -145,6 +144,7 @@ class CleaningTasksStore:
             "unit": unit,
             "count": count,
             "conditional_on_used": conditional_on_used,
+            "weather_dependent": weather_dependent,
             "last_done": None,
         }
         self.data["tasks"].append(task)
@@ -154,7 +154,10 @@ class CleaningTasksStore:
         task = self.get_task(task_id)
         if not task:
             return None
-        for key in ("name", "name_af", "name_xh", "unit", "count", "conditional_on_used"):
+        for key in (
+            "name", "name_af", "name_xh", "unit", "count",
+            "conditional_on_used", "weather_dependent",
+        ):
             if key in fields and fields[key] is not None:
                 task[key] = fields[key]
         return task
@@ -164,33 +167,39 @@ class CleaningTasksStore:
         self.data["tasks"] = [t for t in self.data["tasks"] if t["id"] != task_id]
         return len(self.data["tasks"]) != before
 
-    # ---------- shared name translations ----------
+    # ---------- enabled languages (admin picks which show on the kiosk) ----------
 
-    def get_translation(self, name: str) -> dict:
-        return self.data["translations"].get(name, {})
+    def enabled_languages(self) -> list[str]:
+        return self.data.get("enabled_languages", list(DEFAULT_ENABLED_LANGUAGES))
 
-    def set_translation(self, name: str, lang: str, value: str) -> None:
-        entry = self.data["translations"].setdefault(name, {})
-        if value:
-            entry[lang] = value
-        else:
-            entry.pop(lang, None)
-            if not entry:
-                self.data["translations"].pop(name, None)
+    def set_language_enabled(self, lang: str, enabled: bool) -> list[str]:
+        if lang not in LANGUAGES:
+            return self.enabled_languages()
+        current = self.enabled_languages()
+        if enabled and lang not in current:
+            current = [l for l in LANGUAGES if l in current or l == lang]
+        elif not enabled and lang in current:
+            current = [l for l in current if l != lang]
+        if not current:
+            current = ["English"]
+        self.data["enabled_languages"] = current
+        return current
 
-    def list_translations(self) -> list[dict]:
-        """One row per distinct task name currently in use, plus its
-        translations (present even if blank) - the task editor's
-        translations table is built from this."""
-        names = sorted({t["name"] for t in self.data["tasks"]})
-        return [{"name": n, **self.get_translation(n)} for n in names]
+    # ---------- weather-aware scheduling ----------
+
+    def weather_entity(self) -> str:
+        return self.data.get("weather_entity", "")
+
+    def set_weather_entity(self, entity_id: str) -> str:
+        self.data["weather_entity"] = (entity_id or "").strip()
+        return self.data["weather_entity"]
 
     # ---------- CSV ----------
 
     CSV_FIELDS = [
         "room_id", "room_name", "room_tracks_usage",
         "task_id", "task_name", "task_name_af", "task_name_xh",
-        "unit", "count", "conditional_on_used",
+        "unit", "count", "conditional_on_used", "weather_dependent",
     ]
 
     def to_csv_rows(self) -> list[dict]:
@@ -209,6 +218,7 @@ class CleaningTasksStore:
                 "unit": task["unit"],
                 "count": task["count"],
                 "conditional_on_used": task["conditional_on_used"],
+                "weather_dependent": task.get("weather_dependent", False),
             })
         return rows
 
@@ -240,6 +250,7 @@ class CleaningTasksStore:
             except ValueError:
                 count = 1
             conditional_on_used = str(row.get("conditional_on_used", "")).strip().lower() in ("1", "true", "yes")
+            weather_dependent = str(row.get("weather_dependent", "")).strip().lower() in ("1", "true", "yes")
             tasks.append({
                 "id": task_id,
                 "room_id": room_id,
@@ -249,6 +260,7 @@ class CleaningTasksStore:
                 "unit": unit,
                 "count": count,
                 "conditional_on_used": conditional_on_used,
+                "weather_dependent": weather_dependent,
                 "last_done": old_last_done.get(task_id),
             })
 

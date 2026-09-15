@@ -85,13 +85,14 @@ async def handle_room_remove(hass, connection, msg):
     vol.Optional("unit", default="week"): vol.In(["week", "month"]),
     vol.Optional("count", default=1): int,
     vol.Optional("conditional_on_used", default=False): bool,
+    vol.Optional("weather_dependent", default=False): bool,
 })
 @websocket_api.async_response
 async def handle_task_add(hass, connection, msg):
     manager = _manager(hass)
     task = manager.add_task(
         msg["room_id"], msg["name"], msg["unit"], msg["count"], msg["conditional_on_used"],
-        msg["name_af"], msg["name_xh"],
+        msg["name_af"], msg["name_xh"], msg["weather_dependent"],
     )
     if task is None:
         connection.send_error(msg["id"], "not_found", "Room not found")
@@ -110,6 +111,7 @@ async def handle_task_add(hass, connection, msg):
     vol.Optional("unit"): vol.In(["week", "month"]),
     vol.Optional("count"): int,
     vol.Optional("conditional_on_used"): bool,
+    vol.Optional("weather_dependent"): bool,
 })
 @websocket_api.async_response
 async def handle_task_update(hass, connection, msg):
@@ -136,26 +138,44 @@ async def handle_task_remove(hass, connection, msg):
     connection.send_result(msg["id"], _full_list(hass))
 
 
-@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/translations/list"})
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/languages/list"})
 @websocket_api.async_response
-async def handle_translations_list(hass, connection, msg):
-    connection.send_result(msg["id"], {"translations": _manager(hass).store.list_translations()})
+async def handle_languages_list(hass, connection, msg):
+    connection.send_result(msg["id"], {"enabled_languages": _manager(hass).store.enabled_languages()})
 
 
 @websocket_api.require_admin
 @websocket_api.websocket_command({
-    vol.Required("type"): "cleaning_tasks/translations/set",
-    vol.Required("name"): str,
+    vol.Required("type"): "cleaning_tasks/languages/set",
     vol.Required("lang"): str,
-    vol.Required("value"): str,
+    vol.Required("enabled"): bool,
 })
 @websocket_api.async_response
-async def handle_translations_set(hass, connection, msg):
-    manager = _manager(hass)
-    manager.store.set_translation(msg["name"], msg["lang"], msg["value"])
-    manager.refresh_today()
-    await _save(hass)
-    connection.send_result(msg["id"], {"translations": manager.store.list_translations()})
+async def handle_languages_set(hass, connection, msg):
+    enabled_languages = _manager(hass).set_language_enabled(msg["lang"], msg["enabled"])
+    connection.send_result(msg["id"], {"enabled_languages": enabled_languages})
+
+
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/weather/get"})
+@websocket_api.async_response
+async def handle_weather_get(hass, connection, msg):
+    connection.send_result(msg["id"], {
+        "weather_entity": _manager(hass).store.weather_entity(),
+        "available_entities": sorted(
+            e for e in hass.states.async_entity_ids("weather")
+        ),
+    })
+
+
+@websocket_api.require_admin
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/weather/set",
+    vol.Optional("weather_entity", default=""): str,
+})
+@websocket_api.async_response
+async def handle_weather_set(hass, connection, msg):
+    entity_id = _manager(hass).set_weather_entity(msg["weather_entity"])
+    connection.send_result(msg["id"], {"weather_entity": entity_id})
 
 
 def async_register(hass: HomeAssistant) -> None:
@@ -166,5 +186,7 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_task_add)
     websocket_api.async_register_command(hass, handle_task_update)
     websocket_api.async_register_command(hass, handle_task_remove)
-    websocket_api.async_register_command(hass, handle_translations_list)
-    websocket_api.async_register_command(hass, handle_translations_set)
+    websocket_api.async_register_command(hass, handle_languages_list)
+    websocket_api.async_register_command(hass, handle_languages_set)
+    websocket_api.async_register_command(hass, handle_weather_get)
+    websocket_api.async_register_command(hass, handle_weather_set)
