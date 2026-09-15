@@ -10,6 +10,12 @@
  * Also has CSV export (current rooms/tasks) and CSV import (replaces the
  * current rooms/tasks with what's in the file - export, edit in a
  * spreadsheet, reimport).
+ *
+ * Task names are translated via a shared dictionary keyed by the English
+ * name (cleaning_tasks/translations/*), not typed per task - many tasks
+ * share the same name across rooms ("Clean windows", "Dust surfaces", ...),
+ * so translating once here applies everywhere that name is used instead of
+ * retyping the same translation on every matching task.
  */
 class CleaningTaskEditorCard extends HTMLElement {
   setConfig(config) {
@@ -31,9 +37,18 @@ class CleaningTaskEditorCard extends HTMLElement {
             <div class="te-status" style="font-size:0.85em;opacity:0.75;margin-bottom:8px;"></div>
             <div class="te-rooms"></div>
           </div>
+        </ha-card>
+        <ha-card header="Task name translations" style="margin-top:16px;">
+          <div style="padding:0 16px 16px;">
+            <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
+              Translate each task name once here - it applies to every task using that exact name, in any room.
+            </div>
+            <div class="te-translations"></div>
+          </div>
         </ha-card>`;
       this.style.display = "block";
       this._data = { rooms: [], tasks: [] };
+      this._translations = [];
       this._search = "";
       this.querySelector(".te-search").addEventListener("input", (ev) => {
         this._search = ev.target.value.toLowerCase();
@@ -54,7 +69,14 @@ class CleaningTaskEditorCard extends HTMLElement {
 
   async _load() {
     this._data = await this._hass.callWS({ type: "cleaning_tasks/list" });
+    await this._loadTranslations();
     this._renderRooms();
+  }
+
+  async _loadTranslations() {
+    const result = await this._hass.callWS({ type: "cleaning_tasks/translations/list" });
+    this._translations = result.translations;
+    this._renderTranslations();
   }
 
   _status(text) {
@@ -83,23 +105,30 @@ class CleaningTaskEditorCard extends HTMLElement {
     const name = window.prompt("Task name (English)?");
     if (!name) return;
     this._data = await this._hass.callWS({ type: "cleaning_tasks/task/add", room_id: roomId, name });
+    await this._loadTranslations();
     this._renderRooms();
   }
 
   async _removeTask(taskId, name) {
     if (!window.confirm(`Remove task "${name}"?`)) return;
     this._data = await this._hass.callWS({ type: "cleaning_tasks/task/remove", task_id: taskId });
+    await this._loadTranslations();
     this._renderRooms();
   }
 
   async _updateTask(taskId, fields) {
     this._data = await this._hass.callWS({ type: "cleaning_tasks/task/update", task_id: taskId, ...fields });
+    await this._loadTranslations();
+  }
+
+  async _setTranslation(name, lang, value) {
+    const result = await this._hass.callWS({ type: "cleaning_tasks/translations/set", name, lang, value });
+    this._translations = result.translations;
   }
 
   _matches(room, task) {
     if (!this._search) return true;
-    const haystack = [room.name, task && task.name, task && task.name_af, task && task.name_xh]
-      .filter(Boolean).join(" ").toLowerCase();
+    const haystack = [room.name, task && task.name].filter(Boolean).join(" ").toLowerCase();
     return haystack.includes(this._search);
   }
 
@@ -160,17 +189,10 @@ class CleaningTaskEditorCard extends HTMLElement {
     const row = document.createElement("div");
     row.style.cssText = "display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--divider-color);";
 
-    const mk = (value, placeholder, width) => {
-      const input = document.createElement("input");
-      input.value = value || "";
-      input.placeholder = placeholder;
-      input.style.cssText = `width:${width};padding:4px 6px;border:1px solid var(--divider-color);border-radius:6px;background:transparent;color:var(--primary-text-color);`;
-      return input;
-    };
-
-    const nameInput = mk(task.name, "Task name (English)", "160px");
-    const nameAfInput = mk(task.name_af, "Afrikaans", "120px");
-    const nameXhInput = mk(task.name_xh, "isiXhosa", "120px");
+    const nameInput = document.createElement("input");
+    nameInput.value = task.name || "";
+    nameInput.placeholder = "Task name (English)";
+    nameInput.style.cssText = "flex:1;min-width:160px;padding:4px 6px;border:1px solid var(--divider-color);border-radius:6px;background:transparent;color:var(--primary-text-color);";
 
     const unitSelect = document.createElement("select");
     unitSelect.style.cssText = "padding:4px 6px;border-radius:6px;";
@@ -199,14 +221,13 @@ class CleaningTaskEditorCard extends HTMLElement {
     const commit = () => {
       this._updateTask(task.id, {
         name: nameInput.value || task.name,
-        name_af: nameAfInput.value,
-        name_xh: nameXhInput.value,
         unit: unitSelect.value,
         count: parseInt(countInput.value, 10) || 1,
         conditional_on_used: usedCheckbox.checked,
       });
     };
-    [nameInput, nameAfInput, nameXhInput, countInput].forEach((i) => i.addEventListener("blur", commit));
+    nameInput.addEventListener("blur", commit);
+    countInput.addEventListener("blur", commit);
     unitSelect.addEventListener("change", commit);
     usedCheckbox.addEventListener("change", commit);
 
@@ -214,13 +235,46 @@ class CleaningTaskEditorCard extends HTMLElement {
     removeBtn.style.marginLeft = "auto";
 
     row.appendChild(nameInput);
-    row.appendChild(nameAfInput);
-    row.appendChild(nameXhInput);
     row.appendChild(unitSelect);
     row.appendChild(countInput);
     row.appendChild(usedLabel);
     row.appendChild(removeBtn);
     return row;
+  }
+
+  _renderTranslations() {
+    const el = this.querySelector(".te-translations");
+    if (!el) return;
+    el.innerHTML = "";
+    if (this._translations.length === 0) {
+      el.innerHTML = `<div style="opacity:0.7;">No tasks yet - add some above first.</div>`;
+      return;
+    }
+    for (const entry of this._translations) {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--divider-color);";
+
+      const label = document.createElement("span");
+      label.textContent = entry.name;
+      label.style.cssText = "flex:1;min-width:160px;font-weight:500;";
+
+      const afInput = document.createElement("input");
+      afInput.value = entry.Afrikaans || "";
+      afInput.placeholder = "Afrikaans";
+      afInput.style.cssText = "width:160px;padding:4px 6px;border:1px solid var(--divider-color);border-radius:6px;background:transparent;color:var(--primary-text-color);";
+      afInput.addEventListener("blur", () => this._setTranslation(entry.name, "Afrikaans", afInput.value));
+
+      const xhInput = document.createElement("input");
+      xhInput.value = entry.isiXhosa || "";
+      xhInput.placeholder = "isiXhosa";
+      xhInput.style.cssText = "width:160px;padding:4px 6px;border:1px solid var(--divider-color);border-radius:6px;background:transparent;color:var(--primary-text-color);";
+      xhInput.addEventListener("blur", () => this._setTranslation(entry.name, "isiXhosa", xhInput.value));
+
+      row.appendChild(label);
+      row.appendChild(afInput);
+      row.appendChild(xhInput);
+      el.appendChild(row);
+    }
   }
 
   _smallButton(label, onClick, danger) {
@@ -274,7 +328,7 @@ class CleaningTaskEditorCard extends HTMLElement {
   }
 
   getCardSize() {
-    return 10;
+    return 12;
   }
 }
 
@@ -284,5 +338,5 @@ window.customCards = window.customCards || [];
 window.customCards.push({
   type: "cleaning-task-editor-card",
   name: "Cleaning Task Editor Card",
-  description: "Search, add, edit, remove rooms/tasks, and CSV export/import.",
+  description: "Search, add, edit, remove rooms/tasks, CSV export/import, and shared name translations.",
 });

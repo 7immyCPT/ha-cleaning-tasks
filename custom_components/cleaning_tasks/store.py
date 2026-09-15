@@ -34,6 +34,12 @@ def _default_data() -> dict[str, Any]:
         "room_used": {},
         "display_language": LANGUAGES[0],
         "voice_names": {lang: "" for lang in LANGUAGES},
+        # Shared translations keyed by a task's English name, e.g.
+        # {"Clean windows": {"Afrikaans": "...", "isiXhosa": "..."}} - many
+        # tasks share the same name across rooms, so translating once here
+        # applies everywhere that name is used, instead of needing a
+        # translation typed into every single task.
+        "translations": {},
     }
 
 
@@ -51,6 +57,7 @@ class CleaningTasksStore:
             merged.update(stored)
             merged["cleaning_days"] = {**merged["cleaning_days"], **stored.get("cleaning_days", {})}
             merged["voice_names"] = {**merged["voice_names"], **stored.get("voice_names", {})}
+            merged["translations"] = stored.get("translations", {})
             self.data = merged
 
     async def async_save(self) -> None:
@@ -156,6 +163,27 @@ class CleaningTasksStore:
         before = len(self.data["tasks"])
         self.data["tasks"] = [t for t in self.data["tasks"] if t["id"] != task_id]
         return len(self.data["tasks"]) != before
+
+    # ---------- shared name translations ----------
+
+    def get_translation(self, name: str) -> dict:
+        return self.data["translations"].get(name, {})
+
+    def set_translation(self, name: str, lang: str, value: str) -> None:
+        entry = self.data["translations"].setdefault(name, {})
+        if value:
+            entry[lang] = value
+        else:
+            entry.pop(lang, None)
+            if not entry:
+                self.data["translations"].pop(name, None)
+
+    def list_translations(self) -> list[dict]:
+        """One row per distinct task name currently in use, plus its
+        translations (present even if blank) - the task editor's
+        translations table is built from this."""
+        names = sorted({t["name"] for t in self.data["tasks"]})
+        return [{"name": n, **self.get_translation(n)} for n in names]
 
     # ---------- CSV ----------
 

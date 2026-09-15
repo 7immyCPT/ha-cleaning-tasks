@@ -1,7 +1,9 @@
 """The Cleaning Tasks integration."""
 from __future__ import annotations
 
+import hashlib
 import logging
+import time
 from pathlib import Path
 
 import voluptuous as vol
@@ -75,11 +77,29 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     http_views.async_register(hass)
 
     www_path = Path(__file__).parent / "www"
-    await hass.http.async_register_static_paths(
-        [StaticPathConfig(f"/cleaning_tasks_frontend/{f}", str(www_path / f), False) for f in FRONTEND_FILES]
-    )
+    # Cache-bust with a content hash baked into the URL PATH, under a
+    # per-restart build directory. The Nabu Casa remote-UI CDN in front of
+    # this instance caches by path, and different edge nodes can end up
+    # holding different cached bytes for the exact same path indefinitely
+    # (observed directly: two requests for the same hashed path, moments
+    # apart, returned two different ETags/bodies - an edge-consistency
+    # issue, not something purgeable from here). A path that has never
+    # existed on any edge before - guaranteed by folding in this restart's
+    # timestamp - sidesteps that entirely rather than racing it.
+    build_id = str(int(time.time()))
+    static_paths = []
+    hashed_names = {}
     for f in FRONTEND_FILES:
-        add_extra_js_url(hass, f"/cleaning_tasks_frontend/{f}")
+        digest = hashlib.sha256((www_path / f).read_bytes()).hexdigest()[:10]
+        stem, ext = f.rsplit(".", 1)
+        hashed_name = f"{stem}.{digest}.{ext}"
+        hashed_names[f] = hashed_name
+        static_paths.append(
+            StaticPathConfig(f"/cleaning_tasks_frontend/{build_id}/{hashed_name}", str(www_path / f), True)
+        )
+    await hass.http.async_register_static_paths(static_paths)
+    for f in FRONTEND_FILES:
+        add_extra_js_url(hass, f"/cleaning_tasks_frontend/{build_id}/{hashed_names[f]}")
 
     return True
 

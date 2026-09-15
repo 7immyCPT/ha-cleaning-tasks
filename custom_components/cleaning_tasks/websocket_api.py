@@ -136,6 +136,28 @@ async def handle_task_remove(hass, connection, msg):
     connection.send_result(msg["id"], _full_list(hass))
 
 
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/translations/list"})
+@websocket_api.async_response
+async def handle_translations_list(hass, connection, msg):
+    connection.send_result(msg["id"], {"translations": _manager(hass).store.list_translations()})
+
+
+@websocket_api.require_admin
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/translations/set",
+    vol.Required("name"): str,
+    vol.Required("lang"): str,
+    vol.Required("value"): str,
+})
+@websocket_api.async_response
+async def handle_translations_set(hass, connection, msg):
+    manager = _manager(hass)
+    manager.store.set_translation(msg["name"], msg["lang"], msg["value"])
+    manager.refresh_today()
+    await _save(hass)
+    connection.send_result(msg["id"], {"translations": manager.store.list_translations()})
+
+
 def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_list)
     websocket_api.async_register_command(hass, handle_room_add)
@@ -144,3 +166,5 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_task_add)
     websocket_api.async_register_command(hass, handle_task_update)
     websocket_api.async_register_command(hass, handle_task_remove)
+    websocket_api.async_register_command(hass, handle_translations_list)
+    websocket_api.async_register_command(hass, handle_translations_set)

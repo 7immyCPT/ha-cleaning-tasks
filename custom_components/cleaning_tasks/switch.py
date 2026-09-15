@@ -126,11 +126,12 @@ class CleaningTaskSwitch(SwitchEntity):
     def extra_state_attributes(self) -> dict:
         task = self._task
         room = self._manager.store.get_room(task.get("room_id", ""))
+        shared_translation = self._manager.store.get_translation(task.get("name", ""))
         return {
             "task_id": self._task_id,
             "task_name": task.get("name"),
-            "task_name_af": task.get("name_af", ""),
-            "task_name_xh": task.get("name_xh", ""),
+            "task_name_af": task.get("name_af") or shared_translation.get("Afrikaans", ""),
+            "task_name_xh": task.get("name_xh") or shared_translation.get("isiXhosa", ""),
             "room": room["name"] if room else task.get("room_id"),
             "room_id": task.get("room_id"),
             "unit": task.get("unit"),
