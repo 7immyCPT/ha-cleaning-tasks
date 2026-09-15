@@ -6,6 +6,8 @@
  * switch.cleaning_room_used_* straight from hass.states, so newly added
  * tracked rooms show up automatically - no dashboard editing needed.
  */
+const WEEKDAY_ORDER = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
 class CleaningSettingsCard extends HTMLElement {
   setConfig(config) {
     this._config = config || {};
@@ -51,7 +53,11 @@ class CleaningSettingsCard extends HTMLElement {
     daysEl.innerHTML = "";
     const dayEntities = Object.keys(this._hass.states)
       .filter((id) => id.startsWith("switch.cleaning_day_"))
-      .sort();
+      .sort((a, b) => {
+        const dayA = WEEKDAY_ORDER.indexOf(a.replace("switch.cleaning_day_", ""));
+        const dayB = WEEKDAY_ORDER.indexOf(b.replace("switch.cleaning_day_", ""));
+        return dayA - dayB;
+      });
     for (const id of dayEntities) {
       const row = this._row(id, this._hass.states[id].attributes.friendly_name || id);
       if (row) daysEl.appendChild(row);
