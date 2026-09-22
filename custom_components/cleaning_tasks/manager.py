@@ -284,6 +284,9 @@ class CleaningManager:
         weekly_load = {d: 0 for d in cleaning_days}
         monthly_load = {(w, d): 0 for w in (1, 2, 3, 4) for d in cleaning_days}
         pending: dict[str, dict[str, list[dict]]] = {"weekly": {}, "monthly": {}}
+        # Where each room's already-slotted tasks sit, so a task added later
+        # joins its room instead of being split off on its own.
+        room_slot: dict[tuple[str, str], Any] = {}
         for task in self.store.tasks():
             kind = self._slot_kind(task)
             if kind is None:
@@ -293,21 +296,25 @@ class CleaningManager:
                 pending[kind].setdefault(task["room_id"], []).append(task)
             elif kind == "weekly":
                 weekly_load[slot["day"]] += 1
+                room_slot.setdefault((kind, task["room_id"]), slot["day"])
             else:
                 monthly_load[(slot["week"], slot["day"])] += 1
+                room_slot.setdefault((kind, task["room_id"]), (slot["week"], slot["day"]))
 
         def biggest_rooms_first(groups: dict[str, list[dict]]) -> list[list[dict]]:
             return [groups[r] for r in sorted(groups, key=lambda r: (-len(groups[r]), r))]
 
         for tasks in biggest_rooms_first(pending["weekly"]):
-            day = min(cleaning_days, key=lambda d: weekly_load[d])
+            day = room_slot.get(("weekly", tasks[0]["room_id"])) or min(cleaning_days, key=lambda d: weekly_load[d])
             for task in tasks:
                 task["slot"] = {"day": day}
             weekly_load[day] += len(tasks)
             changed = True
         # Monthly slots sit on top of that day's weekly load.
         for tasks in biggest_rooms_first(pending["monthly"]):
-            week, day = min(monthly_load, key=lambda k: monthly_load[k] + weekly_load[k[1]])
+            week, day = room_slot.get(("monthly", tasks[0]["room_id"])) or min(
+                monthly_load, key=lambda k: monthly_load[k] + weekly_load[k[1]]
+            )
             for task in tasks:
                 task["slot"] = {"day": day, "week": week}
             monthly_load[(week, day)] += len(tasks)
