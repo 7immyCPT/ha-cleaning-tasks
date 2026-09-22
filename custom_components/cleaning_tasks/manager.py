@@ -494,6 +494,8 @@ class CleaningManager:
             results.append({
                 "task_id": task["id"],
                 "task_name": task["name"],
+                "task_name_af": task.get("name_af", ""),
+                "task_name_xh": task.get("name_xh", ""),
                 "room": room["name"] if room else task["room_id"],
                 "conditional_on_used": task.get("conditional_on_used", False),
                 "weather_deferred": weather_deferred,

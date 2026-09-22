@@ -129,10 +129,12 @@ class CleaningTaskSwitch(SwitchEntity):
         room = self._manager.store.get_room(task.get("room_id", ""))
         return {
             "task_id": self._task_id,
-            # English only - the kiosk card translates this on the fly for
-            # whichever language is selected, rather than us storing a
-            # translation per task.
+            # The kiosk card machine-translates this on the fly for the
+            # selected language, unless a hand-written Afrikaans/isiXhosa
+            # name is set below (preferred when present).
             "task_name": task.get("name"),
+            "task_name_af": task.get("name_af", ""),
+            "task_name_xh": task.get("name_xh", ""),
             "room": room["name"] if room else task.get("room_id"),
             "room_id": task.get("room_id"),
             "unit": task.get("unit"),

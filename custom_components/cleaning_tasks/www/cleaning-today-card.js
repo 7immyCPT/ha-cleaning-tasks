@@ -133,6 +133,8 @@ const GOOGLE_LANG = {
   English: null, Afrikaans: "af", isiXhosa: "xh", isiZulu: "zu", Sepedi: "nso",
   Setswana: "tn", Sesotho: "st", Xitsonga: "ts", siSwati: null, Tshivenda: null, isiNdebele: null,
 };
+// The only languages with a per-task hand-written name field in the store.
+const MANUAL_NAME_ATTR = { Afrikaans: "task_name_af", isiXhosa: "task_name_xh" };
 const LANG_CODE = {
   English: "en-ZA", Afrikaans: "af-ZA", isiXhosa: "xh-ZA", isiZulu: "zu-ZA", Sepedi: "nso-ZA",
   Setswana: "tn-ZA", Sesotho: "st-ZA", Xitsonga: "ts-ZA", siSwati: "ss-ZA", Tshivenda: "ve-ZA", isiNdebele: "nr-ZA",
@@ -463,7 +465,7 @@ class CleaningTodayCard extends HTMLElement {
     const day = await this._previewCache[offset];
     const open = (day && day.tasks ? day.tasks : [])
       .filter((t) => !t.done)
-      .map((t) => ({ key: t.task_id, room: t.room || "Other", label: this._taskLabel({ task_name: t.task_name }) }));
+      .map((t) => ({ key: t.task_id, room: t.room || "Other", label: this._taskLabel(t) }));
     const picked = await this._promptChecklist(open);
     if (!picked || picked.length === 0) return;
     const targets = picked.map((task_id) => ({ task_id }));
@@ -505,9 +507,16 @@ class CleaningTodayCard extends HTMLElement {
       : ["English", "Afrikaans", "isiXhosa"];
   }
 
+  // A hand-written per-task name (Afrikaans/isiXhosa only) beats the
+  // machine translation of the English name.
+  _manualName(attrs, lang = this._lang()) {
+    const key = MANUAL_NAME_ATTR[lang];
+    return (key && attrs[key]) || "";
+  }
+
   _taskLabel(attrs) {
     const english = attrs.task_name || "";
-    return _cachedTranslation(english, GOOGLE_LANG[this._lang()]);
+    return this._manualName(attrs) || _cachedTranslation(english, GOOGLE_LANG[this._lang()]);
   }
 
   // Must be called straight from the tap handler (no await before it) -
@@ -519,7 +528,7 @@ class CleaningTodayCard extends HTMLElement {
     // The row render already warmed the translation cache, so this is
     // normally synchronous; only fetch if it genuinely isn't cached yet.
     const googleCode = GOOGLE_LANG[lang];
-    let text = _cachedTranslation(english, googleCode);
+    let text = this._manualName(attrs, lang) || _cachedTranslation(english, googleCode);
     if (googleCode && text === english) text = await translateText(english, googleCode);
     if (!text) return;
 
@@ -850,7 +859,7 @@ class CleaningTodayCard extends HTMLElement {
     for (const room of roomNames) {
       const tasks = [...byRoom[room]].sort((a, b) => {
         if (interactive && a.done !== b.done) return a.done ? 1 : -1;
-        return this._taskLabel({ task_name: a.task_name }).localeCompare(this._taskLabel({ task_name: b.task_name }));
+        return this._taskLabel(a).localeCompare(this._taskLabel(b));
       });
       const section = document.createElement("div");
       section.style.breakInside = "avoid";
@@ -869,7 +878,7 @@ class CleaningTodayCard extends HTMLElement {
   }
 
   _taskRowPreview(task, interactive, dateIso) {
-    const attrs = { task_name: task.task_name };
+    const attrs = task;
     const label = this._taskLabel(attrs);
     const done = interactive && task.done;
     const row = document.createElement("div");
@@ -951,7 +960,7 @@ class CleaningTodayCard extends HTMLElement {
     body.addEventListener("click", () => this._toggle(entityId));
 
     const googleCode = GOOGLE_LANG[lang];
-    if (googleCode) {
+    if (googleCode && !this._manualName(attrs, lang)) {
       // label is already the cached translation if we had one; this just
       // fills it in (and updates the DOM) the first time a task name is
       // seen in a given language.
