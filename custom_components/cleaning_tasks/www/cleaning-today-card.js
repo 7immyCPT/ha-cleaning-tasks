@@ -346,6 +346,89 @@ class CleaningTodayCard extends HTMLElement {
     });
   }
 
+  // After the PIN: every still-open task, grouped by room and all ticked,
+  // so anything that was actually missed can be unticked before marking.
+  // Resolves to the ticked items' keys, or null if cancelled.
+  _promptChecklist(items) {
+    if (items.length === 0) return Promise.resolve([]);
+    return new Promise((resolve) => {
+      const overlay = document.createElement("div");
+      overlay.style.cssText =
+        "position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;";
+      const box = document.createElement("div");
+      box.style.cssText =
+        "background:var(--card-background-color,var(--primary-background-color,#fff));color:var(--primary-text-color);" +
+        "padding:20px;border-radius:var(--ha-card-border-radius,12px);width:min(420px,92vw);max-height:85vh;display:flex;" +
+        "flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,0.4);box-sizing:border-box;";
+      box.innerHTML = `
+        <div style="font-weight:600;margin-bottom:4px;">Mark as done</div>
+        <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">Untick anything that wasn't done.</div>
+        <label style="display:flex;align-items:center;gap:8px;padding:4px 0 8px;border-bottom:1px solid var(--divider-color);cursor:pointer;">
+          <input class="ct-cl-all" type="checkbox" checked style="width:18px;height:18px;"> <span>All</span>
+        </label>
+        <div class="ct-cl-list" style="overflow-y:auto;flex:1;min-height:0;padding-top:6px;"></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+          <button class="ct-cl-cancel" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Cancel</button>
+          <button class="ct-cl-ok" type="button" style="padding:6px 14px;border-radius:8px;border:none;background:var(--primary-color);color:var(--text-primary-color,#fff);cursor:pointer;"></button>
+        </div>`;
+
+      const list = box.querySelector(".ct-cl-list");
+      const byRoom = {};
+      for (const item of items) (byRoom[item.room] = byRoom[item.room] || []).push(item);
+      const boxes = [];
+      for (const room of Object.keys(byRoom).sort()) {
+        const heading = document.createElement("div");
+        heading.textContent = room;
+        heading.style.cssText = "font-weight:600;font-size:0.9em;margin:8px 0 2px;";
+        list.appendChild(heading);
+        for (const item of byRoom[room].sort((a, b) => a.label.localeCompare(b.label))) {
+          const row = document.createElement("label");
+          row.style.cssText = "display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer;";
+          const cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.checked = true;
+          cb.dataset.key = item.key;
+          cb.style.cssText = "width:18px;height:18px;flex:0 0 auto;";
+          const text = document.createElement("span");
+          text.textContent = item.label;
+          row.appendChild(cb);
+          row.appendChild(text);
+          list.appendChild(row);
+          boxes.push(cb);
+        }
+      }
+
+      const allBox = box.querySelector(".ct-cl-all");
+      const okBtn = box.querySelector(".ct-cl-ok");
+      const update = () => {
+        const n = boxes.filter((b) => b.checked).length;
+        okBtn.textContent = `Mark ${n} done`;
+        okBtn.disabled = n === 0;
+        okBtn.style.opacity = n === 0 ? "0.5" : "1";
+        allBox.checked = n === boxes.length;
+        allBox.indeterminate = n > 0 && n < boxes.length;
+      };
+      boxes.forEach((b) => b.addEventListener("change", update));
+      allBox.addEventListener("change", () => {
+        boxes.forEach((b) => { b.checked = allBox.checked; });
+        update();
+      });
+      update();
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+      const finish = (value) => {
+        overlay.remove();
+        resolve(value);
+      };
+      box.querySelector(".ct-cl-cancel").addEventListener("click", () => finish(null));
+      okBtn.addEventListener("click", () => finish(boxes.filter((b) => b.checked).map((b) => b.dataset.key)));
+      overlay.addEventListener("click", (ev) => {
+        if (ev.target === overlay) finish(null);
+      });
+    });
+  }
+
   // PIN is checked server-side (cleaning_tasks/pin/verify) against
   // store.mark_all_pin() - never hardcoded here, and never sent to this
   // (possibly non-admin, kiosk) session even on a wrong guess. Still just
@@ -366,11 +449,11 @@ class CleaningTodayCard extends HTMLElement {
     }
 
     if (this._dayOffset === 0) {
-      const targets = Object.entries(this._hass.states)
+      const open = Object.entries(this._hass.states)
         .filter(([id, state]) => id.startsWith("switch.cleaning_task_") && state.attributes.due && state.state !== "on")
-        .map(([id]) => id);
-      if (targets.length === 0) return;
-      if (!window.confirm(`Mark all ${targets.length} remaining task(s) as done?`)) return;
+        .map(([id, state]) => ({ key: id, room: state.attributes.room || "Other", label: this._taskLabel(state.attributes) }));
+      const targets = await this._promptChecklist(open);
+      if (!targets || targets.length === 0) return;
       await Promise.all(targets.map((id) => this._hass.callService("switch", "turn_on", { entity_id: id })));
       return;
     }
@@ -378,9 +461,12 @@ class CleaningTodayCard extends HTMLElement {
     const offset = this._dayOffset;
     const dateIso = this._isoForOffset(offset);
     const day = await this._previewCache[offset];
-    const targets = (day && day.tasks ? day.tasks : []).filter((t) => !t.done);
-    if (targets.length === 0) return;
-    if (!window.confirm(`Mark all ${targets.length} remaining task(s) as done for ${dateIso}?`)) return;
+    const open = (day && day.tasks ? day.tasks : [])
+      .filter((t) => !t.done)
+      .map((t) => ({ key: t.task_id, room: t.room || "Other", label: this._taskLabel({ task_name: t.task_name }) }));
+    const picked = await this._promptChecklist(open);
+    if (!picked || picked.length === 0) return;
+    const targets = picked.map((task_id) => ({ task_id }));
     await Promise.all(
       targets.map((t) => this._hass.callWS({ type: "cleaning_tasks/task/mark_done_for_date", task_id: t.task_id, date: dateIso, done: true }))
     );

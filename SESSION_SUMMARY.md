@@ -54,6 +54,10 @@
    "Schedule balance" card → `cleaning_tasks/schedule/rebalance`
    re-spreads everything. Simulated against live data: every cleaning day
    lands around 27-31 tasks.
+10. **Mark-all checklist**: after the PIN, a dialog lists every still-open
+    task for that day (grouped by room, all ticked, with an All toggle) so
+    missed ones can be unticked; only ticked tasks get marked
+    (`_promptChecklist`, replaces the old `window.confirm`).
 7. Lovelace resource versions are now bumped via the websocket
    (`lovelace/resources/update`) from the logged-in browser page, not by
    clicking through Settings → Dashboards → Resources. `?v=` is the first
