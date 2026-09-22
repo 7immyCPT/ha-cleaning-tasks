@@ -65,6 +65,14 @@ class CleaningTaskEditorCard extends HTMLElement {
               <option value="">(none - weather scheduling off)</option>
             </select>
           </div>
+        </ha-card>
+        <ha-card header="Kiosk PIN" style="margin-top:16px;">
+          <div style="padding:0 16px 16px;">
+            <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
+              The kiosk's "Mark all done" button asks for this PIN first - a deterrent against an accidental tap, not real security. Kept here rather than in the card's code, so it's never in the repo on GitHub.
+            </div>
+            <input class="te-pin" type="text" inputmode="numeric" placeholder="PIN" style="width:120px;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);">
+          </div>
         </ha-card>`;
       this.style.display = "block";
       this._data = { rooms: [], tasks: [] };
@@ -78,6 +86,7 @@ class CleaningTaskEditorCard extends HTMLElement {
       this.querySelector(".te-export").addEventListener("click", () => this._exportCsv());
       this.querySelector(".te-import").addEventListener("change", (ev) => this._importCsv(ev));
       this.querySelector(".te-weather-entity").addEventListener("change", (ev) => this._setWeatherEntity(ev.target.value));
+      this.querySelector(".te-pin").addEventListener("blur", (ev) => this._setPin(ev.target.value));
     }
     if (this._hass) this._load();
   }
@@ -92,7 +101,17 @@ class CleaningTaskEditorCard extends HTMLElement {
     this._data = await this._hass.callWS({ type: "cleaning_tasks/list" });
     await this._loadLanguages();
     await this._loadWeather();
+    await this._loadPin();
     this._renderRooms();
+  }
+
+  async _loadPin() {
+    const result = await this._hass.callWS({ type: "cleaning_tasks/pin/get" });
+    this.querySelector(".te-pin").value = result.pin;
+  }
+
+  async _setPin(pin) {
+    await this._hass.callWS({ type: "cleaning_tasks/pin/set", pin });
   }
 
   async _loadWeather() {

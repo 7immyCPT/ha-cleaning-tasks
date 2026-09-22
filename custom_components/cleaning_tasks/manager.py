@@ -258,7 +258,20 @@ class CleaningManager:
             return True
         if task["unit"] == "month" and last_done_date.month != today.month and days_left_in_month <= 3:
             return True
-        return False
+        # Cleaning only happens on some weekdays, so the exact interval
+        # usually falls between two cleaning days - e.g. a 2x/week task
+        # (3.5 days) with Mon/Wed cleaning would otherwise never be due on
+        # Wednesday and quietly become weekly. Do it now if that's closer to
+        # the target interval than waiting for the next cleaning day.
+        days_early_now = interval - days_since
+        days_late_if_wait = days_since + self._days_to_next_cleaning_day(today) - interval
+        return days_early_now < days_late_if_wait
+
+    def _days_to_next_cleaning_day(self, from_date: date) -> int:
+        for gap in range(1, 8):
+            if self.is_cleaning_day((from_date.weekday() + gap) % 7):
+                return gap
+        return 7
 
     # ---------- weather-aware scheduling ----------
 
@@ -359,32 +372,43 @@ class CleaningManager:
         days_left_in_month = calendar.monthrange(target.year, target.month)[1] - target.day
         results = []
         for task in self.store.tasks():
-            if not self._is_due(task, target, days_left_in_month):
+            # A task done on this exact day is no longer "due" by
+            # last_done, but still belongs on that day's list (shown done) -
+            # otherwise a past day empties out as it gets ticked off.
+            done_that_day = task.get("last_done") == target.isoformat()
+            if not done_that_day and not self._is_due(task, target, days_left_in_month):
                 continue
             weather_deferred = bool(
                 task.get("weather_dependent") and self._should_defer_for_weather(task, target, bad_by_date)
             )
             room = self.store.get_room(task["room_id"])
+            last_done = task.get("last_done")
             results.append({
                 "task_id": task["id"],
                 "task_name": task["name"],
                 "room": room["name"] if room else task["room_id"],
                 "conditional_on_used": task.get("conditional_on_used", False),
                 "weather_deferred": weather_deferred,
+                "done": bool(last_done and last_done >= target.isoformat()),
             })
         return results
 
     async def async_week_preview(self) -> list[dict]:
-        """Today plus the next 6 days: which tasks would be due on each,
-        for the kiosk card's day-by-day browsing. Read-only - nothing here
-        marks anything done."""
+        """7 days back through 7 days forward (today included): which tasks
+        would be due on each, for the kiosk card's day-by-day browsing.
+        Read-only - nothing here marks anything done, and a past day is the
+        same due-schedule preview as a future one, not an actual
+        completion record (last_done only keeps the most recent
+        completion, not a full history, so "was this exact task done on
+        that exact day" genuinely isn't knowable from current data)."""
         today = date.today()
         bad_by_date = self._bad_weather_by_date(await self._async_get_forecast())
         days = []
-        for offset in range(7):
+        for offset in range(-7, 8):
             target = today + timedelta(days=offset)
             is_cleaning_day = self.is_cleaning_day(target.weekday())
             days.append({
+                "offset": offset,
                 "date": target.isoformat(),
                 "weekday": WEEKDAYS[target.weekday()],
                 "is_cleaning_day": is_cleaning_day,
@@ -411,6 +435,36 @@ class CleaningManager:
         if task.get("last_done") == date.today().isoformat():
             task["last_done"] = None
             self.hass.async_create_task(self.store.async_save())
+        self.refresh_today()
+
+    def mark_done_for_date(self, task_id: str, target_date_iso: str, done: bool = True) -> None:
+        """Catch-up marking for a past (or today's) preview day - e.g. "I
+        forgot to tick this off on the 21st". Only ever moves last_done
+        forward (never regresses a task that's already been completed more
+        recently than target_date_iso), and undoing only clears last_done
+        if it exactly matches target_date_iso - there's no history to fall
+        back to otherwise. Doesn't apply to future days; the frontend
+        doesn't offer this for those, since nothing there has happened
+        yet."""
+        task = self.store.get_task(task_id)
+        if not task:
+            return
+        current = task.get("last_done")
+        changed = False
+        if done:
+            if not current or target_date_iso > current:
+                task["last_done"] = target_date_iso
+                changed = True
+        else:
+            if current == target_date_iso:
+                task["last_done"] = None
+                changed = True
+        if changed:
+            self.hass.async_create_task(self.store.async_save())
+            if done and task.get("conditional_on_used"):
+                room_entity = self.room_used_entities.get(task["room_id"])
+                if room_entity is not None:
+                    room_entity.set_state(on=False)
         self.refresh_today()
 
     def reset_today(self) -> None:

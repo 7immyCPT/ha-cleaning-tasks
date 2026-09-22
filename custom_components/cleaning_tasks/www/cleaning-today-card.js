@@ -33,13 +33,18 @@
  * assisted for the languages beyond Afrikaans/isiXhosa - worth a native
  * speaker's review before relying on it.
  *
- * ‹ › arrows next to the date browse today plus the next 6 days. Today is
- * the live, interactive checklist (tick things off, speak, etc.) exactly
- * as before; any other day is a read-only preview fetched from the
- * backend (cleaning_tasks/week_preview), computed with the same due-date/
- * weather logic - it can't predict a conditional_on_used room's future
- * "used" flag, so those are shown using today's current flag as a best
- * guess and labeled "If room is used".
+ * ‹ › arrows next to the date browse 7 days back through 7 days forward
+ * (today included). Today is the live, interactive checklist (tick things
+ * off, speak, etc.) exactly as before; any other day - past or future - is
+ * a read-only preview fetched from the backend
+ * (cleaning_tasks/week_preview), computed with the same due-date/weather
+ * logic. A past day is the same schedule preview as a future one, not an
+ * actual completion record (the store only keeps each task's most recent
+ * completion date, not a full history, so "was this exact task done on
+ * that exact day" isn't something the data can answer). It also can't
+ * predict a conditional_on_used room's future "used" flag, so those are
+ * shown using today's current flag as a best guess and labeled "If room
+ * is used".
  */
 const STRINGS = {
   English: {
@@ -143,19 +148,60 @@ const HA_CLOUD_TTS = {
   isiZulu: { language: "zu-ZA", voices: [{ id: "ThandoNeural", label: "Thando" }, { id: "ThembaNeural", label: "Themba" }] },
 };
 
+// Last-resort HA Cloud voice for devices with no usable Web Speech voice
+// at all (Android WebView - the HA Companion app and most kiosk browsers -
+// exposes speechSynthesis but has zero voices, so speak() is silent). A
+// language without its own cloud voice gets read in South African English,
+// which beats silence.
+const HA_CLOUD_FALLBACK = { language: "en-ZA", voices: [{ id: "LeahNeural", label: "Leah" }] };
+
+// Mobile browsers (iOS Safari, Android WebView) only let audio start
+// inside the tap itself - anything after an await (translation fetch,
+// tts_get_url) is outside it and gets blocked, while desktop Chrome is
+// lenient. So each tap synchronously plays a silent clip on one shared
+// <audio> element, which unlocks that element for the real clip later,
+// and the first tap also speaks an empty utterance to unlock
+// speechSynthesis on iOS.
+const SILENT_WAV =
+  "data:audio/wav;base64,UklGRnQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVAAAACAgICAgICAgICAgICAgICA" +
+  "gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==";
+let _ttsAudio = null;
+let _speechUnlocked = false;
+
+function unlockAudioForTap() {
+  if (!_ttsAudio) _ttsAudio = new Audio();
+  _ttsAudio.onended = null;
+  _ttsAudio.onerror = null;
+  _ttsAudio.src = SILENT_WAV;
+  _ttsAudio.play().catch(() => {});
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+    if (!_speechUnlocked) {
+      _speechUnlocked = true;
+      const unlock = new SpeechSynthesisUtterance("");
+      unlock.volume = 0;
+      window.speechSynthesis.speak(unlock);
+    }
+  }
+}
+
+// Mobile browsers load the voice list lazily and return [] until asked at
+// least once, so kick that off at load rather than on the first tap.
+if ("speechSynthesis" in window) window.speechSynthesis.getVoices();
+
 async function playHaCloudTts(hass, text, lang, voiceId) {
-  const config = HA_CLOUD_TTS[lang];
-  if (!config) throw new Error(`no HA Cloud TTS voice for ${lang}`);
+  const config = HA_CLOUD_TTS[lang] || HA_CLOUD_FALLBACK;
   const result = await hass.callApi("POST", "tts_get_url", {
     engine_id: "tts.home_assistant_cloud",
     message: text,
     language: config.language,
     options: { voice: voiceId || config.voices[0].id },
   });
-  const audio = new Audio(result.path);
+  const audio = _ttsAudio || new Audio();
   await new Promise((resolve, reject) => {
-    audio.addEventListener("ended", resolve, { once: true });
-    audio.addEventListener("error", reject, { once: true });
+    audio.onended = resolve;
+    audio.onerror = reject;
+    audio.src = result.path;
     audio.play().catch(reject);
   });
 }
@@ -225,20 +271,21 @@ class CleaningTodayCard extends HTMLElement {
       this._built = true;
       this.innerHTML = `
         <ha-card>
-          <div class="ct-header" style="padding:16px 16px 8px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-            <div>
-              <div style="display:flex;align-items:center;gap:4px;">
-                <button class="ct-day-prev" type="button" title="Previous day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;">‹</button>
-                <div class="ct-date" style="font-size:1.3em;font-weight:600;white-space:nowrap;"></div>
-                <button class="ct-day-next" type="button" title="Next day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;">›</button>
-                <button class="ct-day-today" type="button" style="display:none;margin-left:4px;padding:3px 10px;border-radius:12px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);font-size:0.8em;cursor:pointer;white-space:nowrap;">Today</button>
+          <div class="ct-header" style="padding:16px 16px 8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+              <div style="display:flex;align-items:center;gap:2px;flex-wrap:wrap;">
+                <button class="ct-day-prev" type="button" title="Previous day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;font-size:1.1em;">‹</button>
+                <div class="ct-date" style="font-size:1.15em;font-weight:600;white-space:nowrap;"></div>
+                <button class="ct-day-next" type="button" title="Next day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;font-size:1.1em;">›</button>
+                <button class="ct-day-today" type="button" style="display:none;margin-left:2px;padding:3px 10px;border-radius:12px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);font-size:0.8em;cursor:pointer;white-space:nowrap;">Today</button>
               </div>
-              <div class="ct-instructions" style="opacity:0.75;font-size:0.9em;margin-top:4px;"></div>
+              <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                <select class="ct-lang" style="padding:4px 6px;border-radius:8px;max-width:140px;"></select>
+                <button class="ct-mark-all" type="button" title="Mark every task on this list as done (password-protected)" style="flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;font-size:1em;display:flex;align-items:center;justify-content:center;">🔒</button>
+                <button class="ct-print" type="button" title="Download a printable A4 checklist for this list" style="flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;font-size:1em;display:flex;align-items:center;justify-content:center;">🖨️</button>
+              </div>
             </div>
-            <div style="display:flex;align-items:center;gap:6px;">
-              <select class="ct-lang" style="padding:4px 6px;border-radius:8px;"></select>
-              <button class="ct-print" type="button" title="Download a printable A4 checklist for this list" style="padding:6px 10px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;white-space:nowrap;">🖨️ Print</button>
-            </div>
+            <div class="ct-instructions" style="opacity:0.75;font-size:0.85em;margin-top:6px;"></div>
           </div>
           <div class="ct-rooms" style="padding:0 16px 16px;column-width:320px;column-gap:16px;"></div>
         </ha-card>`;
@@ -252,6 +299,7 @@ class CleaningTodayCard extends HTMLElement {
         });
       });
       this.querySelector(".ct-print").addEventListener("click", () => this._downloadPrintable());
+      this.querySelector(".ct-mark-all").addEventListener("click", () => this._markAllDone());
       this.querySelector(".ct-day-prev").addEventListener("click", () => this._shiftDay(-1));
       this.querySelector(".ct-day-next").addEventListener("click", () => this._shiftDay(1));
       this.querySelector(".ct-day-today").addEventListener("click", () => this._shiftDay(-this._dayOffset));
@@ -259,8 +307,95 @@ class CleaningTodayCard extends HTMLElement {
     this._render();
   }
 
+  // Small masked-input dialog - native window.prompt() can't mask input,
+  // so this builds a minimal password-field modal instead. Resolves to the
+  // entered string, or null if cancelled (Escape, backdrop click, Cancel).
+  _promptPassword() {
+    return new Promise((resolve) => {
+      const overlay = document.createElement("div");
+      overlay.style.cssText =
+        "position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;";
+      const box = document.createElement("div");
+      box.style.cssText =
+        "background:var(--card-background-color,var(--primary-background-color,#fff));color:var(--primary-text-color);" +
+        "padding:20px;border-radius:var(--ha-card-border-radius,12px);min-width:240px;max-width:90vw;box-shadow:0 4px 20px rgba(0,0,0,0.4);";
+      box.innerHTML = `
+        <div style="font-weight:600;margin-bottom:10px;">Enter password</div>
+        <input type="password" inputmode="numeric" autocomplete="off" style="width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);font-size:1em;">
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+          <button class="ct-pw-cancel" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Cancel</button>
+          <button class="ct-pw-ok" type="button" style="padding:6px 14px;border-radius:8px;border:none;background:var(--primary-color);color:var(--text-primary-color,#fff);cursor:pointer;">OK</button>
+        </div>`;
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+      const input = box.querySelector("input");
+      const finish = (value) => {
+        overlay.remove();
+        resolve(value);
+      };
+      box.querySelector(".ct-pw-cancel").addEventListener("click", () => finish(null));
+      box.querySelector(".ct-pw-ok").addEventListener("click", () => finish(input.value));
+      input.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") finish(input.value);
+        if (ev.key === "Escape") finish(null);
+      });
+      overlay.addEventListener("click", (ev) => {
+        if (ev.target === overlay) finish(null);
+      });
+      setTimeout(() => input.focus(), 0);
+    });
+  }
+
+  // PIN is checked server-side (cleaning_tasks/pin/verify) against
+  // store.mark_all_pin() - never hardcoded here, and never sent to this
+  // (possibly non-admin, kiosk) session even on a wrong guess. Still just
+  // a deterrent against an accidental tap wiping out the whole list, not
+  // real security - the check is easy to bypass by anyone editing this
+  // file. Works on today's live list (real switch.turn_on, same path a
+  // manual tick uses) or on a past day's catch-up preview
+  // (cleaning_tasks/task/mark_done_for_date) - never on a future day,
+  // since nothing there has happened yet.
+  async _markAllDone() {
+    if (this._dayOffset > 0) return;
+    const entered = await this._promptPassword();
+    if (entered === null) return;
+    const { valid } = await this._hass.callWS({ type: "cleaning_tasks/pin/verify", pin: entered });
+    if (!valid) {
+      window.alert("Incorrect password.");
+      return;
+    }
+
+    if (this._dayOffset === 0) {
+      const targets = Object.entries(this._hass.states)
+        .filter(([id, state]) => id.startsWith("switch.cleaning_task_") && state.attributes.due && state.state !== "on")
+        .map(([id]) => id);
+      if (targets.length === 0) return;
+      if (!window.confirm(`Mark all ${targets.length} remaining task(s) as done?`)) return;
+      await Promise.all(targets.map((id) => this._hass.callService("switch", "turn_on", { entity_id: id })));
+      return;
+    }
+
+    const offset = this._dayOffset;
+    const dateIso = this._isoForOffset(offset);
+    const day = await this._previewCache[offset];
+    const targets = (day && day.tasks ? day.tasks : []).filter((t) => !t.done);
+    if (targets.length === 0) return;
+    if (!window.confirm(`Mark all ${targets.length} remaining task(s) as done for ${dateIso}?`)) return;
+    await Promise.all(
+      targets.map((t) => this._hass.callWS({ type: "cleaning_tasks/task/mark_done_for_date", task_id: t.task_id, date: dateIso, done: true }))
+    );
+    delete this._previewCache[offset];
+    this._render();
+  }
+
+  async _toggleDoneForDate(taskId, dateIso, done) {
+    await this._hass.callWS({ type: "cleaning_tasks/task/mark_done_for_date", task_id: taskId, date: dateIso, done });
+    delete this._previewCache[this._dayOffset];
+    this._render();
+  }
+
   _shiftDay(delta) {
-    const next = Math.min(6, Math.max(0, this._dayOffset + delta));
+    const next = Math.min(7, Math.max(-7, this._dayOffset + delta));
     if (next === this._dayOffset) return;
     this._dayOffset = next;
     this._render();
@@ -289,11 +424,17 @@ class CleaningTodayCard extends HTMLElement {
     return _cachedTranslation(english, GOOGLE_LANG[this._lang()]);
   }
 
+  // Must be called straight from the tap handler (no await before it) -
+  // see unlockAudioForTap().
   async _speak(attrs) {
-    if (!("speechSynthesis" in window)) return;
+    unlockAudioForTap();
     const lang = this._lang();
     const english = attrs.task_name || "";
-    const text = await translateText(english, GOOGLE_LANG[lang]);
+    // The row render already warmed the translation cache, so this is
+    // normally synchronous; only fetch if it genuinely isn't cached yet.
+    const googleCode = GOOGLE_LANG[lang];
+    let text = _cachedTranslation(english, googleCode);
+    if (googleCode && text === english) text = await translateText(english, googleCode);
     if (!text) return;
 
     const voiceState = this._hass && this._hass.states["text.cleaning_voice_name"];
@@ -321,16 +462,30 @@ class CleaningTodayCard extends HTMLElement {
       }
     }
 
-    window.speechSynthesis.cancel();
+    const cloudFallback = () => playHaCloudTts(this._hass, text, lang, null).catch(() => {});
+    const voices = "speechSynthesis" in window ? window.speechSynthesis.getVoices() : [];
+    if (!voices.length) {
+      await cloudFallback();
+      return;
+    }
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = LANG_CODE[lang] || "en-ZA";
     if (voiceName && !cloudVoiceId) {
-      const voice = window.speechSynthesis.getVoices().find((v) => v.name === voiceName);
+      const voice = voices.find((v) => v.name === voiceName);
       if (voice) {
         utterance.voice = voice;
         utterance.lang = voice.lang;
       }
     }
+    // e.g. Android Chrome rejects a lang it has no voice for with
+    // "language-unavailable" instead of falling back to a default voice.
+    utterance.onerror = (ev) => {
+      if (ev.error !== "interrupted" && ev.error !== "canceled") cloudFallback();
+    };
+    // Held on the instance: Chrome can garbage-collect an unreferenced
+    // utterance mid-speech and silently cut it off.
+    this._utterance = utterance;
     window.speechSynthesis.speak(utterance);
   }
 
@@ -439,6 +594,11 @@ class CleaningTodayCard extends HTMLElement {
     return d;
   }
 
+  _isoForOffset(offset) {
+    const d = this._dateForOffset(offset);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
   _render() {
     if (!this._hass || !this._built) return;
     const lang = this._lang();
@@ -465,12 +625,13 @@ class CleaningTodayCard extends HTMLElement {
     this.querySelector(".ct-instructions").textContent = strings.instructions;
     const prevBtn = this.querySelector(".ct-day-prev");
     const nextBtn = this.querySelector(".ct-day-next");
-    prevBtn.disabled = this._dayOffset <= 0;
+    prevBtn.disabled = this._dayOffset <= -7;
     prevBtn.style.opacity = prevBtn.disabled ? "0.3" : "1";
-    nextBtn.disabled = this._dayOffset >= 6;
+    nextBtn.disabled = this._dayOffset >= 7;
     nextBtn.style.opacity = nextBtn.disabled ? "0.3" : "1";
     this.querySelector(".ct-day-today").style.display = this._dayOffset === 0 ? "none" : "inline-block";
     this.querySelector(".ct-print").style.display = this._dayOffset === 0 ? "inline-block" : "none";
+    this.querySelector(".ct-mark-all").style.display = this._dayOffset <= 0 ? "inline-block" : "none";
 
     if (this._dayOffset === 0) {
       this._renderLive(strings);
@@ -545,7 +706,7 @@ class CleaningTodayCard extends HTMLElement {
     let cached = this._previewCache[offset];
     if (!cached) {
       cached = this._hass.callWS({ type: "cleaning_tasks/week_preview" }).then((result) => {
-        for (let i = 0; i < result.days.length; i++) this._previewCache[i] = result.days[i];
+        for (const day of result.days) this._previewCache[day.offset] = day;
         return this._previewCache[offset];
       });
       this._previewCache[offset] = cached;
@@ -578,10 +739,13 @@ class CleaningTodayCard extends HTMLElement {
       return;
     }
 
+    const interactive = offset < 0; // catch-up marking allowed for past days only
+    const dateIso = day.date;
     for (const room of roomNames) {
-      const tasks = [...byRoom[room]].sort((a, b) =>
-        this._taskLabel({ task_name: a.task_name }).localeCompare(this._taskLabel({ task_name: b.task_name }))
-      );
+      const tasks = [...byRoom[room]].sort((a, b) => {
+        if (interactive && a.done !== b.done) return a.done ? 1 : -1;
+        return this._taskLabel({ task_name: a.task_name }).localeCompare(this._taskLabel({ task_name: b.task_name }));
+      });
       const section = document.createElement("div");
       section.style.breakInside = "avoid";
       section.style.marginBottom = "16px";
@@ -592,37 +756,47 @@ class CleaningTodayCard extends HTMLElement {
       section.appendChild(heading);
 
       for (const task of tasks) {
-        section.appendChild(this._taskRowPreview(task));
+        section.appendChild(this._taskRowPreview(task, interactive, dateIso));
       }
       roomsEl.appendChild(section);
     }
   }
 
-  _taskRowPreview(task) {
+  _taskRowPreview(task, interactive, dateIso) {
     const attrs = { task_name: task.task_name };
     const label = this._taskLabel(attrs);
+    const done = interactive && task.done;
     const row = document.createElement("div");
     row.style.cssText =
-      "display:flex;align-items:center;gap:8px;min-height:52px;padding:0 8px 0 12px;margin-bottom:6px;opacity:0.85;" +
+      "display:flex;align-items:center;gap:8px;min-height:52px;padding:0 8px 0 12px;margin-bottom:6px;" +
+      (interactive ? "" : "opacity:0.85;") +
       "border-radius:var(--ha-card-border-radius,12px);background:var(--card-background-color,var(--secondary-background-color));";
 
     const icon = document.createElement("ha-icon");
     icon.icon = task.conditional_on_used ? "mdi:help-circle-outline" : task.weather_deferred ? "mdi:weather-rainy" : "mdi:broom";
+    if (done) icon.style.color = "green";
 
     const body = document.createElement("div");
-    body.style.cssText = "display:flex;flex-direction:column;overflow:hidden;flex:1;min-width:0;";
+    body.style.cssText = `display:flex;flex-direction:column;overflow:hidden;flex:1;min-width:0;${interactive ? "cursor:pointer;" : ""}`;
     const name = document.createElement("span");
     name.textContent = label;
-    name.style.cssText = "font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+    name.style.cssText = `font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;${done ? "text-decoration:line-through;color:green;" : ""}`;
     const note = document.createElement("span");
-    note.style.cssText = "font-size:0.85em;opacity:0.75;";
-    note.textContent = task.weather_deferred
-      ? "Weather-permitting"
-      : task.conditional_on_used
-        ? "If room is used"
-        : "Scheduled";
+    note.style.cssText = `font-size:0.85em;opacity:0.75;${done ? "color:green;" : ""}`;
+    note.textContent = done
+      ? "Done"
+      : task.weather_deferred
+        ? "Weather-permitting"
+        : task.conditional_on_used
+          ? "If room is used"
+          : interactive
+            ? "Do"
+            : "Scheduled";
     body.appendChild(name);
     body.appendChild(note);
+    if (interactive) {
+      body.addEventListener("click", () => this._toggleDoneForDate(task.task_id, dateIso, !done));
+    }
 
     const speakBtn = document.createElement("button");
     speakBtn.type = "button";

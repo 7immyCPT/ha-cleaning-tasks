@@ -36,6 +36,11 @@ def _default_data() -> dict[str, Any]:
         "enabled_languages": list(DEFAULT_ENABLED_LANGUAGES),
         "voice_names": {lang: "" for lang in LANGUAGES},
         "weather_entity": "",
+        # Deliberately NOT hardcoded in a .js file that ends up on GitHub -
+        # lives only in this instance's own .storage, editable from the
+        # admin card. Default matches what used to be hardcoded, so nothing
+        # changes for the user until they set their own.
+        "mark_all_pin": "6690",
     }
 
 
@@ -193,6 +198,15 @@ class CleaningTasksStore:
     def set_weather_entity(self, entity_id: str) -> str:
         self.data["weather_entity"] = (entity_id or "").strip()
         return self.data["weather_entity"]
+
+    # ---------- mark-all-done PIN ----------
+
+    def mark_all_pin(self) -> str:
+        return self.data.get("mark_all_pin", "6690")
+
+    def set_mark_all_pin(self, pin: str) -> str:
+        self.data["mark_all_pin"] = (pin or "").strip() or "6690"
+        return self.data["mark_all_pin"]
 
     # ---------- CSV ----------
 

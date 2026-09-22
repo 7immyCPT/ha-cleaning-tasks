@@ -185,6 +185,51 @@ async def handle_week_preview(hass, connection, msg):
     connection.send_result(msg["id"], {"days": days})
 
 
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/task/mark_done_for_date",
+    vol.Required("task_id"): str,
+    vol.Required("date"): str,
+    vol.Optional("done", default=True): bool,
+})
+@websocket_api.async_response
+async def handle_mark_done_for_date(hass, connection, msg):
+    _manager(hass).mark_done_for_date(msg["task_id"], msg["date"], msg["done"])
+    await _save(hass)
+    connection.send_result(msg["id"], {})
+
+
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/pin/verify",
+    vol.Required("pin"): str,
+})
+@websocket_api.async_response
+async def handle_pin_verify(hass, connection, msg):
+    # Deliberately not admin-gated - the kiosk's own (non-admin) user needs
+    # to call this. The actual stored PIN is never sent back, only whether
+    # it matched, so this doesn't leak it to a non-admin session.
+    valid = msg["pin"] == _manager(hass).store.mark_all_pin()
+    connection.send_result(msg["id"], {"valid": valid})
+
+
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/pin/get"})
+@websocket_api.async_response
+async def handle_pin_get(hass, connection, msg):
+    connection.send_result(msg["id"], {"pin": _manager(hass).store.mark_all_pin()})
+
+
+@websocket_api.require_admin
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/pin/set",
+    vol.Required("pin"): str,
+})
+@websocket_api.async_response
+async def handle_pin_set(hass, connection, msg):
+    pin = _manager(hass).store.set_mark_all_pin(msg["pin"])
+    await _save(hass)
+    connection.send_result(msg["id"], {"pin": pin})
+
+
 def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_list)
     websocket_api.async_register_command(hass, handle_room_add)
@@ -198,3 +243,7 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_weather_get)
     websocket_api.async_register_command(hass, handle_weather_set)
     websocket_api.async_register_command(hass, handle_week_preview)
+    websocket_api.async_register_command(hass, handle_mark_done_for_date)
+    websocket_api.async_register_command(hass, handle_pin_verify)
+    websocket_api.async_register_command(hass, handle_pin_get)
+    websocket_api.async_register_command(hass, handle_pin_set)

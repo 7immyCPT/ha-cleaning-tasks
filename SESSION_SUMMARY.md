@@ -1,5 +1,49 @@
 # Session summary — HA Cleaning Tasks (for continuing in a new chat)
 
+## Latest session (2026-09-22) — week preview catch-up, PIN, mobile TTS, scheduling fix
+1. **Shipped (built last session, verified this one)**: ±7 day browsing;
+   🔒 mark-all-done on today and past days (hidden on future days); header
+   cleanup at kiosk width; masked password modal instead of
+   `window.prompt`; PIN checked server-side (`cleaning_tasks/pin/verify`)
+   and admin-editable (`pin/get` / `pin/set`, "Kiosk PIN" section in the
+   task-editor card; default `6690`). Past-day rows toggle via
+   `cleaning_tasks/task/mark_done_for_date`.
+2. **`__init__.py` was NOT stale** - the local copy was byte-identical to
+   the server (the `/local/cleaning_tasks` + `shutil.copyfile` approach).
+3. **Mobile/tablet TTS fix** (`cleaning-today-card.js`): `_speak` awaited
+   a Google translate fetch and `tts_get_url` before `speak()` /
+   `audio.play()`, so mobile browsers treated the tap as expired and
+   blocked the audio. Now: each tap synchronously plays a silent WAV on one
+   shared `<audio>` element (unlocking it for the real HA Cloud clip) and
+   the first tap speaks an empty utterance (iOS speechSynthesis unlock);
+   cached translations are used without awaiting; devices with **no Web
+   Speech voices** (Android WebView = HA Companion app / kiosk browsers)
+   fall back to HA Cloud TTS, en-ZA `LeahNeural` for languages without
+   their own cloud voice; an utterance `error` (e.g.
+   `language-unavailable`) also falls back to HA Cloud. Verified in an
+   emulated mobile viewport, including simulated zero-voices; still worth
+   a real-device check.
+4. **Scheduling bug**: with cleaning days Mon+Wed, a 2x/week task (interval
+   3.5 days) was never due on Wednesday (only 2 days after Monday), so it
+   silently became weekly - Wednesday showed nothing. `_is_due` now also
+   makes a task due when doing it now is closer to the target interval
+   than waiting for the next cleaning day (`_days_to_next_cleaning_day`).
+   Simulated 5 weeks against live data: Wed = the 19 2x/week tasks, Mon =
+   those + the 15 weekly ones, monthlies roughly monthly.
+5. **Past-day preview bug**: a task done on that exact day stopped being
+   "due" and vanished from the list instead of showing done - so ticking a
+   past day emptied it out. `_preview_due_tasks` now keeps tasks whose
+   `last_done == target`.
+6. **Data note**: on 2026-09-22 the user ran mark-all-done for Monday
+   2026-09-21. It only marked that day's list, but the list held 55 tasks
+   because most (monthlies included) had never been ticked and a
+   never-done task always counts as due. All those now have
+   `last_done = 2026-09-21`.
+7. Lovelace resource versions are now bumped via the websocket
+   (`lovelace/resources/update`) from the logged-in browser page, not by
+   clicking through Settings → Dashboards → Resources. `?v=` is the first
+   12 characters of the file's sha256.
+
 ## Latest session (2026-09-15) — language translation, voice pronunciation, multi-language support
 Started from: "when I select a language I want it to translate the task and
 voice to that language" — it wasn't.
