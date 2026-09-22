@@ -230,6 +230,14 @@ async def handle_pin_set(hass, connection, msg):
     connection.send_result(msg["id"], {"pin": pin})
 
 
+@websocket_api.require_admin
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/schedule/rebalance"})
+@websocket_api.async_response
+async def handle_schedule_rebalance(hass, connection, msg):
+    _manager(hass).rebalance_schedule()
+    connection.send_result(msg["id"], {})
+
+
 def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_list)
     websocket_api.async_register_command(hass, handle_room_add)
@@ -247,3 +255,4 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_pin_verify)
     websocket_api.async_register_command(hass, handle_pin_get)
     websocket_api.async_register_command(hass, handle_pin_set)
+    websocket_api.async_register_command(hass, handle_schedule_rebalance)

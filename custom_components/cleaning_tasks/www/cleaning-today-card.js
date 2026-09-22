@@ -510,14 +510,27 @@ class CleaningTodayCard extends HTMLElement {
     return null;
   }
 
-  _downloadPrintable() {
-    const byRoom = this._lastByRoom || {};
+  // Prints whichever day is on screen: today's live list, or another day's
+  // server preview (the same list the card is showing for that day).
+  async _downloadPrintable() {
+    const offset = this._dayOffset;
+    let byRoom = this._lastByRoom || {};
+    let previewDay = null;
+    if (offset !== 0) {
+      previewDay = await (this._previewCache[offset] ||
+        this._hass.callWS({ type: "cleaning_tasks/week_preview" }).then((r) => r.days.find((d) => d.offset === offset)));
+      byRoom = {};
+      for (const task of (previewDay && previewDay.tasks) || []) {
+        const room = task.room || "Other";
+        (byRoom[room] = byRoom[room] || []).push({ attrs: { task_name: task.task_name } });
+      }
+    }
     const roomNames = Object.keys(byRoom).sort();
-    const html = this._buildPrintableHtml(roomNames, byRoom);
+    const html = this._buildPrintableHtml(roomNames, byRoom, offset, previewDay);
     const blob = new Blob([html], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    const dateSlug = new Date().toISOString().slice(0, 10);
+    const dateSlug = this._isoForOffset(offset);
     a.href = url;
     a.download = `cleaning-checklist-${dateSlug}.html`;
     document.body.appendChild(a);
@@ -526,14 +539,21 @@ class CleaningTodayCard extends HTMLElement {
     URL.revokeObjectURL(url);
   }
 
-  _buildPrintableHtml(roomNames, byRoom) {
+  _buildPrintableHtml(roomNames, byRoom, offset = 0, previewDay = null) {
     const esc = (s) => String(s == null ? "" : s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-    const now = new Date();
-    const dateLabel = now.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const dateLabel = this._dateForOffset(offset).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
     let heading = `Cleaning checklist — ${esc(dateLabel)}`;
     let note = "";
-    if (roomNames.length === 0) {
+    if (offset !== 0) {
+      if (!previewDay || !previewDay.is_cleaning_day) {
+        note = "Not a cleaning day.";
+      } else if (roomNames.length === 0) {
+        note = "Nothing is scheduled for this day.";
+      } else if (offset > 0) {
+        note = "Planned list - weather or room usage on the day may still change it slightly.";
+      }
+    } else if (roomNames.length === 0) {
       const next = this._nextCleaningDay();
       if (next && next.offset === 0) {
         note = "It's a cleaning day, but nothing is currently due.";
@@ -630,7 +650,7 @@ class CleaningTodayCard extends HTMLElement {
     nextBtn.disabled = this._dayOffset >= 7;
     nextBtn.style.opacity = nextBtn.disabled ? "0.3" : "1";
     this.querySelector(".ct-day-today").style.display = this._dayOffset === 0 ? "none" : "inline-block";
-    this.querySelector(".ct-print").style.display = this._dayOffset === 0 ? "inline-block" : "none";
+    this.querySelector(".ct-print").style.display = "inline-block";
     this.querySelector(".ct-mark-all").style.display = this._dayOffset <= 0 ? "inline-block" : "none";
 
     if (this._dayOffset === 0) {

@@ -242,9 +242,107 @@ class CleaningManager:
         entity = self.room_used_entities.get(room_id)
         return bool(entity and entity.is_on)
 
+    # ---------- schedule balancing ----------
+
+    @staticmethod
+    def _slot_kind(task: dict) -> str | None:
+        """Weekly and monthly (once-per) tasks get a fixed slot so they
+        spread evenly over the cleaning days instead of all landing on
+        whichever day they were last done (or, never done, all on the next
+        cleaning day). Anything more frequent already happens every
+        cleaning day or close to it."""
+        if task.get("conditional_on_used") or task.get("count") != 1:
+            return None
+        return {"week": "weekly", "month": "monthly"}.get(task.get("unit"))
+
+    def _slot_valid(self, task: dict, cleaning_days: list[str]) -> bool:
+        slot = task.get("slot") or {}
+        if slot.get("day") not in cleaning_days:
+            return False
+        if self._slot_kind(task) == "monthly":
+            return slot.get("week") in (1, 2, 3, 4)
+        return True
+
+    def ensure_slots(self, rebalance: bool = False) -> bool:
+        """Give every weekly/monthly task a valid slot, filling the lightest
+        day (weekly) or week+day (monthly) first. A room's unslotted tasks
+        are placed together, so the cleaner does a room in one go. Existing
+        valid slots are kept unless rebalancing. Returns True if anything
+        changed."""
+        if not self.day_entities:
+            return False  # not set up yet - every slot would look invalid
+        cleaning_days = [d for i, d in enumerate(WEEKDAYS) if self.is_cleaning_day(i)]
+        changed = False
+        for task in self.store.tasks():
+            kind = self._slot_kind(task)
+            if (rebalance or kind is None or not self._slot_valid(task, cleaning_days)) and "slot" in task:
+                del task["slot"]
+                changed = True
+        if not cleaning_days:
+            return changed
+
+        weekly_load = {d: 0 for d in cleaning_days}
+        monthly_load = {(w, d): 0 for w in (1, 2, 3, 4) for d in cleaning_days}
+        pending: dict[str, dict[str, list[dict]]] = {"weekly": {}, "monthly": {}}
+        for task in self.store.tasks():
+            kind = self._slot_kind(task)
+            if kind is None:
+                continue
+            slot = task.get("slot")
+            if slot is None:
+                pending[kind].setdefault(task["room_id"], []).append(task)
+            elif kind == "weekly":
+                weekly_load[slot["day"]] += 1
+            else:
+                monthly_load[(slot["week"], slot["day"])] += 1
+
+        def biggest_rooms_first(groups: dict[str, list[dict]]) -> list[list[dict]]:
+            return [groups[r] for r in sorted(groups, key=lambda r: (-len(groups[r]), r))]
+
+        for tasks in biggest_rooms_first(pending["weekly"]):
+            day = min(cleaning_days, key=lambda d: weekly_load[d])
+            for task in tasks:
+                task["slot"] = {"day": day}
+            weekly_load[day] += len(tasks)
+            changed = True
+        # Monthly slots sit on top of that day's weekly load.
+        for tasks in biggest_rooms_first(pending["monthly"]):
+            week, day = min(monthly_load, key=lambda k: monthly_load[k] + weekly_load[k[1]])
+            for task in tasks:
+                task["slot"] = {"day": day, "week": week}
+            monthly_load[(week, day)] += len(tasks)
+            changed = True
+
+        if changed:
+            self.hass.async_create_task(self.store.async_save())
+        return changed
+
+    def _is_due_slotted(self, task: dict, today: date) -> bool:
+        slot = task["slot"]
+        on_slot = WEEKDAYS[today.weekday()] == slot["day"]
+        monthly = self._slot_kind(task) == "monthly"
+        if monthly:
+            on_slot = on_slot and (today.day - 1) // 7 + 1 == slot["week"]
+        last_done = task.get("last_done")
+        try:
+            days_since = (today - date.fromisoformat(last_done)).days if last_done else None
+        except ValueError:
+            days_since = None
+        if days_since is None:
+            return on_slot
+        # On its slot: due unless it was done very recently (e.g. caught up
+        # on another day). Missed its slot: due on any cleaning day once
+        # it's clearly overdue, rather than skipping a whole cycle.
+        interval = _target_interval_days(task)
+        if on_slot and days_since >= (14 if monthly else interval / 2):
+            return True
+        return days_since >= interval + (7 if monthly else 3)
+
     def _is_due(self, task: dict, today: date, days_left_in_month: int) -> bool:
         if task.get("conditional_on_used"):
             return self.is_room_used(task["room_id"])
+        if task.get("slot"):
+            return self._is_due_slotted(task, today)
         interval = _target_interval_days(task)
         last_done = task.get("last_done")
         if not last_done:
@@ -342,6 +440,9 @@ class CleaningManager:
         self.hass.async_create_task(self.async_refresh_today())
 
     async def async_refresh_today(self) -> None:
+        # Cheap no-op once every task has a valid slot; picks up new tasks,
+        # frequency edits, CSV imports and cleaning-day changes.
+        self.ensure_slots()
         today = date.today()
         today_iso = today.isoformat()
         days_left_in_month = calendar.monthrange(today.year, today.month)[1] - today.day
@@ -401,6 +502,7 @@ class CleaningManager:
         completion record (last_done only keeps the most recent
         completion, not a full history, so "was this exact task done on
         that exact day" genuinely isn't knowable from current data)."""
+        self.ensure_slots()
         today = date.today()
         bad_by_date = self._bad_weather_by_date(await self._async_get_forecast())
         days = []
@@ -491,6 +593,10 @@ class CleaningManager:
         self.hass.async_create_task(self.store.async_save())
         self.refresh_today()
         return result
+
+    def rebalance_schedule(self) -> None:
+        self.ensure_slots(rebalance=True)
+        self.refresh_today()
 
     def on_day_or_room_used_changed(self) -> None:
         self.hass.async_create_task(self.store.async_save())

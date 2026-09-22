@@ -39,6 +39,21 @@
    because most (monthlies included) had never been ticked and a
    never-done task always counts as due. All those now have
    `last_done = 2026-09-21`.
+8. **Print any day**: 🖨️ now shows on every day and prints the list on
+   screen (another day's list comes from `week_preview`, and future days
+   get a "planned list" note). It used to be today only.
+9. **Schedule balancing** (Mon was ~34 tasks, Wed ~19): once-a-week tasks
+   get a fixed `slot.day`, once-a-month tasks a fixed `slot.day` +
+   `slot.week` (week of month 1-4), assigned greedily to the lightest
+   day/week, with a room's tasks kept together (`ensure_slots`, run on
+   every refresh, so new tasks and cleaning-day changes are picked up).
+   Slotted tasks are due on their slot (weekly once ≥ half the interval has
+   passed, monthly once ≥14 days have), or on any cleaning day once clearly
+   overdue (weekly ≥10 days, monthly ≥ ~37). A never-done slotted task
+   waits for its slot instead of piling onto the next cleaning day. Admin
+   "Schedule balance" card → `cleaning_tasks/schedule/rebalance`
+   re-spreads everything. Simulated against live data: every cleaning day
+   lands around 27-31 tasks.
 7. Lovelace resource versions are now bumped via the websocket
    (`lovelace/resources/update`) from the logged-in browser page, not by
    clicking through Settings → Dashboards → Resources. `?v=` is the first

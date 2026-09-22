@@ -73,6 +73,14 @@ class CleaningTaskEditorCard extends HTMLElement {
             </div>
             <input class="te-pin" type="text" inputmode="numeric" placeholder="PIN" style="width:120px;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);">
           </div>
+        </ha-card>
+        <ha-card header="Schedule balance" style="margin-top:16px;">
+          <div style="padding:0 16px 16px;">
+            <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
+              Once-a-week tasks each get a fixed cleaning day, and once-a-month tasks a fixed week and day, spread so every cleaning day gets a similar amount of work (a room's tasks are kept together). New tasks are slotted in automatically. Use this after changing cleaning days or adding lots of tasks to spread everything out again from scratch.
+            </div>
+            <button class="te-rebalance" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Rebalance schedule</button>
+          </div>
         </ha-card>`;
       this.style.display = "block";
       this._data = { rooms: [], tasks: [] };
@@ -87,6 +95,7 @@ class CleaningTaskEditorCard extends HTMLElement {
       this.querySelector(".te-import").addEventListener("change", (ev) => this._importCsv(ev));
       this.querySelector(".te-weather-entity").addEventListener("change", (ev) => this._setWeatherEntity(ev.target.value));
       this.querySelector(".te-pin").addEventListener("blur", (ev) => this._setPin(ev.target.value));
+      this.querySelector(".te-rebalance").addEventListener("click", () => this._rebalance());
     }
     if (this._hass) this._load();
   }
@@ -112,6 +121,11 @@ class CleaningTaskEditorCard extends HTMLElement {
 
   async _setPin(pin) {
     await this._hass.callWS({ type: "cleaning_tasks/pin/set", pin });
+  }
+
+  async _rebalance() {
+    if (!window.confirm("Re-spread all weekly and monthly tasks across the cleaning days? Some tasks will move to a different day.")) return;
+    await this._hass.callWS({ type: "cleaning_tasks/schedule/rebalance" });
   }
 
   async _loadWeather() {
