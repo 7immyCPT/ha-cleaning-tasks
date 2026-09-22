@@ -39,6 +39,10 @@
    because most (monthlies included) had never been ticked and a
    never-done task always counts as due. All those now have
    `last_done = 2026-09-21`.
+7. Lovelace resource versions are now bumped via the websocket
+   (`lovelace/resources/update`) from the logged-in browser page, not by
+   clicking through Settings → Dashboards → Resources. `?v=` is the first
+   12 characters of the file's sha256.
 8. **Print any day**: 🖨️ now shows on every day and prints the list on
    screen (another day's list comes from `week_preview`, and future days
    get a "planned list" note). It used to be today only.
@@ -58,10 +62,7 @@
     task for that day (grouped by room, all ticked, with an All toggle) so
     missed ones can be unticked; only ticked tasks get marked
     (`_promptChecklist`, replaces the old `window.confirm`).
-7. Lovelace resource versions are now bumped via the websocket
-   (`lovelace/resources/update`) from the logged-in browser page, not by
-   clicking through Settings → Dashboards → Resources. `?v=` is the first
-   12 characters of the file's sha256.
+
 
 ## Latest session (2026-09-15) — language translation, voice pronunciation, multi-language support
 Started from: "when I select a language I want it to translate the task and
