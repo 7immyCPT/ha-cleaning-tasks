@@ -178,6 +178,13 @@ async def handle_weather_set(hass, connection, msg):
     connection.send_result(msg["id"], {"weather_entity": entity_id})
 
 
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/week_preview"})
+@websocket_api.async_response
+async def handle_week_preview(hass, connection, msg):
+    days = await _manager(hass).async_week_preview()
+    connection.send_result(msg["id"], {"days": days})
+
+
 def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_list)
     websocket_api.async_register_command(hass, handle_room_add)
@@ -190,3 +197,4 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_languages_set)
     websocket_api.async_register_command(hass, handle_weather_get)
     websocket_api.async_register_command(hass, handle_weather_set)
+    websocket_api.async_register_command(hass, handle_week_preview)

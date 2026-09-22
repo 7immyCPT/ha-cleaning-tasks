@@ -348,6 +348,50 @@ class CleaningManager:
                     weather_deferred = True
             entity.set_state(due=due_today, done=done_today, weather_deferred=weather_deferred)
 
+    def _preview_due_tasks(self, target: date, bad_by_date: dict[str, bool]) -> list[dict]:
+        """Which tasks would be due on `target` given how things stand
+        right now - used for browsing the rest of the week, not for
+        ticking anything off. Two things this can't truly predict: a
+        conditional_on_used task's room might get flagged used/unused
+        between now and then (shown using today's current flag, as the
+        best available guess), and a weather forecast this far out may not
+        exist yet for every provider (falls back to not deferring)."""
+        days_left_in_month = calendar.monthrange(target.year, target.month)[1] - target.day
+        results = []
+        for task in self.store.tasks():
+            if not self._is_due(task, target, days_left_in_month):
+                continue
+            weather_deferred = bool(
+                task.get("weather_dependent") and self._should_defer_for_weather(task, target, bad_by_date)
+            )
+            room = self.store.get_room(task["room_id"])
+            results.append({
+                "task_id": task["id"],
+                "task_name": task["name"],
+                "room": room["name"] if room else task["room_id"],
+                "conditional_on_used": task.get("conditional_on_used", False),
+                "weather_deferred": weather_deferred,
+            })
+        return results
+
+    async def async_week_preview(self) -> list[dict]:
+        """Today plus the next 6 days: which tasks would be due on each,
+        for the kiosk card's day-by-day browsing. Read-only - nothing here
+        marks anything done."""
+        today = date.today()
+        bad_by_date = self._bad_weather_by_date(await self._async_get_forecast())
+        days = []
+        for offset in range(7):
+            target = today + timedelta(days=offset)
+            is_cleaning_day = self.is_cleaning_day(target.weekday())
+            days.append({
+                "date": target.isoformat(),
+                "weekday": WEEKDAYS[target.weekday()],
+                "is_cleaning_day": is_cleaning_day,
+                "tasks": self._preview_due_tasks(target, bad_by_date) if is_cleaning_day else [],
+            })
+        return days
+
     def mark_done(self, task_id: str) -> None:
         task = self.store.get_task(task_id)
         if not task:

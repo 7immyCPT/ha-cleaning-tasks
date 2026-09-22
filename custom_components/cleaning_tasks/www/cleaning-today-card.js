@@ -32,6 +32,14 @@
  * The chrome text (instructions/do/done/nothing-due) below is machine-
  * assisted for the languages beyond Afrikaans/isiXhosa - worth a native
  * speaker's review before relying on it.
+ *
+ * ‹ › arrows next to the date browse today plus the next 6 days. Today is
+ * the live, interactive checklist (tick things off, speak, etc.) exactly
+ * as before; any other day is a read-only preview fetched from the
+ * backend (cleaning_tasks/week_preview), computed with the same due-date/
+ * weather logic - it can't predict a conditional_on_used room's future
+ * "used" flag, so those are shown using today's current flag as a best
+ * guess and labeled "If room is used".
  */
 const STRINGS = {
   English: {
@@ -152,6 +160,12 @@ async function playHaCloudTts(hass, text, lang, voiceId) {
   });
 }
 
+const WEEKDAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const WEEKDAY_LABELS = {
+  mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday",
+  fri: "Friday", sat: "Saturday", sun: "Sunday",
+};
+
 const TRANSLATION_CACHE_KEY = "cleaning_tasks_translation_cache_v1";
 let _translationCache = null;
 const _translationPending = new Map();
@@ -213,21 +227,42 @@ class CleaningTodayCard extends HTMLElement {
         <ha-card>
           <div class="ct-header" style="padding:16px 16px 8px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
             <div>
-              <div class="ct-date" style="font-size:1.3em;font-weight:600;"></div>
+              <div style="display:flex;align-items:center;gap:4px;">
+                <button class="ct-day-prev" type="button" title="Previous day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;">‹</button>
+                <div class="ct-date" style="font-size:1.3em;font-weight:600;white-space:nowrap;"></div>
+                <button class="ct-day-next" type="button" title="Next day" style="flex:0 0 auto;width:28px;height:28px;padding:0;border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;border-radius:6px;">›</button>
+                <button class="ct-day-today" type="button" style="display:none;margin-left:4px;padding:3px 10px;border-radius:12px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);font-size:0.8em;cursor:pointer;white-space:nowrap;">Today</button>
+              </div>
               <div class="ct-instructions" style="opacity:0.75;font-size:0.9em;margin-top:4px;"></div>
             </div>
-            <select class="ct-lang" style="padding:4px 6px;border-radius:8px;"></select>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <select class="ct-lang" style="padding:4px 6px;border-radius:8px;"></select>
+              <button class="ct-print" type="button" title="Download a printable A4 checklist for this list" style="padding:6px 10px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;white-space:nowrap;">🖨️ Print</button>
+            </div>
           </div>
           <div class="ct-rooms" style="padding:0 16px 16px;column-width:320px;column-gap:16px;"></div>
         </ha-card>`;
       this.style.display = "block";
+      this._dayOffset = 0;
+      this._previewCache = {};
       this.querySelector(".ct-lang").addEventListener("change", (ev) => {
         this._hass.callService("select", "select_option", {
           entity_id: "select.cleaning_display_language",
           option: ev.target.value,
         });
       });
+      this.querySelector(".ct-print").addEventListener("click", () => this._downloadPrintable());
+      this.querySelector(".ct-day-prev").addEventListener("click", () => this._shiftDay(-1));
+      this.querySelector(".ct-day-next").addEventListener("click", () => this._shiftDay(1));
+      this.querySelector(".ct-day-today").addEventListener("click", () => this._shiftDay(-this._dayOffset));
     }
+    this._render();
+  }
+
+  _shiftDay(delta) {
+    const next = Math.min(6, Math.max(0, this._dayOffset + delta));
+    if (next === this._dayOffset) return;
+    this._dayOffset = next;
     this._render();
   }
 
@@ -304,6 +339,106 @@ class CleaningTodayCard extends HTMLElement {
     this._hass.callService("switch", "toggle", { entity_id: entityId });
   }
 
+  // Finds today's weekday (if it's a cleaning day) or, failing that, the
+  // next upcoming one that's toggled on - used so the printable list still
+  // makes sense on a day nothing is due.
+  _nextCleaningDay() {
+    const todayIdx = (new Date().getDay() + 6) % 7; // JS getDay(): 0=Sun -> convert to 0=Mon
+    for (let offset = 0; offset < 7; offset++) {
+      const idx = (todayIdx + offset) % 7;
+      const day = WEEKDAYS[idx];
+      const state = this._hass.states[`switch.cleaning_day_${day}`];
+      if (state && state.state === "on") {
+        return { day, label: WEEKDAY_LABELS[day], offset };
+      }
+    }
+    return null;
+  }
+
+  _downloadPrintable() {
+    const byRoom = this._lastByRoom || {};
+    const roomNames = Object.keys(byRoom).sort();
+    const html = this._buildPrintableHtml(roomNames, byRoom);
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const dateSlug = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `cleaning-checklist-${dateSlug}.html`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  _buildPrintableHtml(roomNames, byRoom) {
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+    const now = new Date();
+    const dateLabel = now.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+    let heading = `Cleaning checklist — ${esc(dateLabel)}`;
+    let note = "";
+    if (roomNames.length === 0) {
+      const next = this._nextCleaningDay();
+      if (next && next.offset === 0) {
+        note = "It's a cleaning day, but nothing is currently due.";
+      } else if (next) {
+        heading = `Cleaning checklist — next cleaning day: ${esc(next.label)}`;
+        note = "This list will only fill in on the day itself (some tasks depend on weather or usage) - come back and print again once it's due.";
+      } else {
+        note = "No cleaning days are currently turned on.";
+      }
+    }
+
+    const sections = roomNames.map((room) => {
+      const tasks = [...byRoom[room]].sort((a, b) => (a.attrs.task_name || "").localeCompare(b.attrs.task_name || ""));
+      const items = tasks.map((t) => `
+        <li class="task">
+          <span class="box"></span>
+          <span class="label">${esc(t.attrs.task_name || "")}</span>
+        </li>`).join("");
+      return `<section class="room"><h2>${esc(room)}</h2><ul>${items}</ul></section>`;
+    }).join("");
+
+    return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${esc(heading)}</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #111; margin: 0; padding: 24px; }
+  h1 { font-size: 1.4em; margin: 0 0 4px; }
+  .note { font-size: 0.9em; color: #555; margin-bottom: 16px; }
+  .rooms { column-width: 260px; column-gap: 28px; }
+  section.room { break-inside: avoid; margin-bottom: 18px; }
+  h2 { font-size: 1.05em; border-bottom: 1px solid #999; padding-bottom: 3px; margin: 0 0 6px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li.task { display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; font-size: 0.95em; }
+  .box { flex: 0 0 14px; width: 14px; height: 14px; border: 1.5px solid #333; margin-top: 2px; }
+  .label { flex: 1; }
+  @media print {
+    .print-hint { display: none; }
+  }
+  .print-hint { margin-top: 24px; font-size: 0.8em; color: #888; }
+</style>
+</head>
+<body>
+  <h1>${heading}</h1>
+  ${note ? `<div class="note">${esc(note)}</div>` : ""}
+  <div class="rooms">${sections}</div>
+  <div class="print-hint">Open this file and use your browser's Print (Ctrl/Cmd+P), paper size A4.</div>
+</body>
+</html>`;
+  }
+
+  _dateForOffset(offset) {
+    const d = new Date();
+    d.setDate(d.getDate() + offset);
+    return d;
+  }
+
   _render() {
     if (!this._hass || !this._built) return;
     const lang = this._lang();
@@ -324,11 +459,27 @@ class CleaningTodayCard extends HTMLElement {
     if (langSelect.value !== lang) langSelect.value = lang;
 
     const dateEl = this.querySelector(".ct-date");
-    dateEl.textContent = new Date().toLocaleDateString(undefined, {
+    dateEl.textContent = this._dateForOffset(this._dayOffset).toLocaleDateString(undefined, {
       weekday: "long", day: "numeric", month: "long", year: "numeric",
     });
     this.querySelector(".ct-instructions").textContent = strings.instructions;
+    const prevBtn = this.querySelector(".ct-day-prev");
+    const nextBtn = this.querySelector(".ct-day-next");
+    prevBtn.disabled = this._dayOffset <= 0;
+    prevBtn.style.opacity = prevBtn.disabled ? "0.3" : "1";
+    nextBtn.disabled = this._dayOffset >= 6;
+    nextBtn.style.opacity = nextBtn.disabled ? "0.3" : "1";
+    this.querySelector(".ct-day-today").style.display = this._dayOffset === 0 ? "none" : "inline-block";
+    this.querySelector(".ct-print").style.display = this._dayOffset === 0 ? "inline-block" : "none";
 
+    if (this._dayOffset === 0) {
+      this._renderLive(strings);
+    } else {
+      this._renderPreview(strings);
+    }
+  }
+
+  _renderLive(strings) {
     const byRoom = {};
     for (const [entityId, state] of Object.entries(this._hass.states)) {
       if (!entityId.startsWith("switch.cleaning_task_")) continue;
@@ -337,6 +488,8 @@ class CleaningTodayCard extends HTMLElement {
       const room = attrs.room || "Other";
       (byRoom[room] = byRoom[room] || []).push({ entityId, state, attrs });
     }
+    this._lastByRoom = byRoom;
+    this._lastLang = this._lang();
 
     const roomsEl = this.querySelector(".ct-rooms");
     roomsEl.innerHTML = "";
@@ -380,6 +533,116 @@ class CleaningTodayCard extends HTMLElement {
       }
       roomsEl.appendChild(section);
     }
+  }
+
+  // Other days of the week: read-only, based on a server-computed preview
+  // (cleaning_tasks/week_preview) using the same due-date/weather logic as
+  // today's live list - nothing here can be ticked off, since it isn't
+  // real yet. Cached per offset for the life of the card; the point is
+  // browsing, not a live feed.
+  async _renderPreview(strings) {
+    const offset = this._dayOffset;
+    let cached = this._previewCache[offset];
+    if (!cached) {
+      cached = this._hass.callWS({ type: "cleaning_tasks/week_preview" }).then((result) => {
+        for (let i = 0; i < result.days.length; i++) this._previewCache[i] = result.days[i];
+        return this._previewCache[offset];
+      });
+      this._previewCache[offset] = cached;
+    }
+
+    const roomsEl = this.querySelector(".ct-rooms");
+    if (roomsEl.dataset.previewOffset !== String(offset)) {
+      roomsEl.innerHTML = `<div style="opacity:0.6;padding:8px 0;">…</div>`;
+    }
+
+    const day = await cached;
+    // The offset (and thus which day this resolves to) may have moved on
+    // again while the fetch was in flight - only paint if still current.
+    if (this._dayOffset !== offset || !this._hass) return;
+    roomsEl.dataset.previewOffset = String(offset);
+
+    roomsEl.innerHTML = "";
+    if (!day || !day.is_cleaning_day) {
+      roomsEl.innerHTML = `<div style="opacity:0.7;padding:8px 0;">${strings.nothingDue}</div>`;
+      return;
+    }
+
+    const byRoom = {};
+    for (const task of day.tasks) {
+      (byRoom[task.room || "Other"] = byRoom[task.room || "Other"] || []).push(task);
+    }
+    const roomNames = Object.keys(byRoom).sort();
+    if (roomNames.length === 0) {
+      roomsEl.innerHTML = `<div style="opacity:0.7;padding:8px 0;">${strings.nothingDue}</div>`;
+      return;
+    }
+
+    for (const room of roomNames) {
+      const tasks = [...byRoom[room]].sort((a, b) =>
+        this._taskLabel({ task_name: a.task_name }).localeCompare(this._taskLabel({ task_name: b.task_name }))
+      );
+      const section = document.createElement("div");
+      section.style.breakInside = "avoid";
+      section.style.marginBottom = "16px";
+
+      const heading = document.createElement("div");
+      heading.textContent = room;
+      heading.style.cssText = "font-weight:600;font-size:1.05em;margin-bottom:6px;";
+      section.appendChild(heading);
+
+      for (const task of tasks) {
+        section.appendChild(this._taskRowPreview(task));
+      }
+      roomsEl.appendChild(section);
+    }
+  }
+
+  _taskRowPreview(task) {
+    const attrs = { task_name: task.task_name };
+    const label = this._taskLabel(attrs);
+    const row = document.createElement("div");
+    row.style.cssText =
+      "display:flex;align-items:center;gap:8px;min-height:52px;padding:0 8px 0 12px;margin-bottom:6px;opacity:0.85;" +
+      "border-radius:var(--ha-card-border-radius,12px);background:var(--card-background-color,var(--secondary-background-color));";
+
+    const icon = document.createElement("ha-icon");
+    icon.icon = task.conditional_on_used ? "mdi:help-circle-outline" : task.weather_deferred ? "mdi:weather-rainy" : "mdi:broom";
+
+    const body = document.createElement("div");
+    body.style.cssText = "display:flex;flex-direction:column;overflow:hidden;flex:1;min-width:0;";
+    const name = document.createElement("span");
+    name.textContent = label;
+    name.style.cssText = "font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+    const note = document.createElement("span");
+    note.style.cssText = "font-size:0.85em;opacity:0.75;";
+    note.textContent = task.weather_deferred
+      ? "Weather-permitting"
+      : task.conditional_on_used
+        ? "If room is used"
+        : "Scheduled";
+    body.appendChild(name);
+    body.appendChild(note);
+
+    const speakBtn = document.createElement("button");
+    speakBtn.type = "button";
+    speakBtn.style.cssText =
+      "-webkit-appearance:none;appearance:none;box-sizing:border-box;flex:0 0 28px;min-width:28px;width:28px;height:28px;" +
+      "padding:0;margin:0;border:none;outline:none;background:transparent;cursor:pointer;display:flex;align-items:center;" +
+      "justify-content:center;-webkit-tap-highlight-color:transparent;";
+    const speakIcon = document.createElement("ha-icon");
+    speakIcon.icon = "mdi:volume-high";
+    speakIcon.style.cssText = "--mdc-icon-size:20px;width:20px;height:20px;";
+    speakBtn.appendChild(speakIcon);
+    speakBtn.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      this._speak(attrs);
+    });
+
+    row.appendChild(icon);
+    row.appendChild(body);
+    row.appendChild(speakBtn);
+    return row;
   }
 
   _taskRow({ entityId, state, attrs }, strings) {
