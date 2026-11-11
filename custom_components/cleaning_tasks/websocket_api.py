@@ -230,6 +230,30 @@ async def handle_pin_set(hass, connection, msg):
     connection.send_result(msg["id"], {"pin": pin})
 
 
+@websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/before_leaving/get"})
+@websocket_api.async_response
+async def handle_before_leaving_get(hass, connection, msg):
+    # Not admin-gated: the kiosk's own user prints these.
+    connection.send_result(msg["id"], {"items": _manager(hass).store.before_leaving()})
+
+
+@websocket_api.websocket_command({
+    vol.Required("type"): "cleaning_tasks/before_leaving/set",
+    vol.Required("items"): [str],
+    vol.Optional("pin"): str,
+})
+@websocket_api.async_response
+async def handle_before_leaving_set(hass, connection, msg):
+    # Admins (editor card) may edit freely; the kiosk's non-admin user must
+    # supply the same PIN used by "mark all done".
+    if not connection.user.is_admin and msg.get("pin") != _manager(hass).store.mark_all_pin():
+        connection.send_error(msg["id"], "invalid_pin", "Wrong PIN")
+        return
+    items = _manager(hass).store.set_before_leaving(msg["items"])
+    await _save(hass)
+    connection.send_result(msg["id"], {"items": items})
+
+
 @websocket_api.require_admin
 @websocket_api.websocket_command({vol.Required("type"): "cleaning_tasks/schedule/rebalance"})
 @websocket_api.async_response
@@ -256,3 +280,5 @@ def async_register(hass: HomeAssistant) -> None:
     websocket_api.async_register_command(hass, handle_pin_get)
     websocket_api.async_register_command(hass, handle_pin_set)
     websocket_api.async_register_command(hass, handle_schedule_rebalance)
+    websocket_api.async_register_command(hass, handle_before_leaving_get)
+    websocket_api.async_register_command(hass, handle_before_leaving_set)

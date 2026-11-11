@@ -41,6 +41,9 @@ def _default_data() -> dict[str, Any]:
         # admin card. Default matches what used to be hardcoded, so nothing
         # changes for the user until they set their own.
         "mark_all_pin": "6690",
+        # Free-text checks (e.g. "Before leaving for the day") printed at
+        # the bottom of every printed daily checklist.
+        "before_leaving": [],
     }
 
 
@@ -207,6 +210,15 @@ class CleaningTasksStore:
     def set_mark_all_pin(self, pin: str) -> str:
         self.data["mark_all_pin"] = (pin or "").strip() or "6690"
         return self.data["mark_all_pin"]
+
+    # ---------- "before leaving" checks ----------
+
+    def before_leaving(self) -> list[str]:
+        return list(self.data.get("before_leaving", []))
+
+    def set_before_leaving(self, items: list[str]) -> list[str]:
+        self.data["before_leaving"] = [i.strip() for i in items if i and i.strip()]
+        return self.before_leaving()
 
     # ---------- CSV ----------
 

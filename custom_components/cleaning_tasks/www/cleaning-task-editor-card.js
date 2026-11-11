@@ -74,6 +74,18 @@ class CleaningTaskEditorCard extends HTMLElement {
             <input class="te-pin" type="text" inputmode="numeric" placeholder="PIN" style="width:120px;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);">
           </div>
         </ha-card>
+        <ha-card header="Before leaving for the day" style="margin-top:16px;">
+          <div style="padding:0 16px 16px;">
+            <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
+              Checks to make before leaving (stove off, windows closed, etc). These are printed at the bottom of every day's printed checklist.
+            </div>
+            <div class="te-bl-list"></div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <input class="te-bl-input" type="text" placeholder="Add a check..." style="flex:1;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);">
+              <button class="te-bl-add" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Add</button>
+            </div>
+          </div>
+        </ha-card>
         <ha-card header="Schedule balance" style="margin-top:16px;">
           <div style="padding:0 16px 16px;">
             <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
@@ -96,6 +108,8 @@ class CleaningTaskEditorCard extends HTMLElement {
       this.querySelector(".te-weather-entity").addEventListener("change", (ev) => this._setWeatherEntity(ev.target.value));
       this.querySelector(".te-pin").addEventListener("blur", (ev) => this._setPin(ev.target.value));
       this.querySelector(".te-rebalance").addEventListener("click", () => this._rebalance());
+      this.querySelector(".te-bl-add").addEventListener("click", () => this._blAdd());
+      this.querySelector(".te-bl-input").addEventListener("keydown", (ev) => { if (ev.key === "Enter") this._blAdd(); });
     }
     if (this._hass) this._load();
   }
@@ -111,7 +125,48 @@ class CleaningTaskEditorCard extends HTMLElement {
     await this._loadLanguages();
     await this._loadWeather();
     await this._loadPin();
+    await this._loadBl();
     this._renderRooms();
+  }
+
+  async _loadBl() {
+    const r = await this._hass.callWS({ type: "cleaning_tasks/before_leaving/get" });
+    this._bl = r.items;
+    this._renderBl();
+  }
+
+  _renderBl() {
+    const list = this.querySelector(".te-bl-list");
+    list.innerHTML = "";
+    this._bl.forEach((text, i) => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;align-items:center;gap:8px;padding:4px 0;";
+      const label = document.createElement("span");
+      label.style.flex = "1";
+      label.textContent = text;
+      const del = document.createElement("button");
+      del.type = "button";
+      del.textContent = "✕";
+      del.title = "Remove";
+      del.style.cssText = "border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;";
+      del.addEventListener("click", () => this._blSave(this._bl.filter((_, j) => j !== i)));
+      row.append(label, del);
+      list.appendChild(row);
+    });
+  }
+
+  async _blAdd() {
+    const input = this.querySelector(".te-bl-input");
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    await this._blSave([...this._bl, text]);
+  }
+
+  async _blSave(items) {
+    const r = await this._hass.callWS({ type: "cleaning_tasks/before_leaving/set", items });
+    this._bl = r.items;
+    this._renderBl();
   }
 
   async _loadPin() {

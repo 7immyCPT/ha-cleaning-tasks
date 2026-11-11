@@ -290,6 +290,15 @@ class CleaningTodayCard extends HTMLElement {
             <div class="ct-instructions" style="opacity:0.75;font-size:0.85em;margin-top:6px;"></div>
           </div>
           <div class="ct-rooms" style="padding:0 16px 16px;column-width:320px;column-gap:16px;"></div>
+          <div class="ct-bl" style="margin:0 16px 16px;padding-top:10px;border-top:1px solid var(--divider-color);">
+            <div style="font-weight:600;margin-bottom:4px;">Before leaving for the day</div>
+            <div style="opacity:0.7;font-size:0.8em;margin-bottom:6px;">Printed at the bottom of every day's list. Changes ask for the password.</div>
+            <div class="ct-bl-list"></div>
+            <div style="display:flex;gap:8px;margin-top:6px;">
+              <input class="ct-bl-input" type="text" placeholder="Add a check..." style="flex:1;min-width:0;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);">
+              <button class="ct-bl-add" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Add</button>
+            </div>
+          </div>
         </ha-card>`;
       this.style.display = "block";
       this._dayOffset = 0;
@@ -301,12 +310,60 @@ class CleaningTodayCard extends HTMLElement {
         });
       });
       this.querySelector(".ct-print").addEventListener("click", () => this._downloadPrintable());
+      this.querySelector(".ct-bl-add").addEventListener("click", () => this._blAdd());
+      this.querySelector(".ct-bl-input").addEventListener("keydown", (ev) => { if (ev.key === "Enter") this._blAdd(); });
+      this._blLoad();
       this.querySelector(".ct-mark-all").addEventListener("click", () => this._markAllDone());
       this.querySelector(".ct-day-prev").addEventListener("click", () => this._shiftDay(-1));
       this.querySelector(".ct-day-next").addEventListener("click", () => this._shiftDay(1));
       this.querySelector(".ct-day-today").addEventListener("click", () => this._shiftDay(-this._dayOffset));
     }
     this._render();
+  }
+
+  async _blLoad() {
+    try {
+      this._bl = (await this._hass.callWS({ type: "cleaning_tasks/before_leaving/get" })).items || [];
+    } catch (e) {
+      this._bl = this._bl || [];
+    }
+    const list = this.querySelector(".ct-bl-list");
+    list.innerHTML = "";
+    this._bl.forEach((text, i) => {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;align-items:center;gap:8px;padding:3px 0;";
+      const label = document.createElement("span");
+      label.style.flex = "1";
+      label.textContent = "☐ " + text;
+      const del = document.createElement("button");
+      del.type = "button";
+      del.textContent = "✕";
+      del.title = "Remove";
+      del.style.cssText = "border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;";
+      del.addEventListener("click", () => this._blSave(this._bl.filter((_, j) => j !== i)));
+      row.append(label, del);
+      list.appendChild(row);
+    });
+  }
+
+  async _blAdd() {
+    const input = this.querySelector(".ct-bl-input");
+    const text = input.value.trim();
+    if (!text) return;
+    if (await this._blSave([...(this._bl || []), text])) input.value = "";
+  }
+
+  async _blSave(items) {
+    const pin = await this._promptPassword();
+    if (pin === null) return false;
+    try {
+      await this._hass.callWS({ type: "cleaning_tasks/before_leaving/set", items, pin });
+    } catch (e) {
+      window.alert("Wrong password.");
+      return false;
+    }
+    await this._blLoad();
+    return true;
   }
 
   // Small masked-input dialog - native window.prompt() can't mask input,
@@ -621,7 +678,11 @@ class CleaningTodayCard extends HTMLElement {
       }
     }
     const roomNames = Object.keys(byRoom).sort();
-    const html = this._buildPrintableHtml(roomNames, byRoom, offset, previewDay);
+    let beforeLeaving = [];
+    try {
+      beforeLeaving = (await this._hass.callWS({ type: "cleaning_tasks/before_leaving/get" })).items || [];
+    } catch (e) { /* print without them */ }
+    const html = this._buildPrintableHtml(roomNames, byRoom, offset, previewDay, beforeLeaving);
     const blob = new Blob([html], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -634,7 +695,7 @@ class CleaningTodayCard extends HTMLElement {
     URL.revokeObjectURL(url);
   }
 
-  _buildPrintableHtml(roomNames, byRoom, offset = 0, previewDay = null) {
+  _buildPrintableHtml(roomNames, byRoom, offset = 0, previewDay = null, beforeLeaving = []) {
     const esc = (s) => String(s == null ? "" : s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
     const dateLabel = this._dateForOffset(offset).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
@@ -670,6 +731,15 @@ class CleaningTodayCard extends HTMLElement {
       return `<section class="room"><h2>${esc(room)}</h2><ul>${items}</ul></section>`;
     }).join("");
 
+    const blItems = beforeLeaving.map((t) => `
+        <li class="task">
+          <span class="box"></span>
+          <span class="label">${esc(t)}</span>
+        </li>`).join("");
+    const blSection = blItems
+      ? `<section class="leaving"><h2>Before leaving for the day</h2><ul>${blItems}</ul></section>`
+      : "";
+
     return `<!doctype html>
 <html>
 <head>
@@ -688,6 +758,8 @@ class CleaningTodayCard extends HTMLElement {
   li.task { display: flex; align-items: flex-start; gap: 8px; padding: 4px 0; font-size: 0.95em; }
   .box { flex: 0 0 14px; width: 14px; height: 14px; border: 1.5px solid #333; margin-top: 2px; }
   .label { flex: 1; }
+  section.leaving { break-inside: avoid; margin-top: 24px; border-top: 2px solid #333; padding-top: 10px; }
+  section.leaving ul { column-count: 2; column-gap: 28px; }
   @media print {
     .print-hint { display: none; }
   }
@@ -698,6 +770,7 @@ class CleaningTodayCard extends HTMLElement {
   <h1>${heading}</h1>
   ${note ? `<div class="note">${esc(note)}</div>` : ""}
   <div class="rooms">${sections}</div>
+  ${blSection}
   <div class="print-hint">Open this file and use your browser's Print (Ctrl/Cmd+P), paper size A4.</div>
 </body>
 </html>`;
