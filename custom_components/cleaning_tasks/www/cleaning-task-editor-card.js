@@ -77,7 +77,7 @@ class CleaningTaskEditorCard extends HTMLElement {
         <ha-card header="Before leaving for the day" style="margin-top:16px;">
           <div style="padding:0 16px 16px;">
             <div style="font-size:0.85em;opacity:0.75;margin-bottom:10px;">
-              Checks to make before leaving (stove off, windows closed, etc). These are printed at the bottom of every day's printed checklist.
+              Checks to make before leaving (stove off, windows closed, etc). Click a check to edit it, drag to reorder. These are printed at the bottom of every day's printed checklist.
             </div>
             <div class="te-bl-list"></div>
             <div style="display:flex;gap:8px;margin-top:8px;">
@@ -141,16 +141,67 @@ class CleaningTaskEditorCard extends HTMLElement {
     this._bl.forEach((text, i) => {
       const row = document.createElement("div");
       row.style.cssText = "display:flex;align-items:center;gap:8px;padding:4px 0;";
+      row.draggable = true;
+      row.style.cursor = "grab";
+      row.addEventListener("dragstart", (ev) => { this._blDrag = i; ev.dataTransfer.effectAllowed = "move"; row.style.opacity = "0.4"; });
+      row.addEventListener("dragend", () => { row.style.opacity = "1"; });
+      row.addEventListener("dragover", (ev) => { ev.preventDefault(); row.style.background = "var(--divider-color)"; });
+      row.addEventListener("dragleave", () => { row.style.background = ""; });
+      row.addEventListener("drop", (ev) => {
+        ev.preventDefault();
+        row.style.background = "";
+        const from = this._blDrag;
+        if (from == null || from === i) return;
+        const items = [...this._bl];
+        const [moved] = items.splice(from, 1);
+        items.splice(i, 0, moved);
+        this._blDrag = null;
+        this._blSave(items);
+      });
+      const handle = document.createElement("span");
+      handle.textContent = "⠿";
+      handle.title = "Drag to reorder";
+      handle.style.opacity = "0.6";
       const label = document.createElement("span");
       label.style.flex = "1";
+      label.style.fontWeight = "700";
       label.textContent = text;
+      label.title = "Click to edit";
+      label.style.cursor = "text";
+      label.addEventListener("click", () => {
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = text;
+        input.style.cssText = "flex:1;padding:4px 6px;border-radius:8px;border:1px solid var(--divider-color);background:var(--card-background-color);color:var(--primary-text-color);font-weight:700;";
+        row.draggable = false;
+        row.replaceChild(input, label);
+        input.focus();
+        let done = false;
+        const finish = (save) => {
+          if (done) return;
+          done = true;
+          const v = input.value.trim();
+          if (save && v && v !== text) {
+            const items = [...this._bl];
+            items[i] = v;
+            this._blSave(items);
+          } else {
+            this._renderBl();
+          }
+        };
+        input.addEventListener("keydown", (ev) => {
+          if (ev.key === "Enter") finish(true);
+          else if (ev.key === "Escape") finish(false);
+        });
+        input.addEventListener("blur", () => finish(true));
+      });
       const del = document.createElement("button");
       del.type = "button";
       del.textContent = "✕";
       del.title = "Remove";
       del.style.cssText = "border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;";
       del.addEventListener("click", () => this._blSave(this._bl.filter((_, j) => j !== i)));
-      row.append(label, del);
+      row.append(handle, label, del);
       list.appendChild(row);
     });
   }

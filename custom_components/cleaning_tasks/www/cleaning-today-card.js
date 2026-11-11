@@ -328,6 +328,7 @@ class CleaningTodayCard extends HTMLElement {
       row.style.cssText = "display:flex;align-items:center;gap:8px;padding:3px 0;";
       const label = document.createElement("span");
       label.style.flex = "1";
+      label.style.fontWeight = "700";
       label.textContent = "☐ " + text;
       row.append(label);
       list.appendChild(row);
@@ -727,6 +728,7 @@ class CleaningTodayCard extends HTMLElement {
   .box { flex: 0 0 14px; width: 14px; height: 14px; border: 1.5px solid #333; margin-top: 2px; }
   .label { flex: 1; }
   section.leaving { break-inside: avoid; margin-top: 24px; border-top: 2px solid #333; padding-top: 10px; }
+  section.leaving .label { font-weight: 700; }
   section.leaving ul { column-count: 2; column-gap: 28px; }
   @media print {
     .print-hint { display: none; }
