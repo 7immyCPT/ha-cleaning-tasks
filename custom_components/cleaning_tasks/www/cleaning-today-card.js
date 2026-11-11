@@ -292,12 +292,8 @@ class CleaningTodayCard extends HTMLElement {
           <div class="ct-rooms" style="padding:0 16px 16px;column-width:320px;column-gap:16px;"></div>
           <div class="ct-bl" style="margin:0 16px 16px;padding-top:10px;border-top:1px solid var(--divider-color);">
             <div style="font-weight:600;margin-bottom:4px;">Before leaving for the day</div>
-            <div style="opacity:0.7;font-size:0.8em;margin-bottom:6px;">Printed at the bottom of every day's list. Changes ask for the password.</div>
+            <div style="opacity:0.7;font-size:0.8em;margin-bottom:6px;">Printed at the bottom of every day's list. Edit these on the admin page.</div>
             <div class="ct-bl-list"></div>
-            <div style="display:flex;gap:8px;margin-top:6px;">
-              <input class="ct-bl-input" type="text" placeholder="Add a check..." style="flex:1;min-width:0;padding:6px 8px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);">
-              <button class="ct-bl-add" type="button" style="padding:6px 14px;border-radius:8px;border:1px solid var(--divider-color);background:transparent;color:var(--primary-text-color);cursor:pointer;">Add</button>
-            </div>
           </div>
         </ha-card>`;
       this.style.display = "block";
@@ -310,8 +306,6 @@ class CleaningTodayCard extends HTMLElement {
         });
       });
       this.querySelector(".ct-print").addEventListener("click", () => this._downloadPrintable());
-      this.querySelector(".ct-bl-add").addEventListener("click", () => this._blAdd());
-      this.querySelector(".ct-bl-input").addEventListener("keydown", (ev) => { if (ev.key === "Enter") this._blAdd(); });
       this._blLoad();
       this.querySelector(".ct-mark-all").addEventListener("click", () => this._markAllDone());
       this.querySelector(".ct-day-prev").addEventListener("click", () => this._shiftDay(-1));
@@ -335,35 +329,9 @@ class CleaningTodayCard extends HTMLElement {
       const label = document.createElement("span");
       label.style.flex = "1";
       label.textContent = "☐ " + text;
-      const del = document.createElement("button");
-      del.type = "button";
-      del.textContent = "✕";
-      del.title = "Remove";
-      del.style.cssText = "border:none;background:transparent;color:var(--primary-text-color);cursor:pointer;";
-      del.addEventListener("click", () => this._blSave(this._bl.filter((_, j) => j !== i)));
-      row.append(label, del);
+      row.append(label);
       list.appendChild(row);
     });
-  }
-
-  async _blAdd() {
-    const input = this.querySelector(".ct-bl-input");
-    const text = input.value.trim();
-    if (!text) return;
-    if (await this._blSave([...(this._bl || []), text])) input.value = "";
-  }
-
-  async _blSave(items) {
-    const pin = await this._promptPassword();
-    if (pin === null) return false;
-    try {
-      await this._hass.callWS({ type: "cleaning_tasks/before_leaving/set", items, pin });
-    } catch (e) {
-      window.alert("Wrong password.");
-      return false;
-    }
-    await this._blLoad();
-    return true;
   }
 
   // Small masked-input dialog - native window.prompt() can't mask input,
